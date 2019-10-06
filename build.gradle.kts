@@ -13,8 +13,13 @@ repositories {
 }
 
 dependencies {
+    // kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    // monkeydp
+    implementation("com.monkeydp.common:tools")
+    // junit
+    testImplementation("junit:junit:4.12")
 }
 
 tasks.withType<KotlinCompile> {
