@@ -1,1 +1,1 @@
-rootProject.name = "mysql"
+rootProject.name = "dm-mysql"
