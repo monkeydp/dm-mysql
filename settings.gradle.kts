@@ -1,2 +1,2 @@
 rootProject.name = "dm-mysql"
-includeBuild("../../tools")
+includeBuild("../dm-base")

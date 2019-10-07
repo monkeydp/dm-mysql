@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     // spring (only use for dependency management)
     id("org.springframework.boot") version "2.1.9.RELEASE"
@@ -8,7 +6,7 @@ plugins {
     kotlin("jvm") version "1.2.71"
 }
 
-group = "com.monkeydp.daios"
+group = "com.monkeydp.daios.dm"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -17,18 +15,8 @@ repositories {
 }
 
 dependencies {
-    // kotlin
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     // monkeydp
-    implementation("com.monkeydp.common:tools")
+    implementation("com.monkeydp.daios.dm:dm-base")
     // junit
     testImplementation("junit:junit")
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "1.8"
-    }
 }
