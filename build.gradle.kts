@@ -1,9 +1,18 @@
 plugins {
+    distribution
     // spring (only use for dependency management)
     id("org.springframework.boot") version "2.1.9.RELEASE"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
     // kotlin
     kotlin("jvm") version "1.2.71"
+}
+
+distributions {
+    main {
+        contents {
+            from("src/main/kotlin")
+        }
+    }
 }
 
 group = "com.monkeydp.daios.dm"
