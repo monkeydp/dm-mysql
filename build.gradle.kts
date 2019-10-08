@@ -10,7 +10,10 @@ plugins {
 distributions {
     main {
         contents {
-            from("src/main/kotlin")
+            from("src/main/kotlin") {
+                into("classes")
+            }
+            from("assembly")
         }
     }
 }
