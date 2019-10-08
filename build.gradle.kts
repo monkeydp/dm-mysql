@@ -16,6 +16,8 @@ repositories {
 
 dependencies {
     // monkeydp
+    implementation("com.monkeydp:tools")
+    implementation("com.monkeydp.daios.dms:dms-sdk")
     implementation("com.monkeydp.daios.dm:dm-base")
     // junit
     testImplementation("junit:junit")
