@@ -1,8 +1,5 @@
 plugins {
     distribution
-    // spring (only use for dependency management)
-    id("org.springframework.boot") version "2.1.9.RELEASE"
-    id("io.spring.dependency-management") version "1.0.8.RELEASE"
     // kotlin
     kotlin("jvm") version "1.2.71"
 }
@@ -35,5 +32,5 @@ dependencies {
     implementation("com.monkeydp.daios.dms:dms-sdk")
     implementation("com.monkeydp.daios.dm:dm-base")
     // junit
-    testImplementation("junit:junit")
+    testImplementation("junit:junit:4.12")
 }
