@@ -2,7 +2,7 @@ package com.monkeydp.daios.dm.mysql.bundle
 
 import com.monkeydp.daios.dm.base.bundle.AbstractDm
 import com.monkeydp.daios.dm.mysql.connection.MysqlConnectionFactory
-import com.monkeydp.daios.dms.sdk.bundle.Dm.ImplClassNames
+import com.monkeydp.daios.dms.sdk.dm.Dm.ImplClassNames
 
 /**
  * @author iPotato
