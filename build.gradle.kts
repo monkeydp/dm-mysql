@@ -7,8 +7,8 @@ plugins {
 distributions {
     main {
         contents {
-            from("src/main/kotlin") {
-                into("classes")
+            from("$buildDir/classes/kotlin/main/com") {
+                into("classes/com")
             }
             from("assembly")
         }
@@ -30,7 +30,6 @@ dependencies {
     // monkeydp
     implementation("com.monkeydp:tools")
     implementation("com.monkeydp.daios.dms:dms-sdk")
-    implementation("com.monkeydp.daios.dm:dm-base")
     // junit
     testImplementation("junit:junit:4.12")
 }
