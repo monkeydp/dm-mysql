@@ -1,6 +1,7 @@
 package com.monkeydp.daios.dm.mysql.bundle
 
 import com.monkeydp.daios.dm.mysql.connection.MysqlConnectionFactory
+import com.monkeydp.daios.dms.sdk.datasource.Datasource
 import com.monkeydp.daios.dms.sdk.dm.Dm
 import com.monkeydp.daios.dms.sdk.dm.Dm.ImplClassNames
 
@@ -9,6 +10,10 @@ import com.monkeydp.daios.dms.sdk.dm.Dm.ImplClassNames
  * @date 2019/10/8
  */
 class MysqlDm : Dm {
+
+    override fun datasource(): Datasource {
+        return Datasource.MYSQL
+    }
 
     override fun implClassNames(): ImplClassNames {
         return MysqlImplClassNames
