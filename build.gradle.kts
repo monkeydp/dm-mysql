@@ -4,17 +4,6 @@ plugins {
     kotlin("jvm") version "1.2.71"
 }
 
-distributions {
-    main {
-        contents {
-            from("$buildDir/classes/kotlin/main/com") {
-                into("classes/com")
-            }
-            from("assembly")
-        }
-    }
-}
-
 group = "com.monkeydp.daios.dm"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
@@ -33,3 +22,14 @@ dependencies {
     // junit
     testImplementation("junit:junit:4.12")
 }
+
+distributions {
+    main {
+        contents {
+            from("$buildDir/classes/kotlin/main/com") {
+                into("classes/com")
+            }
+        }
+    }
+}
+tasks.distZip { dependsOn(tasks.compileJava) }
