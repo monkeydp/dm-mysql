@@ -9,7 +9,7 @@ import com.monkeydp.daios.dms.sdk.connection.ConnectionProfile
  * @date 2019/10/7
  */
 class MysqlConnectionFactory : ConnectionFactory {
-    override fun newConnection(profile: ConnectionProfile): Connection {
+    override fun getConnection(profile: ConnectionProfile): Connection {
         return Connection(5L, 1L)
     }
 }
