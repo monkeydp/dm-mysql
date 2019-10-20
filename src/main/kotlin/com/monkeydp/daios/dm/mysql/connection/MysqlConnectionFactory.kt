@@ -3,6 +3,7 @@ package com.monkeydp.daios.dm.mysql.connection
 import com.monkeydp.daios.dms.sdk.connection.Connection
 import com.monkeydp.daios.dms.sdk.connection.ConnectionFactory
 import com.monkeydp.daios.dms.sdk.connection.ConnectionProfile
+import java.sql.DriverManager
 
 /**
  * @author iPotato
@@ -10,7 +11,14 @@ import com.monkeydp.daios.dms.sdk.connection.ConnectionProfile
  */
 class MysqlConnectionFactory : ConnectionFactory {
     override fun getConnection(profile: ConnectionProfile): Connection {
+        val form = profile.userInput.convertTo(MysqlConnectionProfileFrom::class.java)
         Class.forName(profile.dbDriverName)
-        return Connection(5L, 1L)
+        val url = form.url()
+        val props = MysqlConnectionParameters(
+                user = form.username,
+                password = form.password
+        ).toProperties()
+        val physicalConn = DriverManager.getConnection(url, props)
+        return Connection(profile.id, physicalConn)
     }
 }
