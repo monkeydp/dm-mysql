@@ -10,6 +10,7 @@ import com.monkeydp.daios.dms.sdk.connection.ConnectionProfile
  */
 class MysqlConnectionFactory : ConnectionFactory {
     override fun getConnection(profile: ConnectionProfile): Connection {
+        Class.forName(profile.dbDriverName)
         return Connection(5L, 1L)
     }
 }

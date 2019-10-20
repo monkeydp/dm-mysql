@@ -1,3 +1,6 @@
+import Build_gradle.Profile.MYSQL_57
+import Build_gradle.Profile.MYSQL_80
+
 plugins {
     distribution
     // kotlin
@@ -33,3 +36,23 @@ distributions {
     }
 }
 tasks.distZip { dependsOn(tasks.compileJava) }
+
+
+enum class Profile {
+    MYSQL_57,
+    MYSQL_80
+}
+
+val profile = MYSQL_57
+when (profile) {
+    MYSQL_57 -> {
+        dependencies {
+            implementation("mysql:mysql-connector-java:5.1.47")
+        }
+    }
+    MYSQL_80 -> {
+        dependencies {
+            implementation("mysql:mysql-connector-java:8.0.15")
+        }
+    }
+}
