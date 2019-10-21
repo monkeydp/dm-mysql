@@ -14,6 +14,6 @@ class MysqlConnectionFactoryTest {
 
     @Test
     fun getConnectionTest() {
-        connectionFactory.connection(mockConnectionProfile)
+        connectionFactory.getConnection(mockConnectionProfile)
     }
 }

@@ -11,7 +11,7 @@ import java.sql.DriverManager
  */
 class MysqlConnectionFactory : ConnectionFactory {
 
-    override fun connection(profile: ConnectionProfile): Connection {
+    override fun getConnection(profile: ConnectionProfile): Connection {
         val form = profile.userInput.convertTo(MysqlConnectionProfileFrom::class.java)
         Class.forName(profile.dbDriverName)
         val url = form.url()
