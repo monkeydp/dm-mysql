@@ -10,7 +10,8 @@ import java.sql.DriverManager
  * @date 2019/10/7
  */
 class MysqlConnectionFactory : ConnectionFactory {
-    override fun getConnection(profile: ConnectionProfile): Connection {
+
+    override fun connection(profile: ConnectionProfile): Connection {
         val form = profile.userInput.convertTo(MysqlConnectionProfileFrom::class.java)
         Class.forName(profile.dbDriverName)
         val url = form.url()
@@ -18,7 +19,7 @@ class MysqlConnectionFactory : ConnectionFactory {
                 user = form.username,
                 password = form.password
         ).toProperties()
-        val physicalConn = DriverManager.getConnection(url, props)
-        return Connection(profile.id, physicalConn)
+        val rawConn = DriverManager.getConnection(url, props)
+        return Connection(profile.id, MysqlLogicConnection(rawConn))
     }
 }
