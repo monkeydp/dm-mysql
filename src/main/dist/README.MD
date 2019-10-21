@@ -5,7 +5,7 @@ Resources used to generate dm-xxx.zip
 ## Directory structure
 
 ```
-assembly
+dist
  ├─ libs
  |  ├─ common       // common libs for all db versions
  |  └─ specifed     // specific libs for different db versions, like db-driver.jar
