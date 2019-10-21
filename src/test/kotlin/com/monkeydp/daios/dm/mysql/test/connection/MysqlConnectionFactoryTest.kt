@@ -2,6 +2,7 @@ package com.monkeydp.daios.dm.mysql.test.connection
 
 import com.monkeydp.daios.dm.mysql.connection.MysqlConnectionFactory
 import com.monkeydp.daios.dms.sdk.mock.MockFactory.mockConnectionProfile
+import org.junit.Assert
 import org.junit.Test
 
 /**
@@ -14,6 +15,7 @@ class MysqlConnectionFactoryTest {
 
     @Test
     fun getConnectionTest() {
-        connectionFactory.getConnection(mockConnectionProfile)
+        val connection = connectionFactory.getConnection(mockConnectionProfile)
+        Assert.assertTrue(connection.isValid())
     }
 }
