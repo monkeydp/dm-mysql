@@ -1,5 +1,7 @@
 import Build_gradle.Profile.MYSQL_57
 import Build_gradle.Profile.MYSQL_80
+import org.gradle.api.JavaVersion.VERSION_1_8
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     distribution
@@ -9,7 +11,7 @@ plugins {
 
 group = "com.monkeydp.daios.dm"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.sourceCompatibility = VERSION_1_8
 
 repositories {
     mavenCentral()
@@ -24,6 +26,13 @@ dependencies {
     implementation("com.monkeydp.daios.dms:dms-sdk")
     // junit
     testImplementation("junit:junit:4.12")
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+        jvmTarget = VERSION_1_8.toString()
+    }
 }
 
 distributions {

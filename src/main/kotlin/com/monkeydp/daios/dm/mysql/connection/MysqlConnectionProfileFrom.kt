@@ -8,14 +8,12 @@ import kotlin.properties.Delegates
  */
 class MysqlConnectionProfileFrom {
 
-    private val urlFormat = "jdbc:mysql://%s:%s?useSSL=true&serverTimezone=UTC&remarksReporting=true"
-
     lateinit var host: String
     var port by Delegates.notNull<Int>()
     lateinit var username: String
     lateinit var password: String
 
     fun url(): String {
-        return String.format(urlFormat, host, port)
+        return "jdbc:mysql://$host:$port?useSSL=true&serverTimezone=UTC&remarksReporting=true"
     }
 }

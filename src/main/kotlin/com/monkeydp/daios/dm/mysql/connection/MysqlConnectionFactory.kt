@@ -12,7 +12,7 @@ import java.sql.DriverManager
 class MysqlConnectionFactory : ConnectionFactory {
 
     override fun getConnection(profile: ConnectionProfile): Connection {
-        val form = profile.userInput.convertTo(MysqlConnectionProfileFrom::class.java)
+        val form = profile.userInput.convertTo<MysqlConnectionProfileFrom>()
         Class.forName(profile.dbDriverName)
         val url = form.url()
         val props = MysqlConnectionParameters(
