@@ -2,7 +2,7 @@ package com.monkeydp.daios.dm.mysql.connection
 
 import com.monkeydp.daios.dms.sdk.connection.Connection
 import com.monkeydp.daios.dms.sdk.connection.ConnectionFactory
-import com.monkeydp.daios.dms.sdk.connection.ConnectionProfile
+import com.monkeydp.daios.dms.sdk.model.ConnectionProfile
 import java.sql.DriverManager
 
 /**
