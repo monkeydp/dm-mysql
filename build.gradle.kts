@@ -19,9 +19,6 @@ repositories {
 }
 
 dependencies {
-    // kotlin
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     // sdk
     api("com.monkeydp.daios.dms:dms-sdk")
     // junit

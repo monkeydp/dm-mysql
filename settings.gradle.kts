@@ -4,3 +4,8 @@ includeBuild("../../dms-sdk") {
         substitute(module("com.monkeydp.daios.dms:dms-sdk")).with(project(":"))
     }
 }
+includeBuild("../../tools") {
+    dependencySubstitution {
+        substitute(module("com.monkeydp:tools")).with(project(":"))
+    }
+}
