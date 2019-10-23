@@ -22,9 +22,8 @@ dependencies {
     // kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    // monkeydp
-    implementation("com.monkeydp:tools")
-    implementation("com.monkeydp.daios.dms:dms-sdk")
+    // sdk
+    api("com.monkeydp.daios.dms:dms-sdk")
     // junit
     testImplementation("junit:junit:4.12")
 }

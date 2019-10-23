@@ -14,8 +14,13 @@ class MysqlConnectionFactoryTest {
     private val connectionFactory = MysqlConnectionFactory()
 
     @Test
-    fun getConnectionTest() {
+    fun connectionTest() {
         val connection = connectionFactory.getConnection(mockConnectionProfile)
         Assert.assertTrue(connection.isValid())
+        Assert.assertFalse(connection.isClosed())
+
+        connection.close()
+        Assert.assertFalse(connection.isValid())
+        Assert.assertTrue(connection.isClosed())
     }
 }
