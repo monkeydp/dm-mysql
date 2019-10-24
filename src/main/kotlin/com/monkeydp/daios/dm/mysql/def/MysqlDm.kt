@@ -2,6 +2,8 @@ package com.monkeydp.daios.dm.mysql.def
 
 import com.monkeydp.daios.dm.mysql.connection.MysqlConnectionFactory
 import com.monkeydp.daios.dms.sdk.datasource.Datasource
+import com.monkeydp.daios.dms.sdk.datasource.Datasource.DsVersion.MYSQL_5_7
+import com.monkeydp.daios.dms.sdk.datasource.Datasource.DsVersion.MYSQL_8_0
 import com.monkeydp.daios.dms.sdk.dm.Dm
 import com.monkeydp.daios.dms.sdk.dm.Dm.*
 
@@ -12,32 +14,26 @@ import com.monkeydp.daios.dms.sdk.dm.Dm.*
 class MysqlDm : Dm {
 
     override val datasource = Datasource.MYSQL
-    override val dbDefs = listOf(Mysql57, Mysql80)
+    override val dsDefs = listOf(Mysql57, Mysql80)
     override val implClassNames = MysqlImplClassNames
 
     object MysqlImplClassNames : ImplClassNames {
         override val connectionFactory = MysqlConnectionFactory::class.qualifiedName
     }
 
-    private object Mysql57 : DbDef {
-        override val version: DbVersion = DbVersion(
-                id = "5.7",
-                name = "MySQL 5.7"
-        )
-        override val driver: DbDriver = DbDriver(
+    private object Mysql57 : DsDef {
+        override val version = MYSQL_5_7
+        override val driver = DsDriver(
                 id = "5.1",
-                name = "com.mysql.jdbc.Driver"
+                classname = "com.mysql.jdbc.Driver"
         )
     }
 
-    private object Mysql80 : DbDef {
-        override val version: DbVersion = DbVersion(
+    private object Mysql80 : DsDef {
+        override val version = MYSQL_8_0
+        override val driver = DsDriver(
                 id = "8.0",
-                name = "MySQL 8.0"
-        )
-        override val driver: DbDriver = DbDriver(
-                id = "8.0",
-                name = "com.mysql.cj.jdbc.Driver"
+                classname = "com.mysql.cj.jdbc.Driver"
         )
     }
 }

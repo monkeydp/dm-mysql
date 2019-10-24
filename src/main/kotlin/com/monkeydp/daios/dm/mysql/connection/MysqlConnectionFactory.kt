@@ -13,7 +13,7 @@ class MysqlConnectionFactory : ConnectionFactory {
 
     override fun getConnection(cp: ConnectionProfile): Connection {
         val form = cp.userInput.convertTo<MysqlConnectionProfileFrom>()
-        Class.forName(cp.dbDriverName)
+        Class.forName(cp.dsDriverClassname)
         val url = form.url()
         val props = MysqlConnectionParameters(
                 user = form.username,
