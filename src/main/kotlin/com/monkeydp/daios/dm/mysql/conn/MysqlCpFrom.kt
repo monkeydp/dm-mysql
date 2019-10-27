@@ -2,7 +2,7 @@ package com.monkeydp.daios.dm.mysql.conn
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.monkeydp.daios.dms.sdk.metadata.form.AbstractCpForm
-import com.monkeydp.daios.dms.sdk.useful.UserInput
+import org.jetbrains.annotations.TestOnly
 
 /**
  * @author iPotato
@@ -17,7 +17,8 @@ class MysqlCpFrom : AbstractCpForm {
             password: String = ""
     ) : super(connName, host, port, username, password)
     
-    constructor(userInput: UserInput) : super(userInput)
+    val testVar = "Just for test"
+        @TestOnly get
     
     @JsonIgnore
     val url = "jdbc:mysql://$host:$port?useSSL=true&serverTimezone=UTC&remarksReporting=true"
