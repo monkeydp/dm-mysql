@@ -19,15 +19,15 @@ class MysqlDm : Dm {
     override val datasource = MYSQL
     override val dsDefs = listOf(Mysql57, Mysql80)
     override val impl = object : Impl {
-        override val apiClassnames = object : Impl.ApiClassnames {
-            override val connFactory = MysqlConnFactory::class.qualifiedName!!
+        override val apis = object : Impl.Apis {
+            override val connFactory = MysqlConnFactory()
         }
-        override val enumClassnames = object : Impl.EnumClassnames {
-            override val actionType = MysqlActionType::class.qualifiedName!!
-            override val targetType = MysqlTargetType::class.qualifiedName!!
+        override val enumClasses = object : Impl.EnumClasses {
+            override val actionTypeClass = MysqlActionType::class.java
+            override val targetTypeClass = MysqlTargetType::class.java
         }
-        override val dataClassnames = object : Impl.DataClassnames {
-            override val cpForm = MysqlCpFrom::class.qualifiedName!!
+        override val dataClasses = object : Impl.DataClasses {
+            override val cpFormClass = MysqlCpFrom::class.java
         }
     }
     
