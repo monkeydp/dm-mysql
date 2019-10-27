@@ -14,12 +14,11 @@ class MysqlConnFactory : AbstractConnFactory() {
     override fun getConn(cp: ConnProfile): Conn {
         val form = cp.form as MysqlCpFrom
         Class.forName(cp.dsDriverClassname)
-        val url = form.getUrl()
         val props = MysqlConnParameters(
                 user = form.username,
                 password = form.password
         ).toProperties()
-        val rawConn = DriverManager.getConnection(url, props)
+        val rawConn = DriverManager.getConnection(form.url, props)
         return Conn(cp.id, MysqlLogicConn(rawConn))
     }
 }

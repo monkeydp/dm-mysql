@@ -1,8 +1,8 @@
 package com.monkeydp.daios.dm.mysql.test.connection
 
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnFactory
+import com.monkeydp.daios.dm.mysql.conn.MysqlCpMocker
 import com.monkeydp.daios.dm.mysql.test.BaseTest
-import com.monkeydp.daios.dms.sdk.conn.CpMocker.mysql57Cp
 import org.junit.Assert
 import org.junit.Test
 
@@ -14,11 +14,9 @@ class MysqlConnFactoryTest : BaseTest() {
     
     private val connFactory = MysqlConnFactory()
     
-    private val testCp = mysql57Cp
-    
     @Test
     fun connTest() {
-        val conn = connFactory.getConn(testCp)
+        val conn = connFactory.getConn(MysqlCpMocker.cp)
         Assert.assertTrue(conn.isValid())
         Assert.assertFalse(conn.isClosed())
     

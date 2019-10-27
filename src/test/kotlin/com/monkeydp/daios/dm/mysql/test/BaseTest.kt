@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.test
 
-import com.monkeydp.daios.dm.mysql.def.MysqlDm
+import com.monkeydp.daios.dm.mysql.MysqlDm
 import com.monkeydp.daios.dms.sdk.dm.DmImplRegistrar
 import org.junit.Before
 
@@ -11,7 +11,6 @@ import org.junit.Before
 abstract class BaseTest {
     @Before
     fun before() {
-        val dm = MysqlDm()
-        DmImplRegistrar.registerAll(dm.impl, dm.datasource)
+        DmImplRegistrar.registerAll(MysqlDm.impl, MysqlDm.datasource)
     }
 }
