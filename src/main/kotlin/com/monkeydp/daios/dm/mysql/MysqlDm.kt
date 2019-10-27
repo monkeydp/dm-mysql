@@ -16,7 +16,6 @@ import com.monkeydp.daios.dms.sdk.dm.Dm.Testdata
  */
 object MysqlDm : AbstractDm() {
     
-    override val instance = this
     override val datasource = MYSQL
     override val dsDefs = listOf(MysqlDefs.Mysql57, MysqlDefs.Mysql80)
     override val impl = object : Impl {
