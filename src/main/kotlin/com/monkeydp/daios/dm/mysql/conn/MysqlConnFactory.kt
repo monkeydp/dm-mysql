@@ -1,8 +1,8 @@
-package com.monkeydp.daios.dm.mysql.connection
+package com.monkeydp.daios.dm.mysql.conn
 
-import com.monkeydp.daios.dms.sdk.connection.AbstractConnFactory
-import com.monkeydp.daios.dms.sdk.connection.Connection
-import com.monkeydp.daios.dms.sdk.entity.ConnectionProfile
+import com.monkeydp.daios.dms.sdk.conn.AbstractConnFactory
+import com.monkeydp.daios.dms.sdk.conn.Conn
+import com.monkeydp.daios.dms.sdk.entity.ConnProfile
 import java.sql.DriverManager
 
 /**
@@ -11,7 +11,7 @@ import java.sql.DriverManager
  */
 class MysqlConnFactory : AbstractConnFactory() {
     
-    override fun getConnection(cp: ConnectionProfile): Connection {
+    override fun getConn(cp: ConnProfile): Conn {
         val form = cp.form as MysqlCpFrom
         Class.forName(cp.dsDriverClassname)
         val url = form.getUrl()
@@ -20,6 +20,6 @@ class MysqlConnFactory : AbstractConnFactory() {
                 password = form.password
         ).toProperties()
         val rawConn = DriverManager.getConnection(url, props)
-        return Connection(cp.id, MysqlLogicConnection(rawConn))
+        return Conn(cp.id, MysqlLogicConn(rawConn))
     }
 }

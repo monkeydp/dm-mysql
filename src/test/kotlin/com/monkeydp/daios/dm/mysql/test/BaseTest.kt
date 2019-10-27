@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.test
 
-import com.monkeydp.daios.dm.mysql.connection.MysqlCpFrom
+import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.ImplContext
 import org.junit.Before

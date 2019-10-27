@@ -1,4 +1,4 @@
-package com.monkeydp.daios.dm.mysql.connection
+package com.monkeydp.daios.dm.mysql.conn
 
 import com.monkeydp.daios.dms.sdk.metadata.form.AbstractCpForm
 

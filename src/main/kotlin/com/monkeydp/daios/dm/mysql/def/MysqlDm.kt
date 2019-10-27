@@ -1,7 +1,7 @@
 package com.monkeydp.daios.dm.mysql.def
 
-import com.monkeydp.daios.dm.mysql.connection.MysqlConnFactory
-import com.monkeydp.daios.dm.mysql.connection.MysqlCpFrom
+import com.monkeydp.daios.dm.mysql.conn.MysqlConnFactory
+import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlActionType
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlTargetType
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.DsVersion.MYSQL_5_7
