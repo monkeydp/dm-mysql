@@ -3,8 +3,8 @@ package com.monkeydp.daios.dm.mysql
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnFactory
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpMocker
-import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlActionType
-import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlTargetType
+import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlAction
+import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlTarget
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.AbstractDm
 import com.monkeydp.daios.dms.sdk.dm.Dm.Impl
@@ -27,8 +27,8 @@ object MysqlDm : AbstractDm() {
         }
         override val enumClasses = object : Impl.EnumClasses {
             override val dsVersionClass = MysqlVersion::class.java
-            override val actionTypeClass = MysqlActionType::class.java
-            override val targetTypeClass = MysqlTargetType::class.java
+            override val actionClass = MysqlAction::class.java
+            override val targetClass = MysqlTarget::class.java
         }
     }
     override val testdata = object : Testdata {
