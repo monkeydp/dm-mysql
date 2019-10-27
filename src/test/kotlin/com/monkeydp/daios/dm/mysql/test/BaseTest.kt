@@ -1,8 +1,7 @@
 package com.monkeydp.daios.dm.mysql.test
 
-import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
-import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
-import com.monkeydp.daios.dms.sdk.dm.ImplContext
+import com.monkeydp.daios.dm.mysql.def.MysqlDm
+import com.monkeydp.daios.dms.sdk.dm.DmImplRegistrar
 import org.junit.Before
 
 /**
@@ -12,7 +11,7 @@ import org.junit.Before
 abstract class BaseTest {
     @Before
     fun before() {
-        // TODO
-        ImplContext.registerDataClass(MysqlCpFrom::class.java, MYSQL)
+        val dm = MysqlDm()
+        DmImplRegistrar.registerAll(dm.impl, dm.datasource)
     }
 }

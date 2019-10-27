@@ -22,12 +22,12 @@ class MysqlDm : Dm {
         override val apis = object : Impl.Apis {
             override val connFactory = MysqlConnFactory()
         }
+        override val classes = object : Impl.Classes {
+            override val cpFormClass = MysqlCpFrom::class.java
+        }
         override val enumClasses = object : Impl.EnumClasses {
             override val actionTypeClass = MysqlActionType::class.java
             override val targetTypeClass = MysqlTargetType::class.java
-        }
-        override val dataClasses = object : Impl.DataClasses {
-            override val cpFormClass = MysqlCpFrom::class.java
         }
     }
     
