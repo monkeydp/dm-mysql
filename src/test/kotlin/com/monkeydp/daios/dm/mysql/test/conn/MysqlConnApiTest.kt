@@ -1,8 +1,8 @@
-package com.monkeydp.daios.dm.mysql.test.connection
+package com.monkeydp.daios.dm.mysql.test.conn
 
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnApi
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpMocker
-import com.monkeydp.daios.dm.mysql.test.BaseTest
+import com.monkeydp.daios.dm.mysql.test.AbstractTest
 import org.junit.Assert
 import org.junit.Test
 
@@ -10,7 +10,7 @@ import org.junit.Test
  * @author iPotato
  * @date 2019/10/18
  */
-class MysqlConnApiTest : BaseTest() {
+class MysqlConnApiTest : AbstractTest() {
     
     private val api = MysqlConnApi()
     

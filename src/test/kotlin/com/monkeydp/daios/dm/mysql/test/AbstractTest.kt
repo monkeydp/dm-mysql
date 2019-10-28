@@ -8,7 +8,7 @@ import org.junit.Before
  * @author iPotato
  * @date 2019/10/27
  */
-abstract class BaseTest {
+abstract class AbstractTest {
     @Before
     fun before() {
         DmImplRegistrar.registerAll(MysqlDm.impl, MysqlDm.datasource)
