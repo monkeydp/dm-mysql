@@ -5,6 +5,7 @@ import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpMocker
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlAction
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlTarget
+import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodeDefFactory
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.AbstractDm
 import com.monkeydp.daios.dms.sdk.dm.Dm.Impl
@@ -17,6 +18,7 @@ import com.monkeydp.daios.dms.sdk.dm.Dm.Testdata
 object MysqlDm : AbstractDm() {
     
     override val datasource = MYSQL
+    override val connNodeDef = MysqlNodeDefFactory.connNodeDef()
     override val dsDefs = listOf(MysqlDefs.Mysql57, MysqlDefs.Mysql80)
     override val impl = object : Impl {
         override val apis = object : Impl.Apis {
