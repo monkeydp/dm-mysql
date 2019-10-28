@@ -1,7 +1,6 @@
 package com.monkeydp.daios.dm.mysql.conn
 
 import com.monkeydp.daios.dms.sdk.conn.AbstractConnApi
-import com.monkeydp.daios.dms.sdk.conn.Conn
 import com.monkeydp.daios.dms.sdk.entity.ConnProfile
 import java.sql.DriverManager
 
@@ -11,7 +10,7 @@ import java.sql.DriverManager
  */
 object MysqlConnApi : AbstractConnApi() {
     
-    override fun getConn(cp: ConnProfile): Conn {
+    override fun getConn(cp: ConnProfile): MysqlConn {
         val form = cp.form as MysqlCpFrom
         Class.forName(cp.dsDriverClassname)
         val props = MysqlConnParameters(
@@ -19,6 +18,6 @@ object MysqlConnApi : AbstractConnApi() {
                 password = form.password
         ).toProperties()
         val rawConn = DriverManager.getConnection(form.url, props)
-        return Conn(cp.id, MysqlLogicConn(rawConn))
+        return MysqlConn(cp.id, rawConn)
     }
 }
