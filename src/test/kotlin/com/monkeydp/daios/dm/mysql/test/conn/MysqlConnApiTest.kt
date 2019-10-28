@@ -12,7 +12,7 @@ import org.junit.Test
  */
 class MysqlConnApiTest : AbstractTest() {
     
-    private val api = MysqlConnApi()
+    private val api = MysqlConnApi
     
     @Test
     fun connTest() {

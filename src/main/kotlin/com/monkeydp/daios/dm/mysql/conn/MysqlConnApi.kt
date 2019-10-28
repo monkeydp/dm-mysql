@@ -9,7 +9,7 @@ import java.sql.DriverManager
  * @author iPotato
  * @date 2019/10/7
  */
-class MysqlConnApi : AbstractConnApi() {
+object MysqlConnApi : AbstractConnApi() {
     
     override fun getConn(cp: ConnProfile): Conn {
         val form = cp.form as MysqlCpFrom
