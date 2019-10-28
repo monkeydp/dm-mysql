@@ -1,7 +1,7 @@
 package com.monkeydp.daios.dm.mysql.metadata.node
 
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadInstr
+import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadContext
 import com.monkeydp.daios.dms.sdk.metadata.node.loader.AbstractNodeApi
 
 /**
@@ -10,7 +10,7 @@ import com.monkeydp.daios.dms.sdk.metadata.node.loader.AbstractNodeApi
  */
 class MysqlNodeApi : AbstractNodeApi() {
     
-    override fun loadNodes(instr: NodeLoadInstr): List<Node> {
+    override fun loadNodes(context: NodeLoadContext): List<Node> {
         // TODO
         return emptyList()
     }
