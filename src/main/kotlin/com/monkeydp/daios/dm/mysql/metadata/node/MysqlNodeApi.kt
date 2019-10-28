@@ -10,7 +10,7 @@ import com.monkeydp.daios.dms.sdk.metadata.node.api.AbstractNodeApi
  */
 class MysqlNodeApi : AbstractNodeApi() {
     
-    override fun loadNodes(context: NodeLoadContext): List<Node> {
+    override fun loadNodes(ctx: NodeLoadContext): List<Node> {
         // TODO
         return emptyList()
     }
