@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql
 
-import com.monkeydp.daios.dm.mysql.conn.MysqlConnFactory
+import com.monkeydp.daios.dm.mysql.conn.MysqlConnApi
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpMocker
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlAction
@@ -20,7 +20,7 @@ object MysqlDm : AbstractDm() {
     override val dsDefs = listOf(MysqlDefs.Mysql57, MysqlDefs.Mysql80)
     override val impl = object : Impl {
         override val apis = object : Impl.Apis {
-            override val connFactory = MysqlConnFactory()
+            override val connApi = MysqlConnApi()
         }
         override val classes = object : Impl.Classes {
             override val cpFormClass = MysqlCpFrom::class.java

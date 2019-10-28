@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.conn
 
-import com.monkeydp.daios.dms.sdk.conn.AbstractConnFactory
+import com.monkeydp.daios.dms.sdk.conn.AbstractConnApi
 import com.monkeydp.daios.dms.sdk.conn.Conn
 import com.monkeydp.daios.dms.sdk.entity.ConnProfile
 import java.sql.DriverManager
@@ -9,7 +9,7 @@ import java.sql.DriverManager
  * @author iPotato
  * @date 2019/10/7
  */
-class MysqlConnFactory : AbstractConnFactory() {
+class MysqlConnApi : AbstractConnApi() {
     
     override fun getConn(cp: ConnProfile): Conn {
         val form = cp.form as MysqlCpFrom
