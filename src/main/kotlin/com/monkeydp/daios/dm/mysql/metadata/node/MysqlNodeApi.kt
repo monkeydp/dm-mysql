@@ -1,5 +1,6 @@
 package com.monkeydp.daios.dm.mysql.metadata.node
 
+import com.monkeydp.daios.dm.mysql.MysqlSql
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlDbNd
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlTableNd
@@ -16,7 +17,7 @@ object MysqlNodeApi : AbstractJdbcNodeApi() {
     
     override val map = mapOf<Target<*>, Pair<NodeDef, String>>(
             CONN to Pair(MysqlConnNd, ""),
-            DB to Pair(MysqlDbNd, "SHOW DATABASES"),
+            DB to Pair(MysqlDbNd, MysqlSql.SHOW_DBS),
             TABLE to Pair(MysqlTableNd, "")
     )
 }
