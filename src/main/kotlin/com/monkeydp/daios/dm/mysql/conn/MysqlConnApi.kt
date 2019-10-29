@@ -2,6 +2,7 @@ package com.monkeydp.daios.dm.mysql.conn
 
 import com.monkeydp.daios.dms.sdk.api.impl.AbstractConnApi
 import com.monkeydp.daios.dms.sdk.entity.ConnProfile
+import com.monkeydp.tools.function.toProperties
 import java.sql.DriverManager
 
 /**
