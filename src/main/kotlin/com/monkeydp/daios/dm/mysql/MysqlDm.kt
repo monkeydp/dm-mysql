@@ -28,7 +28,7 @@ object MysqlDm : AbstractDm() {
             override val nodeApi = MysqlNodeApi
         }
         override val classes = object : Impl.Classes {
-            override val cpFormClass = MysqlCpFrom::class.java
+            override val cpFormClass = MysqlCpFrom::class
         }
         override val enumClasses = object : Impl.EnumClasses {
             override val dsVersionClass = MysqlVersion::class.java
