@@ -31,10 +31,10 @@ object MysqlDm : AbstractDm() {
             override val cpFormClass = MysqlCpFrom::class
         }
         override val enumClasses = object : Impl.EnumClasses {
-            override val dsVersionClass = MysqlVersion::class.java
-            override val actionClass = MysqlAction::class.java
-            override val targetClass = MysqlTarget::class.java
-            override val iconClass = MysqlIcon::class.java
+            override val dsVersionClass = MysqlVersion::class
+            override val actionClass = MysqlAction::class
+            override val targetClass = MysqlTarget::class
+            override val iconClass = MysqlIcon::class
         }
     }
     override val testdata = object : Testdata {
