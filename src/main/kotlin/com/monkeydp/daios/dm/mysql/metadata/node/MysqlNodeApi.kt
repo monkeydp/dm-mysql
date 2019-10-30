@@ -1,8 +1,8 @@
 package com.monkeydp.daios.dm.mysql.metadata.node
 
 import com.monkeydp.daios.dm.mysql.MysqlSql
-import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlTableGnd
-import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlViewGnd
+import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlTablesNd
+import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlViewsNd
 import com.monkeydp.daios.dms.sdk.jdbc.node.AbstractJdbcNodeApi
 import com.monkeydp.daios.dms.sdk.jdbc.node.JdbcDbsLoader
 import com.monkeydp.daios.dms.sdk.jdbc.node.JdbcTablesLoader
@@ -31,8 +31,8 @@ object MysqlNodeApi : AbstractJdbcNodeApi() {
                 val path = ctx.path.toSub<MysqlNiPath>()
                 JdbcTablesLoader.loadTables(conn, def, MysqlSql.showTablesSql(path.dbName))
             }
-            is TableGnd -> listOf(TableGroupNode(MysqlTableGnd))
-            is ViewGnd  -> listOf(ViewGroupNode(MysqlViewGnd))
+            is TablesNd -> listOf(TableGroupNode(MysqlTablesNd))
+            is ViewsNd  -> listOf(ViewGroupNode(MysqlViewsNd))
             else        -> emptyList()
         }
     }

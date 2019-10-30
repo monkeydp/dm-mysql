@@ -19,7 +19,7 @@ class MysqlNiPath : NodeInfoPath() {
             DB to MysqlDbNd,
             TABLE to MysqlTableNd
     )
-    private val groupNdList = listOf<GroupNd>(MysqlTableGnd, MysqlViewGnd)
+    private val groupNdList = listOf<GroupNd>(MysqlTablesNd, MysqlViewsNd)
     
     private val dbNodeInfo
         get() = this[1]
