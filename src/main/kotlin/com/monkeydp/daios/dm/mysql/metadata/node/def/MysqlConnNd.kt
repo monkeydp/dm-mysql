@@ -8,6 +8,4 @@ import com.monkeydp.daios.dms.sdk.metadata.node.def.impl.AbstractConnNd
  * @date 2019/10/28
  */
 object MysqlConnNd : AbstractConnNd() {
-    override val info = super.info.copy(icon = MysqlIcon.MYSQL_CONN_ICON)
-    override val children = listOf(MysqlDbNd)
 }

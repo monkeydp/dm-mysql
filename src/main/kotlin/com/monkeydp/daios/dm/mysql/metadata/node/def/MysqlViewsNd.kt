@@ -7,5 +7,4 @@ import com.monkeydp.daios.dms.sdk.metadata.node.def.impl.AbstractViewsNd
  * @date 2019/10/28
  */
 object MysqlViewsNd : AbstractViewsNd() {
-    override val children = listOf(MysqlViewNd)
 }

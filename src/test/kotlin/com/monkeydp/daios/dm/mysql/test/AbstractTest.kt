@@ -4,7 +4,6 @@ import com.monkeydp.daios.dm.mysql.MysqlDm
 import com.monkeydp.daios.dm.mysql.conn.MysqlConn
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnApi
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpMocker
-import com.monkeydp.daios.dms.sdk.dm.DmImplRegistrar
 import com.monkeydp.tools.ext.notNullSingleInit
 import org.junit.After
 import org.junit.Before
@@ -20,7 +19,7 @@ abstract class AbstractTest {
     
     @Before
     fun before() {
-        DmImplRegistrar.registerAll(MysqlDm.impl, MysqlDm.datasource)
+        MysqlDm.initialize()
         conn = MysqlConnApi.getConn(MysqlCpMocker.cp)
     }
     

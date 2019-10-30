@@ -7,5 +7,4 @@ import com.monkeydp.daios.dms.sdk.metadata.node.def.impl.AbstractDbNd
  * @date 2019/10/28
  */
 object MysqlDbNd : AbstractDbNd() {
-    override val children = listOf(MysqlTablesNd, MysqlViewsNd)
 }
