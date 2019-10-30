@@ -17,7 +17,7 @@ import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.AbstractDm
 import com.monkeydp.daios.dms.sdk.dm.Dm.Impl
 import com.monkeydp.daios.dms.sdk.dm.Dm.Testdata
-import com.monkeydp.daios.dms.sdk.dm.DmNewPath
+import com.monkeydp.daios.dms.sdk.dm.DmNewConfig
 import com.monkeydp.daios.dms.sdk.metadata.node.def.NodeDef
 import com.monkeydp.tools.ext.getClassname
 import com.monkeydp.tools.ext.singletonInstance
@@ -56,10 +56,10 @@ object MysqlDm : AbstractDm() {
         override fun defMap() = nodeDefMap()
     }
     
-    override fun updatePath(path: DmNewPath) {
-        distDirpath = path.deployedDirpath
-        kotlinDirpath = path.classesDirpath
-        classLoader = path.classLoader
+    override fun updateConfig(config: DmNewConfig) {
+        distDirpath = config.deployedDirpath
+        kotlinDirpath = config.classesDirpath
+        classLoader = config.classLoader
     }
     
     private fun nodeDefMap(): Map<String, NodeDef> {
