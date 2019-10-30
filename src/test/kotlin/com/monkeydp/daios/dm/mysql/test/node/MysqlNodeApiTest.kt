@@ -4,6 +4,7 @@ import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNiPathMocker
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodeApi
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadContext
+import com.monkeydp.daios.dms.sdk.metadata.node.impl.AbstractGroupNode
 import com.monkeydp.daios.dms.sdk.metadata.node.impl.DbNode
 import com.monkeydp.daios.dms.sdk.metadata.node.impl.TableNode
 import org.junit.Assert
@@ -31,5 +32,13 @@ class MysqlNodeApiTest : AbstractTest() {
         val nodes = api.loadNodes(ctx)
         Assert.assertTrue(nodes.isNotEmpty())
         nodes.forEach { Assert.assertTrue(it is TableNode) }
+    }
+    
+    @Test
+    public fun loadGroupsTest() {
+        val ctx = NodeLoadContext.mock(conn, MysqlNiPathMocker.dbNiPath)
+        val nodes = api.loadNodes(ctx)
+        Assert.assertTrue(nodes.isNotEmpty())
+        nodes.forEach { Assert.assertTrue(it is AbstractGroupNode) }
     }
 }
