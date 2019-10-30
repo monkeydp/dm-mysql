@@ -6,8 +6,10 @@ import com.monkeydp.tools.ext.toStdPath
  * @author iPotato
  * @date 2019/10/30
  */
-val rootDir = System.getProperty("user.dir").toStdPath()
-val sourceDir = "$rootDir/src"
-val mainDir = "$sourceDir/main"
-val kotlinDir = "$mainDir/kotlin"
-val packageDir = "$kotlinDir/com/monkeydp/daios/dm/mysql"
+val rootDirpath = System.getProperty("user.dir").toStdPath()
+val sourceDirpath = "$rootDirpath/src"
+val mainDirpath = "$sourceDirpath/main"
+var distDirpath = "$mainDirpath/dist"
+var kotlinDirpath = "$mainDirpath/kotlin"
+val packageDirpath
+    get() = "$kotlinDirpath/com/monkeydp/daios/dm/mysql"

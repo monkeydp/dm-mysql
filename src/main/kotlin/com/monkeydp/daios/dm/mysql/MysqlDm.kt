@@ -3,8 +3,10 @@ package com.monkeydp.daios.dm.mysql
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnApi
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpMocker
-import com.monkeydp.daios.dm.mysql.ext.kotlinDir
-import com.monkeydp.daios.dm.mysql.ext.packageDir
+import com.monkeydp.daios.dm.mysql.ext.classLoader
+import com.monkeydp.daios.dm.mysql.ext.distDirpath
+import com.monkeydp.daios.dm.mysql.ext.kotlinDirpath
+import com.monkeydp.daios.dm.mysql.ext.packageDirpath
 import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlAction
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlTarget
@@ -15,11 +17,11 @@ import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.AbstractDm
 import com.monkeydp.daios.dms.sdk.dm.Dm.Impl
 import com.monkeydp.daios.dms.sdk.dm.Dm.Testdata
+import com.monkeydp.daios.dms.sdk.dm.DmNewPath
 import com.monkeydp.daios.dms.sdk.metadata.node.def.NodeDef
 import com.monkeydp.tools.ext.getClassname
 import com.monkeydp.tools.ext.singletonInstance
 import com.monkeydp.tools.util.FileUtil
-import java.net.URLClassLoader
 
 /**
  * @author iPotato
@@ -50,17 +52,21 @@ object MysqlDm : AbstractDm() {
     }
     
     override val nodeData = object : NodeData {
-        override val defMap = nodeDefMap()
-        override val structWrapper = MysqlNodeStructWrapper
+        override fun structWrapper() = MysqlNodeStructWrapper
+        override fun defMap() = nodeDefMap()
+    }
+    
+    override fun updatePath(path: DmNewPath) {
+        distDirpath = path.deployedDirpath
+        kotlinDirpath = path.classesDirpath
+        classLoader = path.classLoader
     }
     
     private fun nodeDefMap(): Map<String, NodeDef> {
-        val files = FileUtil.listFiles("$packageDir/metadata/node/def")
-        val urls = files.map { it.toURI().toURL() }.toTypedArray()
-        val loader = URLClassLoader(urls, Thread.currentThread().contextClassLoader)
+        val files = FileUtil.listFiles("$packageDirpath/metadata/node/def")
         return files.map { file ->
-            val classname = file.getClassname(kotlinDir)
-            val nd = loader.loadClass(classname).singletonInstance() as NodeDef
+            val classname = file.getClassname(kotlinDirpath)
+            val nd = classLoader.loadClass(classname).singletonInstance() as NodeDef
             nd.structName to nd
         }.toMap()
     }
