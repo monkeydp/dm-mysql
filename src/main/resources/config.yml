@@ -1,0 +1,8 @@
+node:
+  structure:
+    conn:
+      db:
+        tables:
+          table
+        views:
+          view
