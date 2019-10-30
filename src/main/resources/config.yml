@@ -1,8 +1,10 @@
+dir:
+  root: ${rootDir}
 node:
   structure:
     conn:
       db:
         tables:
-          table
+          table:
         views:
-          view
+          view:
