@@ -7,11 +7,13 @@ import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlAction
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlTarget
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodeApi
+import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodeStructWrapper
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.AbstractDm
 import com.monkeydp.daios.dms.sdk.dm.Dm.Impl
 import com.monkeydp.daios.dms.sdk.dm.Dm.Testdata
+import com.monkeydp.daios.dms.sdk.metadata.node.def.NodeDef
 
 /**
  * @author iPotato
@@ -39,5 +41,10 @@ object MysqlDm : AbstractDm() {
     }
     override val testdata = object : Testdata {
         override val cps = MysqlCpMocker.cps
+    }
+    
+    override val nodeData = object : NodeData {
+        override val defMap = emptyMap<String, NodeDef>()
+        override val structWrapper = MysqlNodeStructWrapper
     }
 }
