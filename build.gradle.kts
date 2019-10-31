@@ -58,3 +58,18 @@ when (profile) {
         }
     }
 }
+
+
+val commonLibs = configurations.runtimeClasspath.get().filter {
+    it.name.matches("dm-base-.+\\.jar$".toRegex())
+}
+// Don't delete this!
+commonLibs.forEach { it.name }
+val commonLibsDir = File("$rootDir/src/main/dist/libs/common")
+
+tasks.register("copyLibsToDist", Copy::class) {
+    if (commonLibsDir.exists()) commonLibsDir.deleteRecursively()
+    commonLibsDir.mkdir()
+    commonLibs.forEach { from(it) }
+    into(commonLibsDir)
+}
