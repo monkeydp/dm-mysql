@@ -14,13 +14,9 @@ import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodeStructWrapper
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.AbstractDm
-import com.monkeydp.daios.dms.sdk.dm.Dm.Impl
-import com.monkeydp.daios.dms.sdk.dm.Dm.Testdata
+import com.monkeydp.daios.dms.sdk.dm.DmImpl
 import com.monkeydp.daios.dms.sdk.dm.DmShareConfig
-import com.monkeydp.daios.dms.sdk.metadata.node.def.NodeDef
-import com.monkeydp.tools.ext.getClassname
-import com.monkeydp.tools.ext.singletonInstance
-import com.monkeydp.tools.util.FileUtil
+import com.monkeydp.daios.dms.sdk.dm.DmTestdata
 
 /**
  * @author iPotato
@@ -31,29 +27,31 @@ class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
     override val datasource = MYSQL
     override val connNd = MysqlConnNd
     override val dsDefs = listOf(MysqlDefs.Mysql57, MysqlDefs.Mysql80)
-    override val impl = object : Impl {
-        override val apis = object : Impl.Apis {
+    override val impl = object : DmImpl {
+        override val apis = object : DmImpl.Apis {
             override val connApi = MysqlConnApi
             override val nodeApi = MysqlNodeApi
         }
-        override val classes = object : Impl.Classes {
+        override val classes = object : DmImpl.Classes {
             override val cpFormClass = MysqlCpFrom::class
         }
-        override val enumClasses = object : Impl.EnumClasses {
+        override val enumClasses = object : DmImpl.EnumClasses {
             override val dsVersionClass = MysqlVersion::class
             override val actionClass = MysqlAction::class
             override val targetClass = MysqlTarget::class
             override val iconClass = MysqlIcon::class
         }
     }
-    override val testdata = object : Testdata {
+    override val testdata = object : DmTestdata {
         override val cps = MysqlCpMocker.cps
     }
     
-    override val nodeData = object : NodeData {
-        override fun structWrapper() = MysqlNodeStructWrapper
-        override fun defMap() = nodeDefMap()
-        override val defMapDirpath by lazy { "$packageDirpath/metadata/node/def" }
+    override val config = object : LocalConfig {
+        override val classesDirpath by lazy { kotlinDirpath }
+        override val node = object : LocalConfig.Node {
+            override val structWrapper by lazy { MysqlNodeStructWrapper }
+            override val defDirpath by lazy { "$packageDirpath/metadata/node/def" }
+        }
     }
     
     init {
@@ -63,14 +61,5 @@ class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
     override fun updateConfig(config: DmShareConfig) {
         distDirpath = config.deployDir.path
         kotlinDirpath = config.classesDir.path
-    }
-    
-    private fun nodeDefMap(): Map<String, NodeDef> {
-        val files = FileUtil.listFiles("$packageDirpath/metadata/node/def")
-        return files.map { file ->
-            val classname = file.getClassname(kotlinDirpath)
-            val nd = classLoader.loadClass(classname).singletonInstance() as NodeDef
-            nd.structName to nd
-        }.toMap()
     }
 }
