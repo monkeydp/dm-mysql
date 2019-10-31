@@ -1,9 +1,1 @@
 dmClassname: com.monkeydp.daios.dm.mysql.MysqlDm
-node:
-  structure:
-    conn:
-      db:
-        tables:
-          table:
-        views:
-          view:

@@ -10,6 +10,6 @@ import java.io.File
  * @date 2019/10/30
  */
 fun config(): JsonNode {
-    val text = File("$distDirpath/module.yml").readText()
+    val text = File("$distDirpath/config.yml").readText()
     return JsonUtil.convertTo(YamlUtil.load(text))
 }

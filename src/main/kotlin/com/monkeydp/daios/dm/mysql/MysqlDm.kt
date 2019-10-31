@@ -3,7 +3,6 @@ package com.monkeydp.daios.dm.mysql
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnApi
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpMocker
-import com.monkeydp.daios.dm.mysql.ext.classLoader
 import com.monkeydp.daios.dm.mysql.ext.distDirpath
 import com.monkeydp.daios.dm.mysql.ext.kotlinDirpath
 import com.monkeydp.daios.dm.mysql.ext.packageDirpath
@@ -59,7 +58,6 @@ object MysqlDm : AbstractDm() {
     override fun updateConfig(config: DmNewConfig) {
         distDirpath = config.deployedDirpath
         kotlinDirpath = config.classesDirpath
-        classLoader = config.classLoader
     }
     
     private fun nodeDefMap(): Map<String, NodeDef> {
