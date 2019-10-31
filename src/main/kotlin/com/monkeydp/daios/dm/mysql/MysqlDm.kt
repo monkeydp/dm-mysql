@@ -2,7 +2,7 @@ package com.monkeydp.daios.dm.mysql
 
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnApi
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
-import com.monkeydp.daios.dm.mysql.conn.MysqlCpMocker
+import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dm.mysql.ext.distDirpath
 import com.monkeydp.daios.dm.mysql.ext.kotlinDirpath
 import com.monkeydp.daios.dm.mysql.ext.packageDirpath
@@ -13,7 +13,7 @@ import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodeApi
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodeStructWrapper
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
-import com.monkeydp.daios.dms.sdk.dm.AbstractDm
+import com.monkeydp.daios.dm.base.dm.AbstractDm
 import com.monkeydp.daios.dms.sdk.dm.DmImpl
 import com.monkeydp.daios.dms.sdk.dm.DmShareConfig
 import com.monkeydp.daios.dms.sdk.dm.DmTestdata

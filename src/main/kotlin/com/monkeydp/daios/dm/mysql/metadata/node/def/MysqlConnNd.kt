@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.metadata.node.def
 
-import com.monkeydp.daios.dms.sdk.metadata.node.def.impl.AbstractConnNd
+import com.monkeydp.daios.dm.base.metadata.node.def.AbstractConnNd
 
 /**
  * @author iPotato

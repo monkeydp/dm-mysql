@@ -3,7 +3,7 @@ package com.monkeydp.daios.dm.mysql.test
 import com.monkeydp.daios.dm.mysql.MysqlDm
 import com.monkeydp.daios.dm.mysql.conn.MysqlConn
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnApi
-import com.monkeydp.daios.dm.mysql.conn.MysqlCpMocker
+import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.tools.ext.notNullSingleton
 import org.junit.After
 import org.junit.Before

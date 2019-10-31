@@ -1,9 +1,9 @@
-package com.monkeydp.daios.dm.mysql.metadata.node
+package com.monkeydp.daios.dm.mysql.mocker
 
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlDbNd
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlTablesNd
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeInfoPath
+import com.monkeydp.daios.dms.sdk.metadata.node.info.NodeInfoPath
 
 /**
  * @author iPotato

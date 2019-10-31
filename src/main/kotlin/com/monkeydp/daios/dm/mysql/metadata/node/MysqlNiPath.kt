@@ -3,9 +3,9 @@ package com.monkeydp.daios.dm.mysql.metadata.node
 import com.monkeydp.daios.dm.mysql.metadata.node.def.*
 import com.monkeydp.daios.dms.sdk.metadata.instruction.target.GlobalTarget.*
 import com.monkeydp.daios.dms.sdk.metadata.instruction.target.Target
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeInfoPath
+import com.monkeydp.daios.dms.sdk.metadata.node.info.NodeInfoPath
 import com.monkeydp.daios.dms.sdk.metadata.node.def.GroupNd
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeDef
+import com.monkeydp.daios.dms.sdk.metadata.node.def.NodeDef
 
 
 /**

@@ -1,11 +1,11 @@
 package com.monkeydp.daios.dm.mysql.test.node
 
-import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNiPathMocker
+import com.monkeydp.daios.dm.mysql.mocker.MysqlNiPathMocker
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadContext
-import com.monkeydp.daios.dms.sdk.metadata.node.impl.AbstractGroupNode
-import com.monkeydp.daios.dms.sdk.metadata.node.impl.DbNode
-import com.monkeydp.daios.dms.sdk.metadata.node.impl.TableNode
+import com.monkeydp.daios.dms.sdk.metadata.node.ctx.NodeLoadContext
+import com.monkeydp.daios.dm.base.metadata.node.main.AbstractGroupNode
+import com.monkeydp.daios.dm.base.metadata.node.main.DbNode
+import com.monkeydp.daios.dm.base.metadata.node.main.TableNode
 import org.junit.Assert
 import org.junit.Test
 

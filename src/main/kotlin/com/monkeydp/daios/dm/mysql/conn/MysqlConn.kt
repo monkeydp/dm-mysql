@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.conn
 
-import com.monkeydp.daios.dms.sdk.conn.AbstractConn
+import com.monkeydp.daios.dm.base.conn.AbstractConn
 import java.sql.Connection
 
 /**

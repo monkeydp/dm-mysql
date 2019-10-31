@@ -3,15 +3,15 @@ package com.monkeydp.daios.dm.mysql.metadata.node
 import com.monkeydp.daios.dm.mysql.MysqlSql
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlTablesNd
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlViewsNd
-import com.monkeydp.daios.dms.sdk.jdbc.node.AbstractJdbcNodeApi
-import com.monkeydp.daios.dms.sdk.jdbc.node.JdbcDbsLoader
-import com.monkeydp.daios.dms.sdk.jdbc.node.JdbcTablesLoader
-import com.monkeydp.daios.dms.sdk.metadata.node.Node
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeDef
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadContext
+import com.monkeydp.daios.dm.base.jdbc.api.node.AbstractJdbcNodeApi
+import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcDbsLoader
+import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcTablesLoader
+import com.monkeydp.daios.dms.sdk.metadata.node.main.Node
+import com.monkeydp.daios.dms.sdk.metadata.node.def.NodeDef
+import com.monkeydp.daios.dms.sdk.metadata.node.ctx.NodeLoadContext
 import com.monkeydp.daios.dms.sdk.metadata.node.def.*
-import com.monkeydp.daios.dms.sdk.metadata.node.impl.TableGroupNode
-import com.monkeydp.daios.dms.sdk.metadata.node.impl.ViewGroupNode
+import com.monkeydp.daios.dm.base.metadata.node.main.TableGroupNode
+import com.monkeydp.daios.dm.base.metadata.node.main.ViewGroupNode
 import java.sql.Connection
 
 /**

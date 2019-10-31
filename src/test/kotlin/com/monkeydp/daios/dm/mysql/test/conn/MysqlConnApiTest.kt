@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.test.conn
 
-import com.monkeydp.daios.dm.mysql.conn.MysqlCpMocker
+import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
 import org.junit.Assert
 import org.junit.Test

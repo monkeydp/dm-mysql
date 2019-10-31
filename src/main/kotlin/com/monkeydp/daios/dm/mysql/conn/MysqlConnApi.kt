@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.conn
 
-import com.monkeydp.daios.dms.sdk.api.impl.AbstractConnApi
+import com.monkeydp.daios.dm.base.api.AbstractConnApi
 import com.monkeydp.daios.dms.sdk.entity.ConnProfile
 import com.monkeydp.tools.ext.toProps
 import java.sql.DriverManager

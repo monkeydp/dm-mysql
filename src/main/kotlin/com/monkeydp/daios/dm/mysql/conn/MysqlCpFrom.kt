@@ -1,7 +1,7 @@
 package com.monkeydp.daios.dm.mysql.conn
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.monkeydp.daios.dms.sdk.metadata.form.AbstractCpForm
+import com.monkeydp.daios.dm.base.metadata.form.AbstractCpForm
 import org.jetbrains.annotations.TestOnly
 
 /**
