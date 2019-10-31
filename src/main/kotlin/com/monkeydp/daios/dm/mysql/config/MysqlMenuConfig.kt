@@ -5,14 +5,16 @@ import com.monkeydp.daios.dm.mysql.ext.config
 
 /**
  * @author iPotato
- * @date 2019/10/30
+ * @date 2019/10/31
  */
-object MysqlNodeConfig {
+object MysqlMenuConfig {
     
     val structure: JsonNode
     
     init {
-        val node = config()["node"]
+        val node = config()["menu"]
         structure = node[::structure.name]
     }
+    
+    val structOfNode = structure["node"]
 }

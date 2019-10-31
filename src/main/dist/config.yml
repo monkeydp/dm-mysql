@@ -6,3 +6,25 @@ node:
           table:
         views:
           view:
+# start parsing when the prop named "menu" is found (ignore the root "menu")
+# if menu item has no prop named "instr", recognize key as "action" and value as "target"
+menu:
+  structure:
+    node:
+      conn:
+        menu:
+          items:
+            - open: conn
+            - close: conn
+            - instr:
+                action: manage
+                target: group
+              menu:
+                items:
+                  - new: group
+      db:
+        open: query
+      tables:
+      table:
+      views:
+      view:
