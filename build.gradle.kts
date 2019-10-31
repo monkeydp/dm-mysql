@@ -14,14 +14,10 @@ group = "com.monkeydp.daios.dm"
 version = "0.0.2-SNAPSHOT"
 java.sourceCompatibility = VERSION_1_8
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    // sdk
-    api("com.monkeydp.daios.dms:dms-sdk")
-    // junit
+    // base
+    api("com.monkeydp.daios.dm:dm-base")
+    // test
     testImplementation("junit:junit:4.12")
 }
 
