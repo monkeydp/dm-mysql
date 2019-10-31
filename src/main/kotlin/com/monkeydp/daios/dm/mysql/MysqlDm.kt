@@ -16,7 +16,7 @@ import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.AbstractDm
 import com.monkeydp.daios.dms.sdk.dm.Dm.Impl
 import com.monkeydp.daios.dms.sdk.dm.Dm.Testdata
-import com.monkeydp.daios.dms.sdk.dm.DmNewConfig
+import com.monkeydp.daios.dms.sdk.dm.DmShareConfig
 import com.monkeydp.daios.dms.sdk.metadata.node.def.NodeDef
 import com.monkeydp.tools.ext.getClassname
 import com.monkeydp.tools.ext.singletonInstance
@@ -26,7 +26,7 @@ import com.monkeydp.tools.util.FileUtil
  * @author iPotato
  * @date 2019/10/8
  */
-object MysqlDm : AbstractDm() {
+class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
     
     override val datasource = MYSQL
     override val connNd = MysqlConnNd
@@ -53,11 +53,16 @@ object MysqlDm : AbstractDm() {
     override val nodeData = object : NodeData {
         override fun structWrapper() = MysqlNodeStructWrapper
         override fun defMap() = nodeDefMap()
+        override val defMapDirpath by lazy { "$packageDirpath/metadata/node/def" }
     }
     
-    override fun updateConfig(config: DmNewConfig) {
-        distDirpath = config.deployedDirpath
-        kotlinDirpath = config.classesDirpath
+    init {
+        registerStaticComponents()
+    }
+    
+    override fun updateConfig(config: DmShareConfig) {
+        distDirpath = config.deployDir.path
+        kotlinDirpath = config.classesDir.path
     }
     
     private fun nodeDefMap(): Map<String, NodeDef> {

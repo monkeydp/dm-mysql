@@ -15,11 +15,12 @@ import kotlin.properties.Delegates
  */
 abstract class AbstractTest {
     
+    protected val dm = MysqlDm()
+    protected val apis = dm.impl.apis
     protected var conn by Delegates.notNullSingleInit<MysqlConn>()
     
     @Before
     fun before() {
-        MysqlDm.initialize()
         conn = MysqlConnApi.getConn(MysqlCpMocker.cp)
     }
     
