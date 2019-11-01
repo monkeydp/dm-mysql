@@ -1,6 +1,8 @@
 package com.monkeydp.daios.dm.mysql
 
-import com.monkeydp.daios.dm.base.dm.AbstractDm
+import com.monkeydp.daios.dm.base.AbstractDm
+import com.monkeydp.daios.dm.mysql.config.MysqlMenuConfig
+import com.monkeydp.daios.dm.mysql.config.MysqlNodeConfig
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnApi
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
 import com.monkeydp.daios.dm.mysql.ext.distDirpath
@@ -8,7 +10,6 @@ import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlAction
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlTarget
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodeApi
-import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodeStructWrapper
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
@@ -48,13 +49,24 @@ class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
     }
     
     override val config = object : LocalConfig() {
+        private val packageName = this.javaClass.`package`.name
+        private val classLoader = this.javaClass.classLoader
         override val node = object : Node() {
-            override val structWrapper by lazy { MysqlNodeStructWrapper }
+            override val struct by lazy { MysqlNodeConfig.structure }
             private val urls =
-                    ClasspathHelper.forPackage(this.javaClass.`package`.name, this.javaClass.classLoader)
+                    ClasspathHelper.forPackage(packageName, classLoader)
             override val reflections = Reflections(ConfigurationBuilder()
                     .setUrls(urls)
-                    .addClassLoader(this.javaClass.classLoader)
+                    .addClassLoader(classLoader)
+            )
+        }
+        override val menu = object : Menu() {
+            override val struct by lazy { MysqlMenuConfig.structure }
+            private val urls =
+                    ClasspathHelper.forPackage(packageName, classLoader)
+            override val reflections = Reflections(ConfigurationBuilder()
+                    .setUrls(urls)
+                    .addClassLoader(classLoader)
             )
         }
     }

@@ -12,9 +12,7 @@ object MysqlMenuConfig {
     val structure: JsonNode
     
     init {
-        val node = config()["menu"]
-        structure = node[::structure.name]
+        val menu = config()["menu"]
+        structure = menu[::structure.name]
     }
-    
-    val structOfNode = structure["node"]
 }
