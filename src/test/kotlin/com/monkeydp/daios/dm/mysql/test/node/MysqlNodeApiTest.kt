@@ -2,7 +2,7 @@ package com.monkeydp.daios.dm.mysql.test.node
 
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNiPathMocker
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
-import com.monkeydp.daios.dms.sdk.metadata.node.ctx.NodeLoadContext
+import com.monkeydp.daios.dms.sdk.metadata.node.ctx.NodeLoadCtx
 import com.monkeydp.daios.dm.base.metadata.node.main.AbstractGroupNode
 import com.monkeydp.daios.dm.base.metadata.node.main.DbNode
 import com.monkeydp.daios.dm.base.metadata.node.main.TableNode
@@ -19,7 +19,7 @@ class MysqlNodeApiTest : AbstractTest() {
     
     @Test
     public fun loadDbsTest() {
-        val ctx = NodeLoadContext.mock(conn, MysqlNiPathMocker.connNiPath)
+        val ctx = NodeLoadCtx(conn, MysqlNiPathMocker.connNiPath)
         val nodes = api.loadNodes(ctx)
         Assert.assertTrue(nodes.isNotEmpty())
         nodes.forEach { Assert.assertTrue(it is DbNode) }
@@ -27,7 +27,7 @@ class MysqlNodeApiTest : AbstractTest() {
     
     @Test
     public fun loadTablesTest() {
-        val ctx = NodeLoadContext.mock(conn, MysqlNiPathMocker.tablesNiPath)
+        val ctx = NodeLoadCtx(conn, MysqlNiPathMocker.tablesNiPath)
         val nodes = api.loadNodes(ctx)
         Assert.assertTrue(nodes.isNotEmpty())
         nodes.forEach { Assert.assertTrue(it is TableNode) }
@@ -35,7 +35,7 @@ class MysqlNodeApiTest : AbstractTest() {
     
     @Test
     public fun loadGroupsTest() {
-        val ctx = NodeLoadContext.mock(conn, MysqlNiPathMocker.dbNiPath)
+        val ctx = NodeLoadCtx(conn, MysqlNiPathMocker.dbNiPath)
         val nodes = api.loadNodes(ctx)
         Assert.assertTrue(nodes.isNotEmpty())
         nodes.forEach { Assert.assertTrue(it is AbstractGroupNode) }

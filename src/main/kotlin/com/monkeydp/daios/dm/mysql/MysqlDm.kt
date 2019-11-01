@@ -2,6 +2,8 @@ package com.monkeydp.daios.dm.mysql
 
 import com.monkeydp.daios.dm.base.AbstractDm
 import com.monkeydp.daios.dm.base.LocalConfig
+import com.monkeydp.daios.dm.mysql.api.MysqlMenuApi
+import com.monkeydp.daios.dm.mysql.api.MysqlNodeApi
 import com.monkeydp.daios.dm.mysql.config.MysqlMenuConfig
 import com.monkeydp.daios.dm.mysql.config.MysqlNodeConfig
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnApi
@@ -10,7 +12,6 @@ import com.monkeydp.daios.dm.mysql.ext.distDirpath
 import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlAction
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlTarget
-import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodeApi
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
@@ -34,6 +35,7 @@ class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
         override val apis = object : DmImpl.Apis {
             override val connApi = MysqlConnApi
             override val nodeApi = MysqlNodeApi
+            override val menuApi = MysqlMenuApi
         }
         override val classes = object : DmImpl.Classes {
             override val cpFormClass = MysqlCpFrom::class
