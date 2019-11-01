@@ -10,6 +10,3 @@ val rootDirpath = System.getProperty("user.dir").toStdPath()
 val sourceDirpath = "$rootDirpath/src"
 val mainDirpath = "$sourceDirpath/main"
 var distDirpath = "$mainDirpath/dist"
-var kotlinDirpath = "$mainDirpath/kotlin"
-val packageDirpath
-    get() = "$kotlinDirpath/com/monkeydp/daios/dm/mysql"

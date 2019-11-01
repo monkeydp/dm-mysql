@@ -1,28 +1,36 @@
 package com.monkeydp.daios.dm.mysql
 
+import com.monkeydp.daios.dm.base.dm.AbstractDm
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnApi
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
-import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dm.mysql.ext.distDirpath
-import com.monkeydp.daios.dm.mysql.ext.kotlinDirpath
-import com.monkeydp.daios.dm.mysql.ext.packageDirpath
 import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlAction
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlTarget
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodeApi
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodeStructWrapper
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
+import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
-import com.monkeydp.daios.dm.base.dm.AbstractDm
 import com.monkeydp.daios.dms.sdk.dm.DmImpl
 import com.monkeydp.daios.dms.sdk.dm.DmShareConfig
 import com.monkeydp.daios.dms.sdk.dm.DmTestdata
+import org.reflections.Reflections
+import org.reflections.util.ClasspathHelper
+import org.reflections.util.ConfigurationBuilder
 
 /**
  * @author iPotato
  * @date 2019/10/8
  */
 class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
+    
+    private val urls =
+            ClasspathHelper.forPackage(this.javaClass.`package`.name, this.javaClass.classLoader)
+    override val reflections = Reflections(ConfigurationBuilder()
+            .setUrls(urls)
+            .addClassLoader(this.javaClass.classLoader)
+    )
     
     override val datasource = MYSQL
     override val connNd = MysqlConnNd
@@ -46,20 +54,17 @@ class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
         override val cps = MysqlCpMocker.cps
     }
     
-    override val config = object : LocalConfig {
-        override val classesDirpath by lazy { kotlinDirpath }
-        override val node = object : LocalConfig.Node {
+    override val config = object : LocalConfig() {
+        override val node = object : Node() {
             override val structWrapper by lazy { MysqlNodeStructWrapper }
-            override val defDirpath by lazy { "$packageDirpath/metadata/node/def" }
         }
     }
     
     init {
-        registerStaticComponents()
+        initialize()
     }
     
     override fun updateConfig(config: DmShareConfig) {
         distDirpath = config.deployDir.path
-        kotlinDirpath = config.classesDir.path
     }
 }
