@@ -25,13 +25,6 @@ import org.reflections.util.ConfigurationBuilder
  */
 class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
     
-    private val urls =
-            ClasspathHelper.forPackage(this.javaClass.`package`.name, this.javaClass.classLoader)
-    override val reflections = Reflections(ConfigurationBuilder()
-            .setUrls(urls)
-            .addClassLoader(this.javaClass.classLoader)
-    )
-    
     override val datasource = MYSQL
     override val connNd = MysqlConnNd
     override val dsDefs = listOf(MysqlDefs.Mysql57, MysqlDefs.Mysql80)
@@ -57,6 +50,12 @@ class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
     override val config = object : LocalConfig() {
         override val node = object : Node() {
             override val structWrapper by lazy { MysqlNodeStructWrapper }
+            private val urls =
+                    ClasspathHelper.forPackage(this.javaClass.`package`.name, this.javaClass.classLoader)
+            override val reflections = Reflections(ConfigurationBuilder()
+                    .setUrls(urls)
+                    .addClassLoader(this.javaClass.classLoader)
+            )
         }
     }
     
