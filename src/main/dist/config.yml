@@ -23,7 +23,9 @@ menu:
                 items:
                   - new: group
       db:
-        open: query
+        menu:
+          items:
+            - open: db
       tables:
       table:
       views:

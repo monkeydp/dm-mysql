@@ -1,6 +1,7 @@
 package com.monkeydp.daios.dm.mysql
 
 import com.monkeydp.daios.dm.base.AbstractDm
+import com.monkeydp.daios.dm.base.LocalConfig
 import com.monkeydp.daios.dm.mysql.config.MysqlMenuConfig
 import com.monkeydp.daios.dm.mysql.config.MysqlNodeConfig
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnApi
@@ -50,6 +51,7 @@ class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
     
     override val config = object : LocalConfig() {
         private val packageName = this.javaClass.`package`.name
+        private val superclassPackageName = this.javaClass.superclass.`package`.name
         private val classLoader = this.javaClass.classLoader
         override val node = object : Node() {
             override val struct by lazy { MysqlNodeConfig.structure }
@@ -63,7 +65,7 @@ class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
         override val menu = object : Menu() {
             override val struct by lazy { MysqlMenuConfig.structure }
             private val urls =
-                    ClasspathHelper.forPackage(packageName, classLoader)
+                    ClasspathHelper.forPackage(superclassPackageName, classLoader)
             override val reflections = Reflections(ConfigurationBuilder()
                     .setUrls(urls)
                     .addClassLoader(classLoader)
