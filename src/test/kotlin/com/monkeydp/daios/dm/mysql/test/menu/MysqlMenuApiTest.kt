@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.test.menu
 
-import com.monkeydp.daios.dm.mysql.mocker.MysqlNiPathMocker
+import com.monkeydp.daios.dm.mysql.mocker.MysqlNodePathMocker
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
 import com.monkeydp.daios.dms.sdk.metadata.menu.ctx.NodeMenuLoadCtx
 import org.junit.Assert
@@ -16,7 +16,7 @@ class MysqlMenuApiTest : AbstractTest() {
     
     @Test
     public fun loadConnMenuTest() {
-        val ctx = NodeMenuLoadCtx(MysqlNiPathMocker.connNiPath)
+        val ctx = NodeMenuLoadCtx(MysqlNodePathMocker.connNodePath)
         val menu = api.loadNodeMenu(ctx)!!
         val items = menu.items
         Assert.assertTrue(items.isNotEmpty())
@@ -24,7 +24,7 @@ class MysqlMenuApiTest : AbstractTest() {
     
     @Test
     public fun loadDbMenuTest() {
-        val ctx = NodeMenuLoadCtx(MysqlNiPathMocker.dbNiPath)
+        val ctx = NodeMenuLoadCtx(MysqlNodePathMocker.dbNodePath)
         val menu = api.loadNodeMenu(ctx)!!
         val items = menu.items
         Assert.assertTrue(items.isNotEmpty())

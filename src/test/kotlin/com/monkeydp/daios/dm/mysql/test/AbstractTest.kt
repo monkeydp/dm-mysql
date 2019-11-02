@@ -15,7 +15,11 @@ import kotlin.properties.Delegates
  */
 abstract class AbstractTest {
     
-    private val dm = MysqlDm()
+    companion object {
+        private val init = MysqlDm()
+    }
+    
+    private val dm = MysqlDm.INSTANCE
     protected val apis = dm.impl.apis
     protected var conn by Delegates.notNullSingleton<MysqlConn>()
     
