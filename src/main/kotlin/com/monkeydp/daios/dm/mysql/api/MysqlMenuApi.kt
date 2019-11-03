@@ -12,7 +12,7 @@ import com.monkeydp.daios.dms.sdk.metadata.menu.ctx.NodeMenuLoadCtx
 object MysqlMenuApi : AbstractMenuApi() {
     override fun loadNodeMenu(ctx: NodeMenuLoadCtx): Menu? {
         val path = ctx.path.toSub<MysqlNodePath>()
-        val nodeDef = path.getLastNode()
+        val nodeDef = path.getLastNodeDef()
         return nodeDef.menu
     }
 }

@@ -1,8 +1,8 @@
 package com.monkeydp.daios.dm.mysql.test.node
 
-import com.monkeydp.daios.dm.base.metadata.node.DbNode
-import com.monkeydp.daios.dm.base.metadata.node.GroupNode
-import com.monkeydp.daios.dm.base.metadata.node.TableNode
+import com.monkeydp.daios.dm.base.metadata.node.main.DbNode
+import com.monkeydp.daios.dm.base.metadata.node.main.GroupNode
+import com.monkeydp.daios.dm.base.metadata.node.main.TableNode
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodePathMocker
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
 import com.monkeydp.daios.dms.sdk.metadata.node.ctx.NodeLoadCtx
