@@ -9,7 +9,7 @@ import com.monkeydp.daios.dms.sdk.metadata.node.NodePath
  * @author iPotato
  * @date 2019/10/29
  */
-object MysqlNodePathMocker {
+object MysqlNodeMocker {
     val connNodePath = NodePath.of(MysqlConnNd.create(MysqlCpMocker.cp))
     val dbNodePath = NodePath.of(connNodePath, MysqlDbNd.create("testdb"))
     val tablesNodePath = NodePath.of(dbNodePath, MysqlTablesNd.create())

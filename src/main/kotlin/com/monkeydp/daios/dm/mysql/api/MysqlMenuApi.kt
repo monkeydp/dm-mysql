@@ -4,6 +4,7 @@ import com.monkeydp.daios.dm.base.api.AbstractMenuApi
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dms.sdk.metadata.menu.Menu
 import com.monkeydp.daios.dms.sdk.metadata.menu.ctx.NodeMenuLoadCtx
+import com.monkeydp.daios.dms.sdk.metadata.menu.def.MenuDef
 
 /**
  * @author iPotato
@@ -11,8 +12,11 @@ import com.monkeydp.daios.dms.sdk.metadata.menu.ctx.NodeMenuLoadCtx
  */
 object MysqlMenuApi : AbstractMenuApi() {
     override fun loadNodeMenu(ctx: NodeMenuLoadCtx): Menu? {
-        val path = ctx.path.toSub<MysqlNodePath>()
-        val nodeDef = path.getLastNodeDef()
-        return nodeDef.menuDef?.create()
+        val nodePath = ctx.nodePath.toSub<MysqlNodePath>()
+        val nodeDef = nodePath.getLastNodeDef()
+        var menuDef: MenuDef? = nodeDef.menuDef
+        if (menuDef == null) return null
+        val nextDef = ctx.menuPath.recurFindNextDef(menuDef)
+        return nextDef?.create()
     }
 }
