@@ -62,7 +62,6 @@ class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
     
     override val config = object : LocalConfig() {
         private val packageName = this.javaClass.`package`.name
-        private val superclassPackageName = this.javaClass.superclass.`package`.name
         private val classLoader = this.javaClass.classLoader
         override val nodeConfig = object : NodeConfig() {
             override val struct by lazy { MysqlNodeConfig.structure }
@@ -76,7 +75,7 @@ class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
         override val menuConfig = object : MenuConfig() {
             override val struct by lazy { MysqlMenuConfig.structure }
             private val urls =
-                    ClasspathHelper.forPackage(superclassPackageName, classLoader)
+                    ClasspathHelper.forPackage(packageName, classLoader)
             override val reflections = Reflections(ConfigurationBuilder()
                     .setUrls(urls)
                     .addClassLoader(classLoader)

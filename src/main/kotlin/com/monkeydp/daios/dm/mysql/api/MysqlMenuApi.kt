@@ -13,6 +13,6 @@ object MysqlMenuApi : AbstractMenuApi() {
     override fun loadNodeMenu(ctx: NodeMenuLoadCtx): Menu? {
         val path = ctx.path.toSub<MysqlNodePath>()
         val nodeDef = path.getLastNodeDef()
-        return nodeDef.menu
+        return nodeDef.menuDef?.create()
     }
 }
