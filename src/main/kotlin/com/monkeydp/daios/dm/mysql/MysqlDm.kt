@@ -12,7 +12,6 @@ import com.monkeydp.daios.dm.mysql.ext.distDirpath
 import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlAction
 import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlTarget
-import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.DmImpl
@@ -38,7 +37,6 @@ class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
     }
     
     override val datasource = MYSQL
-    override val connNd = MysqlConnNd
     override val dsDefs = listOf(MysqlDefs.Mysql57, MysqlDefs.Mysql80)
     override val impl = object : DmImpl {
         override val apis = object : DmImpl.Apis {

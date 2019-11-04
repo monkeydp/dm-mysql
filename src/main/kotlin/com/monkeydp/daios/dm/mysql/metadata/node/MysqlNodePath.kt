@@ -1,9 +1,9 @@
 package com.monkeydp.daios.dm.mysql.metadata.node
 
+import com.monkeydp.daios.dms.sdk.metadata.node.NodeDef
 import com.monkeydp.daios.dm.mysql.MysqlDm
 import com.monkeydp.daios.dms.sdk.metadata.instruction.target.GlobalTarget.GROUP
 import com.monkeydp.daios.dms.sdk.metadata.node.NodePath
-import com.monkeydp.daios.dms.sdk.metadata.node.def.NodeDef
 
 
 /**
@@ -31,7 +31,7 @@ class MysqlNodePath : NodePath() {
     val viewName
         get() = viewNode.name
     
-    override fun getLastNodeDef(): NodeDef {
+    fun getLastNodeDef(): NodeDef {
         val target = last().target
         return if (target == GROUP) groupDefMap.getValue(last().name)
         else defMap.getValue(target)

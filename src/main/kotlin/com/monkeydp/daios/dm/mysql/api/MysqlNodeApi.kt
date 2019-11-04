@@ -3,17 +3,16 @@ package com.monkeydp.daios.dm.mysql.api
 import com.monkeydp.daios.dm.base.api.AbstractNodeApi
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcDbsLoader
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcTablesLoader
-import com.monkeydp.daios.dm.base.metadata.node.def.DbNd
-import com.monkeydp.daios.dm.base.metadata.node.def.TableNd
-import com.monkeydp.daios.dm.base.metadata.node.def.TablesNd
-import com.monkeydp.daios.dm.base.metadata.node.def.ViewsNd
+import com.monkeydp.daios.dm.base.metadata.node.def.*
 import com.monkeydp.daios.dm.mysql.MysqlSql
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
+import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlTablesNd
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlViewsNd
-import com.monkeydp.daios.dms.sdk.metadata.node.main.Node
+import com.monkeydp.daios.dms.sdk.entity.ConnProfile
+import com.monkeydp.daios.dms.sdk.metadata.node.NodeDef
 import com.monkeydp.daios.dms.sdk.metadata.node.ctx.NodeLoadCtx
-import com.monkeydp.daios.dms.sdk.metadata.node.def.NodeDef
+import com.monkeydp.daios.dms.sdk.metadata.node.Node
 import java.sql.Connection
 
 /**
@@ -22,11 +21,16 @@ import java.sql.Connection
  */
 object MysqlNodeApi : AbstractNodeApi() {
     
+    override fun loadConnNode(cp: ConnProfile) = MysqlConnNd.create(cp)
+    
     override fun loadSubNodes(ctx: NodeLoadCtx): List<Node> {
-        return super.loadSubNodes(ctx.copy(path = ctx.path.toSub<MysqlNodePath>()))
+        val def = ctx.path.toSub<MysqlNodePath>().getLastNodeDef()
+        val subNodes = mutableListOf<Node>()
+        def.children.forEach { subNodes.addAll(loadNodes(ctx, it)) }
+        return subNodes
     }
     
-    override fun loadNodes(ctx: NodeLoadCtx, def: NodeDef): List<Node> {
+    private fun loadNodes(ctx: NodeLoadCtx, def: NodeDef): List<Node> {
         val conn = ctx.conn.rawConn as Connection
         return when (def) {
             is DbNd     -> JdbcDbsLoader.loadDbs(conn, def, MysqlSql.SHOW_DBS)
