@@ -21,7 +21,7 @@ object MysqlNewTableParser : AbstractInstrParser<NodeInstrParseCtx>() {
         val table = ctx.userInput.convertTo<MysqlTable>()
         val conn = ctx.conn.rawConn as Connection
         conn.createStatement().use {
-            it.executeQuery(table.newTableSql)
+            it.executeUpdate(table.newTableSql)
         }
     }
 }
