@@ -1,4 +1,4 @@
-package com.monkeydp.daios.dm.mysql.test.menu
+package com.monkeydp.daios.dm.mysql.test.api
 
 import com.monkeydp.daios.dm.mysql.mocker.MysqlMenuMocker
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker

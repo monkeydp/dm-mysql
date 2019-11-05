@@ -1,4 +1,4 @@
-package com.monkeydp.daios.dm.mysql.test.node
+package com.monkeydp.daios.dm.mysql.test.api
 
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
