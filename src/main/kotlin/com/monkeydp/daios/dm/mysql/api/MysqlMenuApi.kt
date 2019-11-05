@@ -1,7 +1,7 @@
 package com.monkeydp.daios.dm.mysql.api
 
 import com.monkeydp.daios.dm.base.api.AbstractMenuApi
-import com.monkeydp.daios.dms.sdk.metadata.menu.MenuDef
+import com.monkeydp.daios.dm.base.metadata.menu.def.MenuDef
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dms.sdk.metadata.menu.Menu
 import com.monkeydp.daios.dms.sdk.metadata.menu.ctx.NodeMenuLoadCtx
@@ -16,7 +16,7 @@ object MysqlMenuApi : AbstractMenuApi() {
         val nodeDef = nodePath.getLastNodeDef()
         var menuDef: MenuDef? = nodeDef.menuDef
         if (menuDef == null) return null
-        val nextDef = ctx.menuPath.recurFindNextDef(menuDef)
+        val nextDef = findNextDef(ctx.menuPath, menuDef)
         return nextDef?.create()
     }
 }

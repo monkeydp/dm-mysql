@@ -10,7 +10,7 @@ import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlTablesNd
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlViewsNd
 import com.monkeydp.daios.dms.sdk.entity.ConnProfile
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeDef
+import com.monkeydp.daios.dm.base.metadata.node.def.NodeDef
 import com.monkeydp.daios.dms.sdk.metadata.node.ctx.NodeLoadCtx
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
 import java.sql.Connection

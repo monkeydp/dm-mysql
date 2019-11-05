@@ -7,5 +7,5 @@ import com.monkeydp.daios.dm.base.metadata.node.def.NodeDefImpl
  * @author iPotato
  * @date 2019/10/28
  */
-@NodeDefImpl(isGroup = true)
+@NodeDefImpl
 object MysqlTablesNd : AbstractTablesNd()

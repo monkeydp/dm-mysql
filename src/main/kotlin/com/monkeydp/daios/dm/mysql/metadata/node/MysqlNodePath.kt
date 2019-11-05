@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.metadata.node
 
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeDef
+import com.monkeydp.daios.dm.base.metadata.node.def.NodeDef
 import com.monkeydp.daios.dm.mysql.MysqlDm
 import com.monkeydp.daios.dms.sdk.metadata.instruction.target.GlobalTarget.GROUP
 import com.monkeydp.daios.dms.sdk.metadata.node.NodePath
