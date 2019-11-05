@@ -17,7 +17,7 @@ object MysqlDeleteTableParser : AbstractInstrParser<NodeInstrParseCtx>() {
     override fun parse(ctx: NodeInstrParseCtx) {
         val path = ctx.nodePath.toSub<MysqlNodePath>()
         val userInput = ctx.userInput
-        userInput[MysqlTable::name.name] = path.dbName
+        userInput[MysqlTable::dbName.name] = path.dbName
         val table = userInput.convertTo<MysqlTable>()
         val conn = ctx.conn.rawConn as Connection
         conn.createStatement().use {

@@ -8,10 +8,18 @@ import com.monkeydp.daios.dm.mysql.metadata.element.MysqlTable
  * @date 2019/11/5
  */
 object MysqlElementMocker {
+    
+    const val DB_NAME = "test_db"
+    const val TABLE_NAME = "test_table"
+    
     private val idColumn =
             MysqlColumn("id", "int", 11, constraints = listOf("NOT NULL", "PRIMARY KEY"))
     private val nameColumn = MysqlColumn("name", "varchar", 64, constraints = listOf("NOT NULL"))
     private val ageColumn = MysqlColumn("age", "tinyint", 4, constraints = listOf("NOT NULL"))
     
-    val table = MysqlTable(name = "test_table", columns = listOf(idColumn, nameColumn, ageColumn))
+    val table = MysqlTable(
+            name = TABLE_NAME,
+            dbName = DB_NAME,
+            columns = listOf(idColumn, nameColumn, ageColumn)
+    )
 }
