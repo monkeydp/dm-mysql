@@ -10,5 +10,5 @@ enum class MysqlIcon(
         override val namex: String,
         override val color: String
 ) : Icon<MysqlIcon> {
-    MYSQL_CONN_ICON("mysql_conn_icon", "")
+    MYSQL_CONN_ICON("mysql conn icon", "")
 }
