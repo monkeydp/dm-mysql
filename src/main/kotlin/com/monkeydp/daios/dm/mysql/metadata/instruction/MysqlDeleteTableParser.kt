@@ -12,16 +12,16 @@ import java.sql.Connection
  * @date 2019/11/5
  */
 @InstrParserImpl
-object MysqlNewTableParser : AbstractInstrParser<NodeInstrParseCtx>() {
+object MysqlDeleteTableParser : AbstractInstrParser<NodeInstrParseCtx>() {
     
     override fun parse(ctx: NodeInstrParseCtx) {
         val path = ctx.nodePath.toSub<MysqlNodePath>()
         val userInput = ctx.userInput
-        userInput[MysqlTable::dbName.name] = path.dbName
+        userInput[MysqlTable::name.name] = path.dbName
         val table = userInput.convertTo<MysqlTable>()
         val conn = ctx.conn.rawConn as Connection
         conn.createStatement().use {
-            it.executeUpdate(table.newTableSql)
+            it.executeUpdate(table.deleteTableSql)
         }
     }
 }

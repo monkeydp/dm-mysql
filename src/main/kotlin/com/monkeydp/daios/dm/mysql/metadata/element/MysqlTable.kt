@@ -19,4 +19,8 @@ data class MysqlTable(
                 .append(");")
                 .toString()
     }
+    
+    val deleteTableSql by lazy {
+        "DROP TABLE `$dbName`.`$name`;"
+    }
 }
