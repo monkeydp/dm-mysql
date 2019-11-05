@@ -20,9 +20,6 @@ import com.monkeydp.daios.dms.sdk.dm.DmImpl
 import com.monkeydp.daios.dms.sdk.dm.DmShareConfig
 import com.monkeydp.daios.dms.sdk.dm.DmTestdata
 import com.monkeydp.tools.ext.notNullSingleton
-import org.reflections.Reflections
-import org.reflections.util.ClasspathHelper
-import org.reflections.util.ConfigurationBuilder
 import kotlin.properties.Delegates
 
 /**
@@ -62,25 +59,16 @@ class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
     }
     
     override val config = object : LocalConfig() {
-        private val packageName = this.javaClass.`package`.name
-        private val classLoader = this.javaClass.classLoader
         override val nodeConfig = object : NodeConfig() {
             override val struct by lazy { MysqlNodeConfig.structure }
-            private val urls =
-                    ClasspathHelper.forPackage(packageName, classLoader)
-            override val reflections = Reflections(ConfigurationBuilder()
-                    .setUrls(urls)
-                    .addClassLoader(classLoader)
-            )
+            override val reflections = getReflections()
         }
         override val menuConfig = object : MenuConfig() {
             override val struct by lazy { MysqlMenuConfig.structure }
-            private val urls =
-                    ClasspathHelper.forPackage(packageName, classLoader)
-            override val reflections = Reflections(ConfigurationBuilder()
-                    .setUrls(urls)
-                    .addClassLoader(classLoader)
-            )
+            override val reflections = getReflections()
+        }
+        override val instrConfig = object : InstrConfig() {
+            override val reflections = getReflections()
         }
     }
     
