@@ -3,7 +3,7 @@ package com.monkeydp.daios.dm.mysql.test.api
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
 import com.monkeydp.daios.dms.sdk.metadata.instruction.target.GlobalTarget.*
-import com.monkeydp.daios.dms.sdk.metadata.node.ctx.NodeLoadCtx
+import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadCtx
 import org.junit.Assert
 import org.junit.Test
 

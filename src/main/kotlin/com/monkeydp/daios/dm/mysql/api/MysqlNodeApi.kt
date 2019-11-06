@@ -9,7 +9,7 @@ import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dm.mysql.metadata.node.def.*
 import com.monkeydp.daios.dms.sdk.entity.ConnProfile
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
-import com.monkeydp.daios.dms.sdk.metadata.node.ctx.NodeLoadCtx
+import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadCtx
 import java.sql.Connection
 
 /**
@@ -30,15 +30,15 @@ object MysqlNodeApi : AbstractNodeApi() {
     private fun loadNodes(ctx: NodeLoadCtx, def: NodeDef): List<Node> {
         val conn = ctx.conn.rawConn as Connection
         return when (def) {
-            is MysqlDbNd     -> JdbcDbsLoader.loadDbs(conn, def, MysqlSql.SHOW_DBS)
-            is MysqlTableNd  -> {
+            is MysqlDbNd -> JdbcDbsLoader.loadDbs(conn, def, MysqlSql.SHOW_DBS)
+            is MysqlTableNd -> {
                 val path = ctx.path.toSub<MysqlNodePath>()
                 val sql = MysqlSql.showTablesSql(path.dbName)
                 JdbcTablesLoader.loadTables(conn, def, sql)
             }
             is MysqlTablesNd -> listOf(MysqlTablesNd.create())
-            is MysqlViewsNd  -> listOf(MysqlViewsNd.create())
-            else             -> emptyList()
+            is MysqlViewsNd -> listOf(MysqlViewsNd.create())
+            else -> emptyList()
         }
     }
 }
