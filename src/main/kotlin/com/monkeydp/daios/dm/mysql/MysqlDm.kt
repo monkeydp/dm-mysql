@@ -11,8 +11,8 @@ import com.monkeydp.daios.dm.mysql.config.MysqlNodeConfig
 import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
 import com.monkeydp.daios.dm.mysql.ext.distDirpath
 import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon
-import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlAction
-import com.monkeydp.daios.dm.mysql.metadata.instruction.MysqlTarget
+import com.monkeydp.daios.dm.mysql.instruction.MysqlAction
+import com.monkeydp.daios.dm.mysql.instruction.MysqlTarget
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.DmImpl

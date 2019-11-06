@@ -1,11 +1,11 @@
 package com.monkeydp.daios.dm.mysql.test.api
 
-import com.monkeydp.daios.dm.base.metadata.instruction.DeleteTable
-import com.monkeydp.daios.dm.base.metadata.instruction.NewTable
+import com.monkeydp.daios.dm.base.instruction.DeleteTable
+import com.monkeydp.daios.dm.base.instruction.NewTable
 import com.monkeydp.daios.dm.mysql.mocker.MysqlElementMocker.table
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.tablesNodePath
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
-import com.monkeydp.daios.dms.sdk.metadata.instruction.ctx.NodeInstrParseCtx
+import com.monkeydp.daios.dms.sdk.instruction.ctx.NodeInstrParseCtx
 import com.monkeydp.daios.dms.sdk.useful.UserInput
 import org.junit.Test
 

@@ -2,7 +2,7 @@ package com.monkeydp.daios.dm.mysql.api
 
 import com.monkeydp.daios.dm.base.api.AbstractInstrApi
 import com.monkeydp.daios.dm.mysql.MysqlDm
-import com.monkeydp.daios.dms.sdk.metadata.instruction.ctx.InstrParseCtx
+import com.monkeydp.daios.dms.sdk.instruction.ctx.InstrParseCtx
 
 /**
  * @author iPotato

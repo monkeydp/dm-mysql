@@ -1,10 +1,10 @@
-package com.monkeydp.daios.dm.mysql.metadata.instruction
+package com.monkeydp.daios.dm.mysql.instruction
 
-import com.monkeydp.daios.dm.base.metadata.instruction.parser.AbstractInstrParser
-import com.monkeydp.daios.dm.base.metadata.instruction.parser.InstrParserImpl
+import com.monkeydp.daios.dm.base.instruction.parser.AbstractInstrParser
+import com.monkeydp.daios.dm.base.instruction.parser.InstrParserImpl
 import com.monkeydp.daios.dm.mysql.metadata.element.MysqlTable
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
-import com.monkeydp.daios.dms.sdk.metadata.instruction.ctx.NodeInstrParseCtx
+import com.monkeydp.daios.dms.sdk.instruction.ctx.NodeInstrParseCtx
 import java.sql.Connection
 
 /**
