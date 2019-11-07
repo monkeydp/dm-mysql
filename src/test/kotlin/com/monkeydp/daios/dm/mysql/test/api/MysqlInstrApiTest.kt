@@ -5,7 +5,7 @@ import com.monkeydp.daios.dm.base.instruction.NewTable
 import com.monkeydp.daios.dm.mysql.mocker.MysqlElementMocker.table
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.tablesNodePath
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
-import com.monkeydp.daios.dms.sdk.instruction.ctx.NodeInstrParseCtx
+import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
 import com.monkeydp.daios.dms.sdk.useful.UserInput
 import org.junit.Test
 
@@ -24,7 +24,7 @@ class MysqlInstrApiTest : AbstractTest() {
     }
     
     private fun newTableTest() {
-        val ctx = NodeInstrParseCtx(
+        val ctx = InstrParsingCtx(
                 conn = conn,
                 instr = NewTable,
                 userInput = UserInput(table),
@@ -34,7 +34,7 @@ class MysqlInstrApiTest : AbstractTest() {
     }
     
     private fun deleteTableTest() {
-        val ctx = NodeInstrParseCtx(
+        val ctx = InstrParsingCtx(
                 conn = conn,
                 instr = DeleteTable,
                 userInput = UserInput(table),

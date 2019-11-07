@@ -1,9 +1,10 @@
 package com.monkeydp.daios.dm.mysql.test.api
 
-import com.monkeydp.daios.dm.mysql.mocker.MysqlMenuMocker
-import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker
+import com.monkeydp.daios.dm.mysql.mocker.MysqlMenuMocker.manageGroupPath
+import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.connNodePath
+import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.dbNodePath
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
-import com.monkeydp.daios.dms.sdk.metadata.menu.ctx.NodeMenuLoadCtx
+import com.monkeydp.daios.dms.sdk.metadata.menu.MenuLoadCtx
 import org.junit.Assert
 import org.junit.Test
 
@@ -17,22 +18,23 @@ class MysqlMenuApiTest : AbstractTest() {
     
     @Test
     public fun loadConnMenuTest() {
-        val ctx = NodeMenuLoadCtx(MysqlNodeMocker.connNodePath)
-        val menu = api.loadNodeMenu(ctx)!!
+        val ctx = MenuLoadCtx(nodePath = connNodePath)
+        val menu = api.loadMenu(ctx)!!
         Assert.assertTrue(menu.items.isNotEmpty())
     }
     
     @Test
     public fun loadDbMenuTest() {
-        val ctx = NodeMenuLoadCtx(MysqlNodeMocker.dbNodePath)
-        val menu = api.loadNodeMenu(ctx)!!
+        val ctx = MenuLoadCtx(nodePath = dbNodePath)
+        val menu = api.loadMenu(ctx)!!
         Assert.assertTrue(menu.items.isNotEmpty())
     }
     
     @Test
     public fun loadSubMenuTest() {
-        val ctx = NodeMenuLoadCtx(MysqlNodeMocker.connNodePath, MysqlMenuMocker.manageGroupPath)
-        val menu = api.loadNodeMenu(ctx)!!
+        val ctx =
+                MenuLoadCtx(nodePath = connNodePath, menuPath = manageGroupPath)
+        val menu = api.loadMenu(ctx)!!
         Assert.assertTrue(menu.items.isNotEmpty())
     }
 }

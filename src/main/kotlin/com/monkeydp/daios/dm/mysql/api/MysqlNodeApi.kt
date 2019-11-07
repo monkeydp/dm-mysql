@@ -9,7 +9,7 @@ import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dm.mysql.metadata.node.def.*
 import com.monkeydp.daios.dms.sdk.entity.ConnProfile
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadCtx
+import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
 import java.sql.Connection
 
 /**
@@ -20,14 +20,14 @@ object MysqlNodeApi : AbstractNodeApi() {
     
     override fun loadConnNode(cp: ConnProfile) = MysqlConnNd.create(cp)
     
-    override fun loadSubNodes(ctx: NodeLoadCtx): List<Node> {
+    override fun loadSubNodes(ctx: NodeLoadingCtx): List<Node> {
         val def = ctx.path.toSub<MysqlNodePath>().getLastNodeDef()
         val subNodes = mutableListOf<Node>()
         def.children.forEach { subNodes.addAll(loadNodes(ctx, it)) }
         return subNodes
     }
     
-    private fun loadNodes(ctx: NodeLoadCtx, def: NodeDef): List<Node> {
+    private fun loadNodes(ctx: NodeLoadingCtx, def: NodeDef): List<Node> {
         val conn = ctx.conn.rawConn as Connection
         return when (def) {
             is MysqlDbNd -> JdbcDbsLoader.loadDbs(conn, def, MysqlSql.SHOW_DBS)
