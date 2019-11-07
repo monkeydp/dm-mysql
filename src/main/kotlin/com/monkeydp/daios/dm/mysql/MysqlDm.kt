@@ -16,7 +16,7 @@ import com.monkeydp.daios.dm.mysql.instruction.MysqlTarget
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.DmImpl
-import com.monkeydp.daios.dms.sdk.dm.DmShareConfig
+import com.monkeydp.daios.dms.sdk.dm.DmOpenConfig
 import com.monkeydp.daios.dms.sdk.dm.DmTestdata
 import com.monkeydp.tools.ext.notNullSingleton
 import kotlin.properties.Delegates
@@ -25,7 +25,7 @@ import kotlin.properties.Delegates
  * @author iPotato
  * @date 2019/10/8
  */
-class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
+class MysqlDm(config: DmOpenConfig) : AbstractDm(config) {
     
     companion object {
         @Volatile
@@ -82,7 +82,7 @@ class MysqlDm(config: DmShareConfig? = null) : AbstractDm(config) {
         }
     }
     
-    override fun updateConfig(config: DmShareConfig) {
+    override fun updateOpenConfig(config: DmOpenConfig) {
         distDirpath = config.deployDir.path
     }
 }

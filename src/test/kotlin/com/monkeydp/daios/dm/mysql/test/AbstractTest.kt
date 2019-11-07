@@ -1,9 +1,10 @@
 package com.monkeydp.daios.dm.mysql.test
 
 import com.monkeydp.daios.dm.mysql.MysqlDm
-import com.monkeydp.daios.dm.mysql.conn.MysqlConn
 import com.monkeydp.daios.dm.mysql.api.MysqlConnApi
+import com.monkeydp.daios.dm.mysql.conn.MysqlConn
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
+import com.monkeydp.daios.dms.sdk.dm.DmOpenConfig
 import com.monkeydp.tools.ext.notNullSingleton
 import org.junit.After
 import org.junit.Before
@@ -16,7 +17,9 @@ import kotlin.properties.Delegates
 abstract class AbstractTest {
     
     companion object {
-        private val init = MysqlDm()
+        init {
+            MysqlDm(DmOpenConfig.mock())
+        }
     }
     
     private val dm = MysqlDm.INSTANCE
