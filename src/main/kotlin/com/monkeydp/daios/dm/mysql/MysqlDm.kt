@@ -12,7 +12,7 @@ import com.monkeydp.daios.dm.mysql.conn.MysqlNewConnFrom
 import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
-import com.monkeydp.daios.dms.sdk.dm.DmImpl
+import com.monkeydp.daios.dms.sdk.SdkImpl
 import com.monkeydp.daios.dms.sdk.dm.DmOpenConfig
 import com.monkeydp.daios.dms.sdk.dm.DmTestdata
 import com.monkeydp.tools.ext.notNullSingleton
@@ -33,18 +33,18 @@ class MysqlDm(config: DmOpenConfig) : AbstractDm(config) {
     
     override val datasource = MYSQL
     override val dsDefs = listOf(MysqlDefs.Mysql57, MysqlDefs.Mysql80)
-    override val impl = object : DmImpl {
-        override val apis = object : DmImpl.Apis {
+    override val impl = object : SdkImpl {
+        override val apis = object : SdkImpl.Apis {
             override val connApi = MysqlConnApi
             override val nodeApi = MysqlNodeApi
             override val menuApi = MysqlMenuApi
             override val formApi by lazy { MysqlFormApi }
             override val instrApi by lazy { MysqlInstrApi }
         }
-        override val classes = object : DmImpl.Classes {
+        override val classes = object : SdkImpl.Classes {
             override val newConnFormClass = MysqlNewConnFrom::class
         }
-        override val enumClasses = object : DmImpl.EnumClasses {
+        override val enumClasses = object : SdkImpl.EnumClasses {
             override val dsVersionClass = MysqlVersion::class
             override val actionClass = MysqlAction::class
             override val targetClass = MysqlTarget::class
