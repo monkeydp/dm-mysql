@@ -8,7 +8,7 @@ import com.monkeydp.daios.dm.mysql.config.MysqlNodeConfig
 import com.monkeydp.daios.dm.mysql.ext.distDirpath
 import com.monkeydp.daios.dm.mysql.instruction.MysqlAction
 import com.monkeydp.daios.dm.mysql.instruction.MysqlTarget
-import com.monkeydp.daios.dm.mysql.metadata.form.backend.MysqlCpFrom
+import com.monkeydp.daios.dm.mysql.conn.MysqlNewConnFrom
 import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
@@ -42,7 +42,7 @@ class MysqlDm(config: DmOpenConfig) : AbstractDm(config) {
             override val instrApi by lazy { MysqlInstrApi }
         }
         override val classes = object : DmImpl.Classes {
-            override val cpFormClass = MysqlCpFrom::class
+            override val newConnFormClass = MysqlNewConnFrom::class
         }
         override val enumClasses = object : DmImpl.EnumClasses {
             override val dsVersionClass = MysqlVersion::class

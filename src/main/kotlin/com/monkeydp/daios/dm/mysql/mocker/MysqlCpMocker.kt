@@ -2,9 +2,9 @@ package com.monkeydp.daios.dm.mysql.mocker
 
 import com.monkeydp.daios.dm.mysql.MysqlDefs.Mysql57
 import com.monkeydp.daios.dm.mysql.MysqlDefs.Mysql80
-import com.monkeydp.daios.dm.mysql.metadata.form.backend.MysqlCpFrom
+import com.monkeydp.daios.dm.mysql.conn.MysqlNewConnFrom
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
-import com.monkeydp.daios.dms.sdk.entity.ConnProfile
+import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.tools.ext.convertTo
 
 /**
@@ -17,14 +17,14 @@ object MysqlCpMocker {
             datasource = MYSQL,
             dsVersionId = Mysql57.version.id,
             dsDriverClassname = Mysql57.driver.classname,
-            userInput = MysqlCpFrom(connName = "MySQL 5.7 Conn").convertTo()
+            userInput = MysqlNewConnFrom(connName = "MySQL 5.7 Conn").convertTo()
     )
     
     private val mysql80cp = ConnProfile(
             datasource = MYSQL,
             dsVersionId = Mysql80.version.id,
             dsDriverClassname = Mysql80.driver.classname,
-            userInput = MysqlCpFrom(connName = "MySQL 8.0 Conn", port = "3307").convertTo()
+            userInput = MysqlNewConnFrom(connName = "MySQL 8.0 Conn", port = "3307").convertTo()
     )
     
     val cp = mysql57cp

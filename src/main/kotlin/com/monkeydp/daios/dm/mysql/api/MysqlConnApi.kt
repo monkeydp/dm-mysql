@@ -3,8 +3,8 @@ package com.monkeydp.daios.dm.mysql.api
 import com.monkeydp.daios.dm.base.api.AbstractConnApi
 import com.monkeydp.daios.dm.mysql.conn.MysqlConn
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnParameters
-import com.monkeydp.daios.dm.mysql.metadata.form.backend.MysqlCpFrom
-import com.monkeydp.daios.dms.sdk.entity.ConnProfile
+import com.monkeydp.daios.dm.mysql.conn.MysqlNewConnFrom
+import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.tools.ext.toProps
 import java.sql.DriverManager
 
@@ -15,7 +15,7 @@ import java.sql.DriverManager
 object MysqlConnApi : AbstractConnApi() {
     
     override fun getConn(cp: ConnProfile): MysqlConn {
-        val form = cp.form as MysqlCpFrom
+        val form = cp.form as MysqlNewConnFrom
         Class.forName(cp.dsDriverClassname)
         val props = MysqlConnParameters(
                 user = form.username,
