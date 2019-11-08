@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.metadata.menu.item.def
 
-import com.monkeydp.daios.dm.base.metadata.menu.item.def.AbstractManageGroupMid
+import com.monkeydp.daios.dm.base.metadata.menu.item.def.AbstractMid
 import com.monkeydp.daios.dm.base.metadata.menu.item.def.MenuItemDefImpl
 
 /**
@@ -8,4 +8,4 @@ import com.monkeydp.daios.dm.base.metadata.menu.item.def.MenuItemDefImpl
  * @date 2019/10/31
  */
 @MenuItemDefImpl
-object MysqlManageGroupMid : AbstractManageGroupMid()
+object MysqlManageGroupMid : AbstractMid()

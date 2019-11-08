@@ -2,7 +2,7 @@ package com.monkeydp.daios.dm.mysql.mocker
 
 import com.monkeydp.daios.dm.mysql.MysqlDefs.Mysql57
 import com.monkeydp.daios.dm.mysql.MysqlDefs.Mysql80
-import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
+import com.monkeydp.daios.dm.mysql.metadata.form.backend.MysqlCpFrom
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.entity.ConnProfile
 import com.monkeydp.tools.ext.convertTo

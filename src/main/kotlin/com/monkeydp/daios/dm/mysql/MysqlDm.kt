@@ -2,17 +2,14 @@ package com.monkeydp.daios.dm.mysql
 
 import com.monkeydp.daios.dm.base.AbstractDm
 import com.monkeydp.daios.dm.base.LocalConfig
-import com.monkeydp.daios.dm.mysql.api.MysqlConnApi
-import com.monkeydp.daios.dm.mysql.api.MysqlInstrApi
-import com.monkeydp.daios.dm.mysql.api.MysqlMenuApi
-import com.monkeydp.daios.dm.mysql.api.MysqlNodeApi
+import com.monkeydp.daios.dm.mysql.api.*
 import com.monkeydp.daios.dm.mysql.config.MysqlMenuConfig
 import com.monkeydp.daios.dm.mysql.config.MysqlNodeConfig
-import com.monkeydp.daios.dm.mysql.conn.MysqlCpFrom
 import com.monkeydp.daios.dm.mysql.ext.distDirpath
-import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon
 import com.monkeydp.daios.dm.mysql.instruction.MysqlAction
 import com.monkeydp.daios.dm.mysql.instruction.MysqlTarget
+import com.monkeydp.daios.dm.mysql.metadata.form.backend.MysqlCpFrom
+import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.DmImpl
@@ -41,6 +38,7 @@ class MysqlDm(config: DmOpenConfig) : AbstractDm(config) {
             override val connApi = MysqlConnApi
             override val nodeApi = MysqlNodeApi
             override val menuApi = MysqlMenuApi
+            override val formApi by lazy { MysqlFormApi }
             override val instrApi by lazy { MysqlInstrApi }
         }
         override val classes = object : DmImpl.Classes {
@@ -64,6 +62,9 @@ class MysqlDm(config: DmOpenConfig) : AbstractDm(config) {
         }
         override val menuConfig = object : MenuConfig() {
             override val struct by lazy { MysqlMenuConfig.structure }
+            override val reflections = getReflections()
+        }
+        override val formConfig = object : FormConfig() {
             override val reflections = getReflections()
         }
         override val instrConfig = object : InstrConfig() {

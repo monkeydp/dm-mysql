@@ -1,13 +1,16 @@
-package com.monkeydp.daios.dm.mysql.conn
+package com.monkeydp.daios.dm.mysql.metadata.form.backend
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.monkeydp.daios.dm.base.metadata.form.AbstractCpForm
+import com.monkeydp.daios.dm.base.instruction.NewConn
+import com.monkeydp.daios.dm.base.metadata.form.backend.AbstractCpForm
+import com.monkeydp.daios.dms.sdk.metadata.form.FormImpl
 import org.jetbrains.annotations.TestOnly
 
 /**
  * @author iPotato
  * @date 2019/10/20
  */
+@FormImpl(instrClass = NewConn::class)
 class MysqlCpFrom : AbstractCpForm {
     constructor(
             connName: String = "MySQL Conn",
