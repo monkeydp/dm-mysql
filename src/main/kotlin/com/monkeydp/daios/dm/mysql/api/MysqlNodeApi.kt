@@ -7,6 +7,7 @@ import com.monkeydp.daios.dm.base.metadata.node.def.NodeDef
 import com.monkeydp.daios.dm.mysql.MysqlSql
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dm.mysql.metadata.node.def.*
+import com.monkeydp.daios.dms.sdk.api.SdkApi
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
@@ -16,6 +17,7 @@ import java.sql.Connection
  * @author iPotato
  * @date 2019/10/25
  */
+@SdkApi
 object MysqlNodeApi : AbstractNodeApi() {
     
     override fun loadConnNode(cp: ConnProfile) = MysqlConnNd.create(cp)

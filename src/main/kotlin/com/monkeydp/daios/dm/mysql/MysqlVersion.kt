@@ -3,11 +3,13 @@ package com.monkeydp.daios.dm.mysql
 import com.monkeydp.daios.dms.sdk.datasource.Datasource
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.datasource.DsVersion
+import com.monkeydp.daios.dms.sdk.enumx.SdkEnum
 
 /**
  * @author iPotato
  * @date 2019/10/27
  */
+@SdkEnum
 enum class MysqlVersion(
         override val id: String,
         override val description: String,
