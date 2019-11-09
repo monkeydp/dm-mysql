@@ -12,7 +12,7 @@ import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
 @SdkApi
 object MysqlInstrApi : AbstractInstrApi() {
     
-    private val parserMap = MysqlDm.INSTANCE.config.instrConfig.parserMap
+    private val parserMap by lazy { MysqlDm.INSTANCE.config.instrConfig.parserMap }
     
     override fun parse(ctx: InstrParsingCtx) = parserMap.getValue(ctx.instr).parse(ctx)
 }
