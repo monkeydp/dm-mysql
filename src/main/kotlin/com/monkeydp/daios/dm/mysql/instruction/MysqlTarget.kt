@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.instruction
 
-import com.monkeydp.daios.dms.sdk.enumx.SdkEnum
+import com.monkeydp.daios.dms.sdk.main.SdkEnum
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget
 import com.monkeydp.daios.dms.sdk.instruction.target.Target
 

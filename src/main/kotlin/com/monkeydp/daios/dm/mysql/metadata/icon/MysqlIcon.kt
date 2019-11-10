@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.metadata.icon
 
-import com.monkeydp.daios.dms.sdk.enumx.SdkEnum
+import com.monkeydp.daios.dms.sdk.main.SdkEnum
 import com.monkeydp.daios.dms.sdk.metadata.icon.GlobalIcon
 import com.monkeydp.daios.dms.sdk.metadata.icon.Icon
 

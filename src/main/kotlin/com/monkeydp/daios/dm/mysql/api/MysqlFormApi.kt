@@ -2,7 +2,7 @@ package com.monkeydp.daios.dm.mysql.api
 
 import com.monkeydp.daios.dm.base.api.AbstractFormApi
 import com.monkeydp.daios.dm.mysql.MysqlDm
-import com.monkeydp.daios.dms.sdk.api.SdkApi
+import com.monkeydp.daios.dms.sdk.main.SdkApi
 import com.monkeydp.daios.dms.sdk.metadata.form.FormBuilder
 import com.monkeydp.daios.dms.sdk.metadata.form.FormLoadingCtx
 
