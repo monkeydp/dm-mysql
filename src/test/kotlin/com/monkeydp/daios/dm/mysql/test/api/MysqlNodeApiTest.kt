@@ -16,24 +16,24 @@ class MysqlNodeApiTest : AbstractTest() {
     private val api = apis.nodeApi
     
     @Test
-    public fun loadDbsTest() {
-        val ctx = NodeLoadingCtx(conn, MysqlNodeMocker.connNodePath)
+    fun loadDbsTest() {
+        val ctx = NodeLoadingCtx(MysqlNodeMocker.connNodePath)
         val nodes = api.loadSubNodes(ctx)
         Assert.assertTrue(nodes.isNotEmpty())
         nodes.forEach { Assert.assertTrue(it.target == DB) }
     }
     
     @Test
-    public fun loadTablesTest() {
-        val ctx = NodeLoadingCtx(conn, MysqlNodeMocker.tablesNodePath)
+    fun loadTablesTest() {
+        val ctx = NodeLoadingCtx(MysqlNodeMocker.tablesNodePath)
         val nodes = api.loadSubNodes(ctx)
         Assert.assertTrue(nodes.isNotEmpty())
         nodes.forEach { Assert.assertTrue(it.target == TABLE) }
     }
     
     @Test
-    public fun loadGroupsTest() {
-        val ctx = NodeLoadingCtx(conn, MysqlNodeMocker.dbNodePath)
+    fun loadGroupsTest() {
+        val ctx = NodeLoadingCtx(MysqlNodeMocker.dbNodePath)
         val nodes = api.loadSubNodes(ctx)
         Assert.assertTrue(nodes.isNotEmpty())
         nodes.forEach { Assert.assertTrue(it.target == GROUP) }

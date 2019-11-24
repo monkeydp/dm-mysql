@@ -17,21 +17,21 @@ class MysqlMenuApiTest : AbstractTest() {
     private val api = apis.menuApi
     
     @Test
-    public fun loadConnMenuTest() {
+    fun loadConnMenuTest() {
         val ctx = MenuLoadingCtx(nodePath = connNodePath)
         val menu = api.loadMenu(ctx)!!
         Assert.assertTrue(menu.items.isNotEmpty())
     }
     
     @Test
-    public fun loadDbMenuTest() {
+    fun loadDbMenuTest() {
         val ctx = MenuLoadingCtx(nodePath = dbNodePath)
         val menu = api.loadMenu(ctx)!!
         Assert.assertTrue(menu.items.isNotEmpty())
     }
     
     @Test
-    public fun loadSubMenuTest() {
+    fun loadSubMenuTest() {
         val ctx =
                 MenuLoadingCtx(nodePath = connNodePath, menuPath = manageGroupPath)
         val menu = api.loadMenu(ctx)!!

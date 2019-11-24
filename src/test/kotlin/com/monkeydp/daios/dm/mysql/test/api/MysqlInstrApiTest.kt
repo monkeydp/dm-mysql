@@ -22,7 +22,6 @@ class MysqlInstrApiTest : AbstractTest() {
     @Test
     fun newTableTest() {
         val ctx = InstrParsingCtx(
-                conn = conn,
                 instr = NewTable,
                 userInput = UserInput(table),
                 nodePath = tablesNodePath
@@ -33,7 +32,6 @@ class MysqlInstrApiTest : AbstractTest() {
     @Test
     fun deleteTableTest() {
         val ctx = InstrParsingCtx(
-                conn = conn,
                 instr = DeleteTable,
                 userInput = UserInput(table),
                 nodePath = tablesNodePath
@@ -44,7 +42,6 @@ class MysqlInstrApiTest : AbstractTest() {
     @Test
     fun showInfoTest() {
         val ctx = InstrParsingCtx(
-                conn = conn,
                 instr = ShowInfo,
                 userInput = UserInput(table),
                 nodePath = tablesNodePath,

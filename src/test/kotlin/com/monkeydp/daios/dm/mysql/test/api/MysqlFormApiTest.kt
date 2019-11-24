@@ -15,7 +15,7 @@ class MysqlFormApiTest : AbstractTest() {
     private val api = apis.formApi
     
     @Test
-    public fun loadNewConnForm() {
+    fun loadNewConnForm() {
         val ctx = FormLoadingCtx(instr = NewConn)
         val form = api.loadFrom(ctx)
         Assert.assertTrue(form.items.isNotEmpty())
