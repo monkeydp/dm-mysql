@@ -5,7 +5,6 @@ package com.monkeydp.daios.dm.mysql
  * @date 2019/10/29
  */
 object MysqlSql {
-    const val SHOW_DBS = "SHOW DATABASES"
-    fun showTablesSql(dbName: String) =
-            "SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = '$dbName' AND TABLE_TYPE != 'VIEW'  ORDER BY TABLE_SCHEMA"
+    const val SHOW_DBS = "SHOW DATABASES;"
+    const val SHOW_TABLES = "SHOW FULL TABLES WHERE Table_type != 'VIEW';"
 }

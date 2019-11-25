@@ -4,7 +4,8 @@ import com.monkeydp.daios.dm.base.api.AbstractNodeApi
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcDbsLoader
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcTablesLoader
 import com.monkeydp.daios.dm.base.metadata.node.def.NodeDef
-import com.monkeydp.daios.dm.mysql.MysqlSql
+import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_DBS
+import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_TABLES
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dm.mysql.metadata.node.def.*
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
@@ -31,17 +32,22 @@ object MysqlNodeApi : AbstractNodeApi() {
     }
     
     private fun loadNodes(ctx: NodeLoadingCtx, def: NodeDef): List<Node> {
-        val conn = RequestContext.conn!!.rawConn as Connection
+        val connection = RequestContext.conn!!.rawConn as Connection
         return when (def) {
-            is MysqlDbNd -> JdbcDbsLoader.loadDbs(conn, def, MysqlSql.SHOW_DBS)
+            is MysqlDbNd -> JdbcDbsLoader.loadDbs(connection, def, SHOW_DBS)
             is MysqlTableNd -> {
                 val path = ctx.path.toSub<MysqlNodePath>()
-                val sql = MysqlSql.showTablesSql(path.dbName)
-                JdbcTablesLoader.loadTables(conn, def, sql)
+                useDb(connection, path.dbName)
+                JdbcTablesLoader.loadTables(connection, def, SHOW_TABLES)
             }
             is MysqlTablesNd -> listOf(MysqlTablesNd.create())
             is MysqlViewsNd -> listOf(MysqlViewsNd.create())
             else -> emptyList()
         }
+    }
+    
+    private fun useDb(connection: Connection, dbName: String) {
+        val useDbSql = "USE $dbName;"
+        connection.prepareStatement(useDbSql).execute()
     }
 }

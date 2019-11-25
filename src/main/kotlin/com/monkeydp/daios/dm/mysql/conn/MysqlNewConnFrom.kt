@@ -24,5 +24,5 @@ class MysqlNewConnFrom : AbstractNewConnForm {
         @TestOnly get
     
     @JsonIgnore
-    val url = "jdbc:mysql://$host:$port?useSSL=true&serverTimezone=UTC&remarksReporting=true"
+    val url = "jdbc:mysql://$host:$port?useSSL=true&serverTimezone=UTC&remarksReporting=true&allowMultiQueries=true"
 }
