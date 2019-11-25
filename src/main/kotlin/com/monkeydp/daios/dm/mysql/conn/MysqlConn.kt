@@ -7,9 +7,9 @@ import java.sql.Connection
  * @author iPotato
  * @date 2019/10/21
  */
-data class MysqlConn(
-        override val cpId: Long,
-        override val rawConn: Connection
+class MysqlConn(
+        cpId: Long,
+        rawConn: Connection
 ) : AbstractConn<Connection>(cpId, rawConn) {
     
     override fun isValid(timeout: Int): Boolean {
