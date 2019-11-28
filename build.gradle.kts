@@ -1,6 +1,6 @@
 import Build_gradle.Profile.MYSQL_57
 import Build_gradle.Profile.MYSQL_80
-import com.monkeydp.daios.dm.plugin.CopyLibsToDist
+import com.monkeydp.daios.dm.plugin.DmPluginExt
 import org.gradle.api.JavaVersion.VERSION_1_8
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -10,6 +10,9 @@ buildscript {
     }
 }
 apply(plugin = "com.monkeydp.daios.dm.plugin")
+configure<DmPluginExt> {
+    runtimeClasspath = configurations.runtimeClasspath
+}
 
 plugins {
     distribution
@@ -33,12 +36,6 @@ tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = VERSION_1_8.toString()
-    }
-}
-
-tasks.register<CopyLibsToDist>("copyLibsToDist") {
-    libs = project.configurations.runtimeClasspath.get().filter {
-        it.name.matches("dm-base-.+\\.jar$".toRegex())
     }
 }
 
