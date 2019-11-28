@@ -1,5 +1,6 @@
 import Build_gradle.Profile.MYSQL_57
 import Build_gradle.Profile.MYSQL_80
+import com.monkeydp.daios.dm.plugin.CopyLibsToDist
 import org.gradle.api.JavaVersion.VERSION_1_8
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -35,14 +36,10 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-val commonLibsDir = File("$rootDir/src/main/dist/libs/common")
-tasks.register<Copy>("copyLibsToDist") {
-    if (commonLibsDir.exists()) commonLibsDir.deleteRecursively()
-    commonLibsDir.mkdir()
-    from(configurations.runtimeClasspath.get().filter {
+tasks.register<CopyLibsToDist>("copyLibsToDist") {
+    libs = project.configurations.runtimeClasspath.get().filter {
         it.name.matches("dm-base-.+\\.jar$".toRegex())
-    })
-    into(commonLibsDir)
+    }
 }
 
 distributions {
