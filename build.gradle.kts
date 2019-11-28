@@ -3,6 +3,13 @@ import Build_gradle.Profile.MYSQL_80
 import org.gradle.api.JavaVersion.VERSION_1_8
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+buildscript {
+    dependencies {
+        classpath("com.monkeydp.daios.dm:dm-plugin:+")
+    }
+}
+apply(plugin = "com.monkeydp.daios.dm.plugin")
+
 plugins {
     distribution
     // kotlin

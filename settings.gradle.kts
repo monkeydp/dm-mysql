@@ -1,4 +1,9 @@
 rootProject.name = "dm-mysql"
+includeBuild("../dm-plugin") {
+    dependencySubstitution {
+        substitute(module("com.monkeydp.daios.dm:dm-plugin")).with(project(":"))
+    }
+}
 includeBuild("../dm-base") {
     dependencySubstitution {
         substitute(module("com.monkeydp.daios.dm:dm-base")).with(project(":"))
