@@ -24,7 +24,7 @@ abstract class AbstractTest {
     
     private val dm = MysqlDm.INSTANCE
     protected val apis = dm.impl.apis
-    protected var conn by Delegates.notNullSingleton<Conn<*>>()
+    private var conn by Delegates.notNullSingleton<Conn<*>>()
     
     @Before
     fun before() {

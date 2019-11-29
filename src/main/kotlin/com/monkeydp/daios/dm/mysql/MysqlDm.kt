@@ -2,9 +2,6 @@ package com.monkeydp.daios.dm.mysql
 
 import com.monkeydp.daios.dm.base.AbstractDm
 import com.monkeydp.daios.dm.base.LocalConfig
-import com.monkeydp.daios.dm.base.StdSdkImpl
-import com.monkeydp.daios.dm.mysql.config.MysqlMenuConfig
-import com.monkeydp.daios.dm.mysql.config.MysqlNodeConfig
 import com.monkeydp.daios.dm.mysql.ext.distDirpath
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
@@ -33,14 +30,6 @@ class MysqlDm(config: DmOpenConfig) : AbstractDm(config) {
     }
     
     override val config = object : LocalConfig() {
-        override val nodeConfig = object : NodeConfig() {
-            override val struct by lazy { MysqlNodeConfig.structure }
-            override val reflections = getReflections()
-        }
-        override val menuConfig = object : MenuConfig() {
-            override val struct by lazy { MysqlMenuConfig.structure }
-            override val reflections = getReflections()
-        }
         override val formConfig = object : FormConfig() {
             override val reflections = getReflections()
         }
