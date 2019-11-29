@@ -1,6 +1,5 @@
 import Build_gradle.Profile.MYSQL_57
 import Build_gradle.Profile.MYSQL_80
-import com.monkeydp.daios.dm.plugin.DmPluginExt
 import com.monkeydp.daios.dm.plugin.ext.dmPluginExt
 import org.gradle.api.JavaVersion.VERSION_1_8
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -11,9 +10,9 @@ buildscript {
     }
 }
 apply(plugin = "com.monkeydp.daios.dm.plugin")
-dmPluginExt = DmPluginExt(
-        runtimeClasspath = configurations.runtimeClasspath
-)
+dmPluginExt {
+    runtimeClasspath = configurations.runtimeClasspath
+}
 
 plugins {
     distribution
