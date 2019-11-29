@@ -1,7 +1,10 @@
 package com.monkeydp.daios.dm.mysql.metadata.node
 
 import com.monkeydp.daios.dm.base.metadata.node.def.*
+import com.monkeydp.daios.dm.base.metadata.node.def.std.StdTablesNd
 import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon.MYSQL_CONN_ICON
+import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.DB
+import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.GROUP
 
 /**
  * @author iPotato
@@ -15,5 +18,8 @@ object MysqlNdStruct : AbstractNdStruct(
                 +views { +view {} }
             }
         }
-)
+) {
+    fun findDbNd() = findNd { it.target == DB }
+    fun findTablesNd() = findNd { it.target == GROUP && it.name == StdTablesNd().name }
+}
 

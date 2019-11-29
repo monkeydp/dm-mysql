@@ -4,10 +4,16 @@ import com.monkeydp.daios.dm.base.api.AbstractNodeApi
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcDbsLoader
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcTablesLoader
 import com.monkeydp.daios.dm.base.metadata.node.def.NodeDef
+import com.monkeydp.daios.dm.base.metadata.node.def.contract.DbNd
+import com.monkeydp.daios.dm.base.metadata.node.def.contract.TableNd
+import com.monkeydp.daios.dm.base.metadata.node.def.contract.TablesNd
+import com.monkeydp.daios.dm.base.metadata.node.def.contract.ViewsNd
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_DBS
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_TABLES
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
-import com.monkeydp.daios.dm.mysql.metadata.node.def.*
+import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
+import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlTablesNd
+import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlViewsNd
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.daios.dms.sdk.main.SdkApi
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
@@ -34,14 +40,14 @@ object MysqlNodeApi : AbstractNodeApi() {
     private fun loadNodes(ctx: NodeLoadingCtx, def: NodeDef): List<Node> {
         val connection = RequestContext.conn!!.rawConn as Connection
         return when (def) {
-            is MysqlDbNd -> JdbcDbsLoader.loadDbs(connection, def, SHOW_DBS)
-            is MysqlTableNd -> {
+            is DbNd -> JdbcDbsLoader.loadDbs(connection, def, SHOW_DBS)
+            is TableNd -> {
                 val path = ctx.path.toSub<MysqlNodePath>()
                 useDb(connection, path.dbName)
                 JdbcTablesLoader.loadTables(connection, def, SHOW_TABLES)
             }
-            is MysqlTablesNd -> listOf(MysqlTablesNd.create())
-            is MysqlViewsNd -> listOf(MysqlViewsNd.create())
+            is TablesNd -> listOf(MysqlTablesNd.create())
+            is ViewsNd -> listOf(MysqlViewsNd.create())
             else -> emptyList()
         }
     }
