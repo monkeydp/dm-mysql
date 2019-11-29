@@ -3,8 +3,8 @@ package com.monkeydp.daios.dm.mysql.metadata.node
 import com.monkeydp.daios.dm.base.metadata.node.def.*
 import com.monkeydp.daios.dm.base.metadata.node.def.std.StdTablesNd
 import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon.MYSQL_CONN_ICON
-import com.monkeydp.daios.dm.mysql.metadata.menu.def.connMenuDef
-import com.monkeydp.daios.dm.mysql.metadata.menu.def.dbMenuDef
+import com.monkeydp.daios.dm.mysql.metadata.menu.connMenuDef
+import com.monkeydp.daios.dm.mysql.metadata.menu.dbMenuDef
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.DB
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.GROUP
 

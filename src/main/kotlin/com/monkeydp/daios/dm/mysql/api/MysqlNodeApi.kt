@@ -12,7 +12,6 @@ import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_DBS
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_TABLES
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNdStruct
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
-import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.daios.dms.sdk.main.SdkApi
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
@@ -27,7 +26,7 @@ import java.sql.Connection
 @SdkApi
 object MysqlNodeApi : AbstractNodeApi() {
     
-    override fun loadConnNode(cp: ConnProfile) = MysqlConnNd.create(cp)
+    override fun loadConnNode(cp: ConnProfile) = MysqlNdStruct.findConnNd().create(cp)
     
     override fun loadSubNodes(ctx: NodeLoadingCtx): List<Node> {
         val def = ctx.path.toSub<MysqlNodePath>().getLastNodeDef()
