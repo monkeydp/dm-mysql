@@ -1,7 +1,6 @@
 package com.monkeydp.daios.dm.mysql
 
 import com.monkeydp.daios.dm.base.AbstractDm
-import com.monkeydp.daios.dm.base.LocalConfig
 import com.monkeydp.daios.dm.mysql.ext.distDirpath
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
@@ -27,15 +26,6 @@ class MysqlDm(config: DmOpenConfig) : AbstractDm(config) {
     override val dsDefs = listOf(MysqlDefs.Mysql57, MysqlDefs.Mysql80)
     override val testdata = object : DmTestdata {
         override val cps = MysqlCpMocker.cps
-    }
-    
-    override val config = object : LocalConfig() {
-        override val formConfig = object : FormConfig() {
-            override val reflections = getReflections()
-        }
-        override val instrConfig = object : InstrConfig() {
-            override val reflections = getReflections()
-        }
     }
     
     init {
