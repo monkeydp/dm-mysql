@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.metadata.node.def
 
-import com.monkeydp.daios.dm.base.metadata.node.def.AbstractTablesNd
+import com.monkeydp.daios.dm.base.metadata.node.def.abstr.AbstractTablesNd
 import com.monkeydp.daios.dm.base.metadata.node.def.SdkNodeDef
 
 /**

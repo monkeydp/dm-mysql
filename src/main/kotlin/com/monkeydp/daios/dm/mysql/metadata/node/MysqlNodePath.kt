@@ -13,8 +13,8 @@ import com.monkeydp.daios.dms.sdk.metadata.node.NodePath
 class MysqlNodePath : NodePath() {
     
     private val defs = MysqlDm.INSTANCE.config.nodeConfig.defs
-    private val defMap = defs.map { it.info.target to it }.toMap()
-    private val groupDefMap = defs.filter { it.info.target == GROUP }.map { it.info.name to it }.toMap()
+    private val defMap = defs.map { it.target to it }.toMap()
+    private val groupDefMap = defs.filter { it.target == GROUP }.map { it.name to it }.toMap()
     
     private val dbNode
         get() = this[1]
