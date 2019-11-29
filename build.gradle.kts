@@ -10,8 +10,10 @@ buildscript {
     }
 }
 apply(plugin = "com.monkeydp.daios.dm.plugin")
-configure<DmPluginExt> {
-    runtimeClasspath = configurations.runtimeClasspath
+extra.apply {
+    set("pluginExt", DmPluginExt(
+            runtimeClasspath = configurations.runtimeClasspath
+    ))
 }
 
 plugins {
