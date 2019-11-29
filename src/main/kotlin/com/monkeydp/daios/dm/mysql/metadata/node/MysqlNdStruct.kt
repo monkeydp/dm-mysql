@@ -25,5 +25,6 @@ object MysqlNdStruct : AbstractNdStruct(
 ) {
     fun findDbNd() = findNd { it.target == DB }
     fun findTablesNd() = findNd { it.target == GROUP && it.name == StdTablesNd().name }
+    fun findViewsNd() = findNd { it.target == GROUP && it.name == StdTablesNd().name }
 }
 

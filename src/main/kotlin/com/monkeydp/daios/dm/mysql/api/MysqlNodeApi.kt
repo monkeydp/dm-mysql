@@ -10,10 +10,9 @@ import com.monkeydp.daios.dm.base.metadata.node.def.contract.TablesNd
 import com.monkeydp.daios.dm.base.metadata.node.def.contract.ViewsNd
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_DBS
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_TABLES
+import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNdStruct
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlConnNd
-import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlTablesNd
-import com.monkeydp.daios.dm.mysql.metadata.node.def.MysqlViewsNd
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.daios.dms.sdk.main.SdkApi
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
@@ -46,8 +45,8 @@ object MysqlNodeApi : AbstractNodeApi() {
                 useDb(connection, path.dbName)
                 JdbcTablesLoader.loadTables(connection, def, SHOW_TABLES)
             }
-            is TablesNd -> listOf(MysqlTablesNd.create())
-            is ViewsNd -> listOf(MysqlViewsNd.create())
+            is TablesNd -> listOf(MysqlNdStruct.findTablesNd().create())
+            is ViewsNd -> listOf(MysqlNdStruct.findViewsNd().create())
             else -> emptyList()
         }
     }
