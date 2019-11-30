@@ -1,7 +1,7 @@
 package com.monkeydp.daios.dm.mysql
 
 import com.monkeydp.daios.dm.base.AbstractDm
-import com.monkeydp.daios.dm.mysql.ext.distDirpath
+import com.monkeydp.daios.dm.mysql.config.MysqlDirpath
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.DmOpenConfig
@@ -40,6 +40,6 @@ class MysqlDm(config: DmOpenConfig) : AbstractDm(config) {
     }
     
     override fun updateOpenConfig(config: DmOpenConfig) {
-        distDirpath = config.deployDir.path
+        MysqlDirpath.dist = config.deployDir.path
     }
 }
