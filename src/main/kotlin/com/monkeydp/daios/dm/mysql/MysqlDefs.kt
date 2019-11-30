@@ -2,8 +2,8 @@ package com.monkeydp.daios.dm.mysql
 
 import com.monkeydp.daios.dm.mysql.MysqlVersion.MYSQL_5_7
 import com.monkeydp.daios.dm.mysql.MysqlVersion.MYSQL_8_0
-import com.monkeydp.daios.dms.sdk.datasource.DsDriver
 import com.monkeydp.daios.dms.sdk.datasource.DsDef
+import com.monkeydp.daios.dms.sdk.datasource.DsDriver
 
 /**
  * @author iPotato
