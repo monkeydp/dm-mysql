@@ -22,8 +22,7 @@ class MysqlDm(config: DmOpenConfig) : AbstractDm(config) {
             private set
     }
     
-    override val datasource = MYSQL
-    override val dsDefs = listOf(MysqlDefs.Mysql57, MysqlDefs.Mysql80)
+    override val dsDefs = MysqlDefs.toList()
     override val testdata = object : DmTestdata {
         override val cps = MysqlCpMocker.cps
     }
