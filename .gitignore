@@ -32,5 +32,5 @@ out/
 .vscode/
 
 
-### DM Mysql ###
+### DM ###
 /src/main/dist/libs/common
