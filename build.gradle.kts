@@ -1,5 +1,7 @@
 import Build_gradle.Profile.MYSQL_57
 import Build_gradle.Profile.MYSQL_80
+import com.monkeydp.daios.dm.plugin.ext.config
+import com.monkeydp.daios.dm.plugin.ext.copyLibsToDist
 import com.monkeydp.daios.dm.plugin.ext.dmPluginExt
 import org.gradle.api.JavaVersion.VERSION_1_8
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -25,13 +27,6 @@ group = "com.monkeydp.daios.dm"
 version = "0.0.4-SNAPSHOT"
 java.sourceCompatibility = VERSION_1_8
 
-dependencies {
-    // base
-    api("com.monkeydp.daios.dm:dm-base")
-    // test
-    testImplementation("junit:junit:4.12")
-}
-
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
@@ -39,17 +34,19 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+dependencies {
+    // base
+    api("com.monkeydp.daios.dm:dm-base")
+    // test
+    testImplementation("junit:junit:4.12")
+}
+
 distributions {
     main {
-        contents {
-            from("$buildDir/classes/kotlin/main/com") {
-                into("classes/com")
-            }
-        }
+        contents.from(config.dist.sourcePaths) { into(config.dist.destPath) }
     }
 }
-tasks.distZip { dependsOn(tasks.compileJava, tasks["copyLibsToDist"]) }
-
+tasks.distZip { dependsOn(tasks.compileJava, tasks.copyLibsToDist) }
 
 enum class Profile {
     MYSQL_57,
