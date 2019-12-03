@@ -1,6 +1,5 @@
 package com.monkeydp.daios.dm.mysql.test
 
-import com.monkeydp.daios.dm.base.jdbc.conn.JdbcConnApi
 import com.monkeydp.daios.dm.mysql.MysqlDm
 import com.monkeydp.daios.dm.mysql.MysqlVersion
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
@@ -37,7 +36,7 @@ abstract class AbstractTest {
     @Before
     fun before() {
         try {
-            val connApi = apis.connApi as JdbcConnApi
+            val connApi = apis.connApi
             conn = connApi.getConn(MysqlCpMocker.cp)
             RequestContext.init(conn = conn)
         } catch (e: PropertyUninitializedException) {
