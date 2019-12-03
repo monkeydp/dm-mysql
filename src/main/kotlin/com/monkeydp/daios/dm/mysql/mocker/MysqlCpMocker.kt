@@ -16,14 +16,12 @@ object MysqlCpMocker {
     private val mysql57cp = ConnProfile(
             datasource = MYSQL,
             dsVersionId = mysql57def.version.id,
-            dsDriverClassname = mysql57def.driver.classname,
             userInput = MysqlNewConnFrom(connName = "MySQL 5.7 Conn").convertTo()
     )
     
     private val mysql80cp = ConnProfile(
             datasource = MYSQL,
             dsVersionId = mysql80def.version.id,
-            dsDriverClassname = mysql80def.driver.classname,
             userInput = MysqlNewConnFrom(connName = "MySQL 8.0 Conn", port = "3307").convertTo()
     )
     

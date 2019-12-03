@@ -17,12 +17,11 @@ import java.sql.DriverManager
 @SdkApi
 object MysqlConnApi : AbstractJdbcConnApi() {
     
-    override fun findDsDef(cp: ConnProfile) =
-            MysqlDefs.toSet().first { it.version == cp.dsVersion }
+    override fun ConnProfile.findDsDef() = MysqlDefs.toSet().first { it.version == dsVersion }
     
     override fun getConn(cp: ConnProfile): MysqlConn {
         val form = cp.form as MysqlNewConnFrom
-        Class.forName(cp.dsDriverClassname)
+        Class.forName(cp.findDsDriverClassname())
         val props = MysqlConnParameters(
                 user = form.username,
                 password = form.password
