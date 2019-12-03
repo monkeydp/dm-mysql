@@ -3,7 +3,6 @@ package com.monkeydp.daios.dm.mysql
 import com.monkeydp.daios.dm.base.AbstractDm
 import com.monkeydp.daios.dm.mysql.config.MysqlDirpath
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
-import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.dm.DmOpenConfig
 import com.monkeydp.daios.dms.sdk.dm.DmTestdata
 import com.monkeydp.tools.ext.notNullSingleton
@@ -22,7 +21,7 @@ class MysqlDm(config: DmOpenConfig) : AbstractDm(config) {
             private set
     }
     
-    override val dsDefs = MysqlDefs.toList()
+    override val dsDefs = MysqlDefs.toSet()
     override val testdata = object : DmTestdata {
         override val cps = MysqlCpMocker.cps
     }

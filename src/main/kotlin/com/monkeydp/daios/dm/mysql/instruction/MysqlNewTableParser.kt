@@ -19,7 +19,7 @@ object MysqlNewTableParser : AbstractInstrParser() {
     override fun parse(ctx: InstrParsingCtx) {
         val path = ctx.nodePath.toSub<MysqlNodePath>()
         val userInput = ctx.userInput
-        userInput[MysqlTable::dbName.name] = path.dbName
+        ctx.userInput[MysqlTable::dbName.name] = path.dbName
         val table = userInput.convertTo<MysqlTable>()
         val conn = RequestContext.conn!!.rawConn as Connection
         conn.createStatement().use {

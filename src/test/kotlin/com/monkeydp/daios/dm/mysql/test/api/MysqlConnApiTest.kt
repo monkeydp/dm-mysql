@@ -1,5 +1,6 @@
 package com.monkeydp.daios.dm.mysql.test.api
 
+import com.monkeydp.daios.dm.base.jdbc.conn.JdbcConnApi
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
 import org.junit.Assert
@@ -11,14 +12,14 @@ import org.junit.Test
  */
 class MysqlConnApiTest : AbstractTest() {
     
-    private val api = apis.connApi
+    private val api = apis.connApi as JdbcConnApi
     
     @Test
     fun connTest() {
         val conn = api.getConn(MysqlCpMocker.cp)
         Assert.assertTrue(conn.isValid())
         Assert.assertFalse(conn.isClosed())
-    
+        
         conn.close()
         Assert.assertFalse(conn.isValid())
         Assert.assertTrue(conn.isClosed())

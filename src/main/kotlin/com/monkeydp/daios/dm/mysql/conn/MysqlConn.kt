@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.conn
 
-import com.monkeydp.daios.dm.base.conn.AbstractConn
+import com.monkeydp.daios.dm.base.jdbc.conn.AbstractJdbcConn
 import java.sql.Connection
 
 /**
@@ -10,17 +10,4 @@ import java.sql.Connection
 class MysqlConn(
         cpId: Long,
         rawConn: Connection
-) : AbstractConn<Connection>(cpId, rawConn) {
-    
-    override fun isValid(timeout: Int): Boolean {
-        return rawConn.isValid(timeout)
-    }
-    
-    override fun close() {
-        rawConn.close()
-    }
-    
-    override fun isClosed(): Boolean {
-        return rawConn.isClosed
-    }
-}
+) : AbstractJdbcConn(cpId, rawConn)
