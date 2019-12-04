@@ -2,6 +2,7 @@ package com.monkeydp.daios.dm.mysql.test.api
 
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
+import com.monkeydp.daios.dms.sdk.api.ConnApi
 import org.junit.Assert
 import org.junit.Test
 
@@ -11,7 +12,7 @@ import org.junit.Test
  */
 class MysqlConnApiTest : AbstractTest() {
     
-    private val api = apis.connApi
+    private val api: ConnApi = findApi()
     
     @Test
     fun connTest() {

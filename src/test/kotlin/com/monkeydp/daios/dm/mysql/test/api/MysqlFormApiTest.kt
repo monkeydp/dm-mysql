@@ -2,6 +2,7 @@ package com.monkeydp.daios.dm.mysql.test.api
 
 import com.monkeydp.daios.dm.base.instruction.NewConn
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
+import com.monkeydp.daios.dms.sdk.api.FormApi
 import com.monkeydp.daios.dms.sdk.metadata.form.FormLoadingCtx
 import org.junit.Assert
 import org.junit.Test
@@ -12,7 +13,7 @@ import org.junit.Test
  */
 class MysqlFormApiTest : AbstractTest() {
     
-    private val api = apis.formApi
+    private val api: FormApi = findApi()
     
     @Test
     fun loadNewConnForm() {

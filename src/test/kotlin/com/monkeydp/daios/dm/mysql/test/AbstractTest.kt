@@ -1,18 +1,21 @@
 package com.monkeydp.daios.dm.mysql.test
 
-import com.monkeydp.daios.dm.mysql.MysqlDm
+import com.monkeydp.daios.dm.mysql.MysqlApp
 import com.monkeydp.daios.dm.mysql.MysqlVersion
+import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
+import com.monkeydp.daios.dms.sdk.api.ConnApi
 import com.monkeydp.daios.dms.sdk.conn.Conn
-import com.monkeydp.daios.dms.sdk.dm.DmOpenConfig
+import com.monkeydp.daios.dms.sdk.dm.DmConfig
 import com.monkeydp.daios.dms.sdk.dm.DmTestdataRegistry
 import com.monkeydp.daios.dms.sdk.request.RequestContext
-import com.monkeydp.tools.exception.inner.PropertyUninitializedException
 import com.monkeydp.tools.ext.enableDebugMode
 import com.monkeydp.tools.ext.isDebugMode
 import com.monkeydp.tools.ext.notNullSingleton
 import org.junit.After
 import org.junit.Before
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.instanceOrNull
 import kotlin.properties.Delegates
 
 /**
@@ -25,33 +28,29 @@ abstract class AbstractTest {
         init {
             enableDebugMode()
             DmTestdataRegistry.testDsVersion = MysqlVersion.MYSQL_5_7
-            MysqlDm(DmOpenConfig.mock())
+            MysqlApp(DmConfig.mock())
         }
     }
     
-    private val dm = MysqlDm.INSTANCE
-    protected val apis = dm.impl.apis
+    private val _connApi: ConnApi? by kodein.instanceOrNull()
+    private val connApi = _connApi!!
     private var conn by Delegates.notNullSingleton<Conn<*>>()
     
     @Before
     fun before() {
-        try {
-            val connApi = apis.connApi
-            conn = connApi.getConn(MysqlCpMocker.cp)
-            RequestContext.init(conn = conn)
-        } catch (e: PropertyUninitializedException) {
-            if (isDebugMode()) return
-            throw e
-        }
+        if (_connApi == null && isDebugMode()) return
+        conn = connApi.getConn(MysqlCpMocker.cp)
+        RequestContext.init(conn = conn)
     }
     
     @After
     fun after() {
-        try {
-            conn.close()
-        } catch (e: PropertyUninitializedException) {
-            if (isDebugMode()) return
-            throw e
-        }
+        if (_connApi == null && isDebugMode()) return
+        conn.close()
+    }
+    
+    protected inline fun <reified A : Any> findApi(): A {
+        val api by kodein.instance<A>()
+        return api
     }
 }

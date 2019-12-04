@@ -4,6 +4,7 @@ import com.monkeydp.daios.dm.mysql.mocker.MysqlMenuMocker.manageGroupPath
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.connNodePath
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.dbNodePath
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
+import com.monkeydp.daios.dms.sdk.api.MenuApi
 import com.monkeydp.daios.dms.sdk.metadata.menu.MenuLoadingCtx
 import org.junit.Assert
 import org.junit.Test
@@ -14,7 +15,7 @@ import org.junit.Test
  */
 class MysqlMenuApiTest : AbstractTest() {
     
-    private val api = apis.menuApi
+    private val api: MenuApi = findApi()
     
     @Test
     fun loadConnMenuTest() {

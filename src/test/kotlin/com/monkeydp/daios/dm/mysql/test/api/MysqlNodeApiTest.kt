@@ -2,6 +2,7 @@ package com.monkeydp.daios.dm.mysql.test.api
 
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
+import com.monkeydp.daios.dms.sdk.api.NodeApi
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.*
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
 import org.junit.Assert
@@ -13,7 +14,7 @@ import org.junit.Test
  */
 class MysqlNodeApiTest : AbstractTest() {
     
-    private val api = apis.nodeApi
+    private val api: NodeApi = findApi()
     
     @Test
     fun loadDbsTest() {

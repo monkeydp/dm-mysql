@@ -26,5 +26,5 @@ object MysqlCpMocker {
     )
     
     val cp = mysql57cp
-    val cps = listOf(mysql57cp, mysql80cp)
+    val cps = setOf(mysql57cp, mysql80cp)
 }
