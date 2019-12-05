@@ -34,7 +34,9 @@ tasks.withType<KotlinCompile> {
 dependencies {
     // base
     api("com.monkeydp.daios.dm:dm-base")
+    // aspect
     aspect("com.monkeydp.daios.dms:dms-sdk") { setTransitive(false) }
+    testAspect("com.monkeydp.daios.dms:dms-sdk") { setTransitive(false) }
     // test
     testImplementation("junit:junit:4.12")
 }
