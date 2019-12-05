@@ -1,8 +1,16 @@
 package com.monkeydp.daios.dm.mysql
 
+import com.monkeydp.daios.dms.sdk.exception.handler.IgnoreException
+import com.monkeydp.tools.ext.debugMode
+import com.monkeydp.tools.ext.devModel
+import com.monkeydp.tools.ext.getLogger
+import org.aspectj.lang.ProceedingJoinPoint
+import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
-import org.aspectj.lang.annotation.Before
 import org.aspectj.lang.annotation.Pointcut
+import org.aspectj.lang.reflect.MethodSignature
+import java.lang.reflect.Method
+import kotlin.reflect.full.isSubclassOf
 
 /**
  * @author iPotato
@@ -10,12 +18,28 @@ import org.aspectj.lang.annotation.Pointcut
  */
 @Aspect
 class MysqlAspect {
-    @Pointcut("execution(public * com.monkeydp.daios.dms.sdk.api.NodeApi.*(..))")
-    fun pointcut() {
+    
+    companion object {
+        val log = getLogger()
     }
     
-    @Before("pointcut()")
-    fun before() {
-        println("before pointcut...")
+    @Pointcut("@annotation(com.monkeydp.daios.dms.sdk.exception.handler.IgnoreException)")
+    fun ignoreException() {
+    }
+    
+    @Around("ignoreException()")
+    fun around(joinPoint: ProceedingJoinPoint): Any? {
+        val signature: MethodSignature = joinPoint.getSignature() as MethodSignature
+        val method: Method = signature.getMethod()
+        val annot = method.getAnnotation(IgnoreException::class.java)
+        return try {
+            joinPoint.proceed(joinPoint.args);
+        } catch (e: Throwable) {
+            if (!e.javaClass.kotlin.isSubclassOf(annot.exKClass) ||
+                devModel != annot.inDevMode
+            ) throw e
+            log.debugMode(e.message!!)
+            null
+        }
     }
 }
