@@ -5,7 +5,6 @@ import com.monkeydp.daios.dm.mysql.config.initKodein
 import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dms.sdk.dm.DmConfig
 import org.kodein.di.Kodein
-import org.kodein.di.LazyKodein
 
 
 /**
@@ -14,7 +13,7 @@ import org.kodein.di.LazyKodein
  */
 class MysqlApp(config: DmConfig) : AbstractDmApp(config) {
     override fun initDmKodein(vararg modules: Kodein.Module): Kodein {
-        kodein = LazyKodein { initKodein(*modules) }
+        kodein.baseKodein = initKodein(*modules)
         return kodein
     }
 }

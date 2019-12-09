@@ -20,6 +20,7 @@ import com.monkeydp.daios.dms.sdk.metadata.icon.Icon
 import com.monkeydp.tools.ext.bind
 import com.monkeydp.tools.ext.notNullSingleton
 import org.kodein.di.Kodein
+import org.kodein.di.LateInitKodein
 import org.kodein.di.LazyKodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.singleton
@@ -30,7 +31,7 @@ import kotlin.reflect.KClass
  * @author iPotato
  * @date 2019/12/4
  */
-internal var kodein: Kodein by Delegates.notNullSingleton()
+internal val kodein = LateInitKodein()
 
 internal fun initKodein(vararg modules: Kodein.Module) =
         Kodein {
