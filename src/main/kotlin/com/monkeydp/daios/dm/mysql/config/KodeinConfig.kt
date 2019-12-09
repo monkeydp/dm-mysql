@@ -18,13 +18,10 @@ import com.monkeydp.daios.dms.sdk.instruction.action.Action
 import com.monkeydp.daios.dms.sdk.instruction.target.Target
 import com.monkeydp.daios.dms.sdk.metadata.icon.Icon
 import com.monkeydp.tools.ext.bind
-import com.monkeydp.tools.ext.notNullSingleton
 import org.kodein.di.Kodein
 import org.kodein.di.LateInitKodein
-import org.kodein.di.LazyKodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.singleton
-import kotlin.properties.Delegates
 import kotlin.reflect.KClass
 
 /**
