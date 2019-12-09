@@ -1,5 +1,8 @@
 package com.monkeydp.daios.dm.mysql.config
 
+import com.monkeydp.daios.dm.base.LocalConfig
+import com.monkeydp.daios.dm.base.jdbc.datasource.JdbcDsDefs
+import com.monkeydp.daios.dm.mysql.MysqlConfig
 import com.monkeydp.daios.dm.mysql.MysqlDefs
 import com.monkeydp.daios.dm.mysql.MysqlTestdata
 import com.monkeydp.daios.dm.mysql.MysqlVersion
@@ -41,7 +44,12 @@ internal fun initKodein(vararg modules: Kodein.Module) {
         bind<InstrApi>() with singleton { MysqlInstrApi }
         
         // ==== ds def ====
-        bind<Set<DsDef>>() with singleton { MysqlDefs.toSet() }
+        val jdbcDsDefs: JdbcDsDefs = MysqlDefs
+        bind<JdbcDsDefs>() with singleton { jdbcDsDefs }
+        bind<Set<DsDef>>() with singleton { jdbcDsDefs.toSet() }
+        
+        // ==== ds def ====
+        bind<LocalConfig>() with singleton { MysqlConfig() }
         
         // ==== class ====
         bind<KClass<out NewConnForm>>() with singleton { MysqlNewConnFrom::class }

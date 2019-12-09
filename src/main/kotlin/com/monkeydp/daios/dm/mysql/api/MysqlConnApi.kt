@@ -1,7 +1,7 @@
 package com.monkeydp.daios.dm.mysql.api
 
 import com.monkeydp.daios.dm.base.jdbc.api.conn.AbstractJdbcConnApi
-import com.monkeydp.daios.dm.mysql.MysqlDefs
+import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.conn.MysqlConn
 import com.monkeydp.daios.dm.mysql.conn.MysqlConnParameters
 import com.monkeydp.daios.dm.mysql.conn.MysqlNewConnFrom
@@ -15,10 +15,7 @@ import java.sql.DriverManager
  * @date 2019/10/7
  */
 @SdkApi
-object MysqlConnApi : AbstractJdbcConnApi() {
-    
-    override fun ConnProfile.findDsDef() = MysqlDefs.toSet().first { it.version == dsVersion }
-    
+object MysqlConnApi : AbstractJdbcConnApi(kodein) {
     override fun getConn(cp: ConnProfile): MysqlConn {
         val form = cp.form as MysqlNewConnFrom
         Class.forName(cp.findDsDriverClassname())

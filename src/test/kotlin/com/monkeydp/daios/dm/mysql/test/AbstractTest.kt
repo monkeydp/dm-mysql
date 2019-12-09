@@ -23,7 +23,7 @@ import kotlin.properties.Delegates
  * @author iPotato
  * @date 2019/10/27
  */
-abstract class AbstractTest {
+internal abstract class AbstractTest {
     
     companion object {
         init {

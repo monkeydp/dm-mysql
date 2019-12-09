@@ -6,7 +6,7 @@ import org.junit.Test
  * @author iPotato
  * @date 2019/10/30
  */
-class MysqlEmptyTest : AbstractTest() {
+internal class MysqlEmptyTest : AbstractTest() {
     @Test
     fun test() {
     

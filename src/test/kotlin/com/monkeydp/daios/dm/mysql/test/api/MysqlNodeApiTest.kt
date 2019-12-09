@@ -12,7 +12,7 @@ import org.junit.Test
  * @author iPotato
  * @date 2019/10/18
  */
-class MysqlNodeApiTest : AbstractTest() {
+internal class MysqlNodeApiTest : AbstractTest() {
     
     private val api: NodeApi = findApi()
     
