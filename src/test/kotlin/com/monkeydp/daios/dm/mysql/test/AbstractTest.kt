@@ -10,8 +10,8 @@ import com.monkeydp.daios.dms.sdk.dm.DmConfig
 import com.monkeydp.daios.dms.sdk.dm.DmTestdataRegistry
 import com.monkeydp.daios.dms.sdk.exception.handler.IgnoreException
 import com.monkeydp.daios.dms.sdk.request.RequestContext
-import com.monkeydp.tools.exception.inner.PropertyUninitializedException
 import com.monkeydp.tools.config.enableDebugMode
+import com.monkeydp.tools.exception.inner.PropertyUninitializedException
 import com.monkeydp.tools.ext.notNullSingleton
 import org.junit.After
 import org.junit.Before
@@ -47,10 +47,5 @@ internal abstract class AbstractTest {
     @IgnoreException(PropertyUninitializedException::class)
     fun after() {
         conn.close()
-    }
-    
-    protected inline fun <reified A : Any> findApi(): A {
-        val api by kodein.instance<A>()
-        return api
     }
 }

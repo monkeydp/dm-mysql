@@ -1,10 +1,12 @@
 package com.monkeydp.daios.dm.mysql.test.api
 
+import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
 import com.monkeydp.daios.dms.sdk.api.ConnApi
 import org.junit.Assert
 import org.junit.Test
+import org.kodein.di.generic.instance
 
 /**
  * @author iPotato
@@ -12,7 +14,7 @@ import org.junit.Test
  */
 internal class MysqlConnApiTest : AbstractTest() {
     
-    private val api: ConnApi = findApi()
+    private val api: ConnApi by kodein.instance()
     
     @Test
     fun connTest() {

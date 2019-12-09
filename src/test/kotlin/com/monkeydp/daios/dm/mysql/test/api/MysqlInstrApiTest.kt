@@ -3,6 +3,7 @@ package com.monkeydp.daios.dm.mysql.test.api
 import com.monkeydp.daios.dm.base.instruction.DeleteTable
 import com.monkeydp.daios.dm.base.instruction.NewTable
 import com.monkeydp.daios.dm.base.instruction.ShowInfo
+import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.mocker.MysqlElementMocker.table
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.tablesNodePath
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
@@ -11,6 +12,7 @@ import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.TABLE
 import com.monkeydp.daios.dms.sdk.useful.UserInput
 import org.junit.Test
+import org.kodein.di.generic.instance
 
 /**
  * @author iPotato
@@ -18,7 +20,7 @@ import org.junit.Test
  */
 internal class MysqlInstrApiTest : AbstractTest() {
     
-    private val api: InstrApi = findApi()
+    private val api: InstrApi by kodein.instance()
     
     @Test
     fun newTableTest() {

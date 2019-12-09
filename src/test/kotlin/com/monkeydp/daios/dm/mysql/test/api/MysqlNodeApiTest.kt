@@ -1,5 +1,6 @@
 package com.monkeydp.daios.dm.mysql.test.api
 
+import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker
 import com.monkeydp.daios.dm.mysql.test.AbstractTest
 import com.monkeydp.daios.dms.sdk.api.NodeApi
@@ -7,6 +8,7 @@ import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.*
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
 import org.junit.Assert
 import org.junit.Test
+import org.kodein.di.generic.instance
 
 /**
  * @author iPotato
@@ -14,7 +16,7 @@ import org.junit.Test
  */
 internal class MysqlNodeApiTest : AbstractTest() {
     
-    private val api: NodeApi = findApi()
+    private val api: NodeApi by kodein.instance()
     
     @Test
     fun loadDbsTest() {
