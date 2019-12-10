@@ -21,7 +21,7 @@ object MysqlNewTableParser : AbstractInstrParser() {
         val userInput = ctx.userInput
         ctx.userInput[MysqlTable::dbName.name] = path.dbName
         val table = userInput.convertTo<MysqlTable>()
-        val conn = RequestContext.conn!!.rawConn as Connection
+        val conn = RequestContext.conn.rawConn as Connection
         conn.createStatement().use {
             it.executeUpdate(table.newTableSql)
         }

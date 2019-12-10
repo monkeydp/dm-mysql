@@ -21,7 +21,7 @@ object MysqlDeleteTableParser : AbstractInstrParser() {
         val userInput = ctx.userInput
         userInput[MysqlTable::dbName.name] = path.dbName
         val table = userInput.convertTo<MysqlTable>()
-        val conn = RequestContext.conn!!.rawConn as Connection
+        val conn = RequestContext.conn.rawConn as Connection
         conn.createStatement().use {
             it.executeUpdate(table.deleteTableSql)
         }

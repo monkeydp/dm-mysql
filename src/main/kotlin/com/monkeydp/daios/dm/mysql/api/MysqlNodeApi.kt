@@ -36,7 +36,7 @@ object MysqlNodeApi : AbstractNodeApi() {
     }
     
     private fun loadNodes(ctx: NodeLoadingCtx, def: NodeDef): List<Node> {
-        val connection = RequestContext.conn!!.rawConn as Connection
+        val connection = RequestContext.conn.rawConn as Connection
         return when (def) {
             is DbNd -> JdbcDbsLoader.loadDbs(connection, def, SHOW_DBS)
             is TableNd -> {
