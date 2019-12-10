@@ -1,13 +1,11 @@
 package com.monkeydp.daios.dm.mysql.test
 
 import com.monkeydp.daios.dm.mysql.MysqlApp
-import com.monkeydp.daios.dm.mysql.MysqlVersion
 import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.api.ConnApi
 import com.monkeydp.daios.dms.sdk.conn.Conn
 import com.monkeydp.daios.dms.sdk.dm.DmConfig
-import com.monkeydp.daios.dms.sdk.dm.DmTestdataRegistry
 import com.monkeydp.daios.dms.sdk.exception.handler.IgnoreException
 import com.monkeydp.daios.dms.sdk.request.RequestContext
 import com.monkeydp.tools.config.enableDebugMode
@@ -28,7 +26,6 @@ internal abstract class AbstractTest {
     companion object {
         init {
             enableDebugMode()
-            DmTestdataRegistry.testDsVersion = MysqlVersion.MYSQL_5_7
             MysqlApp(DmConfig.mock())
         }
     }
