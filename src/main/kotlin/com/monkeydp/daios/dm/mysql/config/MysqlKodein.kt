@@ -4,21 +4,12 @@ import com.monkeydp.daios.dm.base.LocalConfig
 import com.monkeydp.daios.dm.base.jdbc.datasource.JdbcDsDefs
 import com.monkeydp.daios.dm.mysql.MysqlConfig
 import com.monkeydp.daios.dm.mysql.MysqlDefs
-import com.monkeydp.daios.dm.mysql.MysqlVersion
-import com.monkeydp.daios.dm.mysql.conn.MysqlNewConnFrom
-import com.monkeydp.daios.dm.mysql.instruction.MysqlAction
-import com.monkeydp.daios.dm.mysql.instruction.MysqlTarget
-import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
-import com.monkeydp.daios.dms.sdk.conn.NewConnForm
 import com.monkeydp.daios.dms.sdk.datasource.DsDef
-import com.monkeydp.daios.dms.sdk.datasource.DsVersion
-import com.monkeydp.daios.dms.sdk.instruction.action.Action
-import com.monkeydp.daios.dms.sdk.instruction.target.Target
-import com.monkeydp.daios.dms.sdk.metadata.icon.Icon
-import com.monkeydp.tools.ext.KodeinTag.TEST
-import com.monkeydp.tools.ext.bind
+import com.monkeydp.tools.kodein.KodeinTag.TEST
+import com.monkeydp.tools.kodein.bindKClass
+import com.monkeydp.tools.kodein.bindX
 import org.kodein.di.Kodein
 import org.kodein.di.LateInitKodein
 import org.kodein.di.generic.bind
@@ -35,26 +26,20 @@ internal fun initKodein(vararg modules: Kodein.Module) =
         Kodein {
             modules.forEach { import(it) }
             
-            // ==== local config ====
-            val config: LocalConfig = MysqlConfig()
-            bind<LocalConfig>() with singleton { config }
+            val components = MysqlConfig.components
+            components.forEach {
+                when (it) {
+                    is KClass<*> -> bindKClass(it) with singleton { it as KClass<out Any> }
+                    else -> bindX(it.javaClass.kotlin) with singleton { it }
+                }
+            }
             
-            // ==== api ====
-            config.apiMap.forEach { (contract, impl) -> bind(contract) with singleton { impl } }
+            bind<LocalConfig>() with singleton { MysqlConfig }
             
             // ==== ds def ====
-            val jdbcDsDefs: JdbcDsDefs = MysqlDefs
-            bind<JdbcDsDefs>() with singleton { jdbcDsDefs }
-            bind<Set<DsDef>>() with singleton { jdbcDsDefs.toSet() }
-            
-            // ==== class ====
-            bind<KClass<out NewConnForm>>() with singleton { MysqlNewConnFrom::class }
-            
-            // ==== enum class ====
-            bind<KClass<out DsVersion<*>>>() with singleton { MysqlVersion::class }
-            bind<KClass<out Action<*>>>() with singleton { MysqlAction::class }
-            bind<KClass<out Target<*>>>() with singleton { MysqlTarget::class }
-            bind<KClass<out Icon<*>>>() with singleton { MysqlIcon::class }
+            val dsDefs: JdbcDsDefs = MysqlDefs
+            bind<JdbcDsDefs>() with singleton { dsDefs }
+            bind<Set<DsDef>>() with singleton { dsDefs.toSet() }
             
             // ==== test data ====
             bind<Set<ConnProfile>>(TEST) with singleton { MysqlCpMocker.cpSet }

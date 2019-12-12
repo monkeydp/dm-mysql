@@ -30,14 +30,16 @@ internal abstract class AbstractTest {
         }
     }
     
+    private val cp = MysqlCpMocker.cp
     private val connApi: ConnApi by kodein.instance()
     private var conn by Delegates.notNullSingleton<Conn<*>>()
     
     @Before
     @IgnoreException(Kodein.NotFoundException::class)
     fun before() {
-        conn = connApi.getConn(MysqlCpMocker.cp)
-        RequestContext.init(conn = conn)
+        RequestContext.setCp(cp)
+        conn = connApi.getConn(cp)
+        RequestContext.setConn(conn)
     }
     
     @After

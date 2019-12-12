@@ -12,8 +12,8 @@ import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_DBS
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_TABLES
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNdStruct
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
+import com.monkeydp.daios.dms.sdk.annot.SdkApi
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
-import com.monkeydp.daios.dms.sdk.main.SdkApi
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
 import com.monkeydp.daios.dms.sdk.request.RequestContext

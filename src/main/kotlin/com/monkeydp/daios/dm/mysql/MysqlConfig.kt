@@ -6,4 +6,4 @@ import com.monkeydp.daios.dm.base.AbstractLocalConfig
  * @author iPotato
  * @date 2019/11/29
  */
-class MysqlConfig : AbstractLocalConfig()
+object MysqlConfig : AbstractLocalConfig()

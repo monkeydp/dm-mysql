@@ -3,7 +3,7 @@ package com.monkeydp.daios.dm.mysql.api
 import com.monkeydp.daios.dm.base.api.AbstractMenuApi
 import com.monkeydp.daios.dm.base.metadata.menu.def.MenuDef
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
-import com.monkeydp.daios.dms.sdk.main.SdkApi
+import com.monkeydp.daios.dms.sdk.annot.SdkApi
 import com.monkeydp.daios.dms.sdk.metadata.menu.Menu
 import com.monkeydp.daios.dms.sdk.metadata.menu.MenuLoadingCtx
 

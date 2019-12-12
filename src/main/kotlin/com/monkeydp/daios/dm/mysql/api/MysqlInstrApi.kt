@@ -3,8 +3,8 @@ package com.monkeydp.daios.dm.mysql.api
 import com.monkeydp.daios.dm.base.LocalConfig
 import com.monkeydp.daios.dm.base.api.AbstractInstrApi
 import com.monkeydp.daios.dm.mysql.config.kodein
+import com.monkeydp.daios.dms.sdk.annot.SdkApi
 import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
-import com.monkeydp.daios.dms.sdk.main.SdkApi
 import org.kodein.di.generic.instance
 
 /**

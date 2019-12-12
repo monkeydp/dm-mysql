@@ -1,9 +1,9 @@
 package com.monkeydp.daios.dm.mysql
 
+import com.monkeydp.daios.dms.sdk.annot.SdkEnum
 import com.monkeydp.daios.dms.sdk.datasource.Datasource
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
 import com.monkeydp.daios.dms.sdk.datasource.DsVersion
-import com.monkeydp.daios.dms.sdk.main.SdkEnum
 
 /**
  * @author iPotato
