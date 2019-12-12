@@ -6,7 +6,7 @@ import com.monkeydp.daios.dm.mysql.conn.MysqlConnParameters
 import com.monkeydp.daios.dm.mysql.conn.MysqlNewConnFrom
 import com.monkeydp.daios.dms.sdk.annot.SdkApi
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
-import com.monkeydp.tools.ext.toProps
+import com.monkeydp.tools.ext.kotlin.toProps
 import java.sql.DriverManager
 
 /**

@@ -7,9 +7,9 @@ import com.monkeydp.daios.dm.mysql.MysqlDefs
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.daios.dms.sdk.datasource.DsDef
-import com.monkeydp.tools.kodein.KodeinTag.TEST
-import com.monkeydp.tools.kodein.bindKClass
-import com.monkeydp.tools.kodein.bindX
+import com.monkeydp.tools.ext.kodein.KodeinTag.TEST
+import com.monkeydp.tools.ext.kodein.bindKClass
+import com.monkeydp.tools.ext.kodein.bindX
 import org.kodein.di.Kodein
 import org.kodein.di.LateInitKodein
 import org.kodein.di.generic.bind

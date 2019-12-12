@@ -6,7 +6,7 @@ import com.monkeydp.daios.dm.mysql.metadata.element.MysqlTable
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
 import com.monkeydp.daios.dms.sdk.request.RequestContext
-import com.monkeydp.tools.ext.convertTo
+import com.monkeydp.tools.ext.kotlin.convertTo
 import java.sql.Connection
 
 /**

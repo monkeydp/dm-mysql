@@ -10,7 +10,7 @@ import com.monkeydp.daios.dms.sdk.exception.handler.IgnoreException
 import com.monkeydp.daios.dms.sdk.request.RequestContext
 import com.monkeydp.tools.config.enableDebugMode
 import com.monkeydp.tools.exception.inner.PropertyUninitializedException
-import com.monkeydp.tools.ext.notNullSingleton
+import com.monkeydp.tools.ext.kotlin.notNullSingleton
 import org.junit.After
 import org.junit.Before
 import org.kodein.di.Kodein

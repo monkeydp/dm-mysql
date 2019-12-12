@@ -9,7 +9,7 @@ import com.monkeydp.daios.dms.sdk.event.EventPublisher
 import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.TABLE
 import com.monkeydp.daios.dms.sdk.metadata.info.Info
-import com.monkeydp.tools.ext.ierror
+import com.monkeydp.tools.ext.main.ierror
 import org.kodein.di.generic.instance
 
 /**

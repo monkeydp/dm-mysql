@@ -5,7 +5,7 @@ import com.monkeydp.daios.dm.mysql.MysqlDefs.mysql80def
 import com.monkeydp.daios.dm.mysql.conn.MysqlNewConnFrom
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.daios.dms.sdk.datasource.Datasource.MYSQL
-import com.monkeydp.tools.ext.convertTo
+import com.monkeydp.tools.ext.kotlin.convertTo
 
 /**
  * @author iPotato
