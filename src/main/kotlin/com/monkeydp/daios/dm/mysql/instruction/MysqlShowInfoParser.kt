@@ -25,7 +25,7 @@ object MysqlShowInfoParser : AbstractInstrParser() {
         val info: Info
         when (val selected = ctx.selected) {
             TABLE -> info = loadTableInfo(ctx)
-            else -> ierror("No information of $selected!")
+            else -> ierror("No information of selected target: $selected!")
         }
         eventPublisher.publish(ShowInfoEvent(this, info))
     }
