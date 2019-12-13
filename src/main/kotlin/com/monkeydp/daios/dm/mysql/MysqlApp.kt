@@ -1,10 +1,10 @@
 package com.monkeydp.daios.dm.mysql
 
 import com.monkeydp.daios.dm.base.AbstractDmApp
-import com.monkeydp.daios.dm.base.helper.KodeinHelper
-import com.monkeydp.daios.dm.mysql.config.MysqlComponentConfig
+import com.monkeydp.daios.dm.mysql.config.MysqlKodeinComponentConfig
 import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dms.sdk.dm.DmConfig
+import com.monkeydp.tools.ext.kodein.KodeinHelper
 import org.kodein.di.Kodein
 
 
@@ -14,7 +14,7 @@ import org.kodein.di.Kodein
  */
 class MysqlApp(config: DmConfig) : AbstractDmApp(config) {
     override fun initDmKodein(vararg modules: Kodein.Module): Kodein {
-        kodein.baseKodein = KodeinHelper.initKodein(MysqlComponentConfig, *modules)
+        kodein.baseKodein = KodeinHelper.initKodein(MysqlKodeinComponentConfig, *modules)
         return kodein
     }
 }
