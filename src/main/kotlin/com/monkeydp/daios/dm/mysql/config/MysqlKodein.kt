@@ -1,18 +1,14 @@
 package com.monkeydp.daios.dm.mysql.config
 
-import com.monkeydp.daios.dm.base.jdbc.datasource.JdbcDsDefs
-import com.monkeydp.daios.dm.mysql.MysqlDefs
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
-import com.monkeydp.daios.dms.sdk.datasource.DsDef
 import com.monkeydp.tools.ext.java.singletonX
-import com.monkeydp.tools.ext.kodein.KodeinTag.TEST
+import com.monkeydp.tools.source.SourceSet.TEST
 import com.monkeydp.tools.ext.kodein.bindKClass
 import com.monkeydp.tools.ext.kodein.bindX
 import com.monkeydp.tools.ext.kodein.component.KodeinComponent
 import com.monkeydp.tools.ext.kodein.component.KodeinComponent.RegisterItem.*
 import com.monkeydp.tools.ext.kotlin.classX
-import com.monkeydp.tools.ext.kotlin.kClassX
 import com.monkeydp.tools.ext.kotlin.linesln
 import com.monkeydp.tools.ext.main.ierror
 import org.kodein.di.Kodein
@@ -37,11 +33,6 @@ internal fun initKodein(vararg modules: Kodein.Module) =
             MysqlComponentConfig.componentsMap.forEach { (annotKClass, components) ->
                 registerAll(annotKClass, components)
             }
-            
-            // ==== ds def ====
-            val dsDefs: JdbcDsDefs = MysqlDefs
-            bind<JdbcDsDefs>() with singleton { dsDefs }
-            bind<Set<DsDef>>() with singleton { dsDefs.toSet() }
             
             // ==== test data ====
             bind<Set<ConnProfile>>(TEST) with singleton { MysqlCpMocker.cpSet }
@@ -73,15 +64,15 @@ private fun Kodein.MainBuilder.registerComponent(component: Any) {
 }
 
 private fun Kodein.MainBuilder.registerList(annotKClass: KClass<out Annotation>, components: Collection<Any>) {
-    checkIfComponentsHaveSameGenericSuperclass(components)
-    val parameterizedType = getParameterizedTyp<Set<*>>(components.first())
-    bindX<List<*>>(parameterizedType, annotKClass) with singleton { components.toList() }
+    checkHaveSameGenericSuperclass(components)
+    val type = getParameterizedType<Set<*>>(components.first())
+    bindX<List<*>>(type, annotKClass) with singleton { components.toList() }
 }
 
 private fun Kodein.MainBuilder.registerSet(annotKClass: KClass<out Annotation>, components: Collection<Any>) {
-    checkIfComponentsHaveSameGenericSuperclass(components)
-    val parameterizedType = getParameterizedTyp<Set<*>>(components.first())
-    bindX<Set<*>>(parameterizedType, annotKClass) with singleton { components.toSet() }
+    checkHaveSameGenericSuperclass(components)
+    val type = getParameterizedType<Set<*>>(components.first())
+    bindX<Set<*>>(type, annotKClass) with singleton { components.toSet() }
 }
 
 private fun Kodein.MainBuilder.registerMap(annotKClass: KClass<out Annotation>, components: Collection<Any>) {
@@ -89,13 +80,13 @@ private fun Kodein.MainBuilder.registerMap(annotKClass: KClass<out Annotation>, 
     val mapGeneratorKClass = kodeinComponent.mapGeneratorKClass
     if (mapGeneratorKClass == Nothing::class) ierror("Map generator kClass must not be Nothing::class!")
     
-    val parameterizedType = getParameterizedTyp<Map<*, *>>(mapGeneratorKClass)
+    val type = getParameterizedType<Map<*, *>>(mapGeneratorKClass)
     val mapGenerator = mapGeneratorKClass.java.singletonX()
     val map = mapGenerator.generate(components)
-    bindX<Map<*, *>>(parameterizedType, annotKClass) with singleton { map }
+    bindX<Map<*, *>>(type, annotKClass) with singleton { map }
 }
 
-private fun checkIfComponentsHaveSameGenericSuperclass(components: Collection<Any>) {
+private fun checkHaveSameGenericSuperclass(components: Collection<Any>) {
     if (components.isEmpty()) return
     val genericSuperclass = components.first().classX.genericSuperclass
     components.forEach { component ->
@@ -106,8 +97,8 @@ private fun checkIfComponentsHaveSameGenericSuperclass(components: Collection<An
     }
 }
 
-private inline fun <reified T> getParameterizedTyp(any: Any): ParameterizedType {
-    val kClass = any.kClassX
-    val type = kClass.java.genericSuperclass as ParameterizedType
-    return ParameterizedTypeImpl.make(T::class.java, type.actualTypeArguments, null)
-}
+private inline fun <reified T> getParameterizedType(any: Any): ParameterizedType =
+        when (val type = any.classX.genericSuperclass) {
+            is ParameterizedType -> ParameterizedTypeImpl.make(T::class.java, type.actualTypeArguments, null)
+            else -> ParameterizedTypeImpl.make(T::class.java, arrayOf(type), null)
+        }

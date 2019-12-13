@@ -2,13 +2,15 @@ package com.monkeydp.daios.dm.mysql
 
 import com.monkeydp.daios.dm.base.jdbc.datasource.AbstractJdbcDsDefs
 import com.monkeydp.daios.dm.base.jdbc.datasource.jdbcDsDef
+import com.monkeydp.daios.dms.sdk.annot.SdkDsDef
 import com.monkeydp.daios.dms.sdk.datasource.DsDriver
 
 /**
  * @author iPotato
  * @date 2019/10/27
  */
-object MysqlDefs : AbstractJdbcDsDefs() {
+object MysqlDefs {
+    @SdkDsDef
     val mysql57def = jdbcDsDef {
         version = MysqlVersion.MYSQL_5_7
         driver = DsDriver(
@@ -16,6 +18,8 @@ object MysqlDefs : AbstractJdbcDsDefs() {
                 classname = "com.mysql.jdbc.Driver"
         )
     }
+    
+    @SdkDsDef
     val mysql80def = jdbcDsDef {
         version = MysqlVersion.MYSQL_8_0
         driver = DsDriver(
