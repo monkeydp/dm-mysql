@@ -1,8 +1,8 @@
 package com.monkeydp.daios.dm.mysql.test.api
 
-import com.monkeydp.daios.dm.base.instruction.DeleteTable
-import com.monkeydp.daios.dm.base.instruction.NewTable
-import com.monkeydp.daios.dm.base.instruction.ShowInfo
+import com.monkeydp.daios.dm.base.instruction.main.DeleteTable
+import com.monkeydp.daios.dm.base.instruction.main.NewTable
+import com.monkeydp.daios.dm.base.instruction.main.ShowInfo
 import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.mocker.MysqlElementMocker.table
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.tablesNodePath

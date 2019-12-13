@@ -1,9 +1,9 @@
 package com.monkeydp.daios.dm.mysql.instruction
 
 import com.monkeydp.daios.dm.base.instruction.parser.AbstractInstrParser
-import com.monkeydp.daios.dm.base.instruction.parser.InstrParserImpl
 import com.monkeydp.daios.dm.mysql.metadata.element.MysqlTable
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
+import com.monkeydp.daios.dms.sdk.annot.SdkInstrParser
 import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
 import com.monkeydp.daios.dms.sdk.request.RequestContext
 import com.monkeydp.tools.ext.kotlin.convertTo
@@ -13,7 +13,7 @@ import java.sql.Connection
  * @author iPotato
  * @date 2019/11/5
  */
-@InstrParserImpl
+@SdkInstrParser
 object MysqlDeleteTableParser : AbstractInstrParser() {
     
     override fun parse(ctx: InstrParsingCtx) {

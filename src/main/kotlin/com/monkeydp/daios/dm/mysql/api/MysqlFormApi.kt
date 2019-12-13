@@ -17,6 +17,5 @@ import kotlin.reflect.KClass
 @SdkApi
 object MysqlFormApi : AbstractFormApi() {
     private val formKClassMap: Map<Instruction, KClass<*>> by kodein.instance(SdkForm::class)
-    override fun loadFrom(ctx: FormLoadingCtx) =
-            FormBuilder.buildForm(formKClassMap.getValue(ctx.instr))
+    override fun loadFrom(ctx: FormLoadingCtx) = FormBuilder.buildForm(formKClassMap.getValue(ctx.instr))
 }

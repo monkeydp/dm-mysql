@@ -1,8 +1,6 @@
 package com.monkeydp.daios.dm.mysql.config
 
-import com.monkeydp.daios.dm.base.LocalConfig
 import com.monkeydp.daios.dm.base.jdbc.datasource.JdbcDsDefs
-import com.monkeydp.daios.dm.mysql.MysqlConfig
 import com.monkeydp.daios.dm.mysql.MysqlDefs
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
@@ -32,14 +30,14 @@ internal fun initKodein(vararg modules: Kodein.Module) =
         Kodein {
             modules.forEach { import(it) }
             
-            MysqlConfig.components.forEach {
+            MysqlComponentConfig.components.forEach {
                 when (it) {
                     is KClass<*> -> bindKClass(it) with singleton { it as KClass<out Any> }
                     else -> bindX(it) with singleton { it }
                 }
             }
             
-            MysqlConfig.componentsMap.forEach { (annotKClass, components) ->
+            MysqlComponentConfig.componentsMap.forEach { (annotKClass, components) ->
                 val kodeinComponent = annotKClass.findAnnotation<KodeinComponent<Any>>()!!
                 val mapGeneratorKClass = kodeinComponent.mapGeneratorKClass
                 if (mapGeneratorKClass == Nothing::class) return@forEach
@@ -50,8 +48,6 @@ internal fun initKodein(vararg modules: Kodein.Module) =
                 val map = mapGenerator.generate(components)
                 bindMapX(mapType, annotKClass) with singleton { map }
             }
-            
-            bind<LocalConfig>() with singleton { MysqlConfig }
             
             // ==== ds def ====
             val dsDefs: JdbcDsDefs = MysqlDefs

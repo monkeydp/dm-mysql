@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.mocker
 
-import com.monkeydp.daios.dm.base.instruction.ManageGroup
+import com.monkeydp.daios.dm.base.instruction.main.ManageGroup
 import com.monkeydp.daios.dm.mysql.metadata.menu.connMenuDef
 import com.monkeydp.daios.dms.sdk.metadata.menu.item.MenuPath
 

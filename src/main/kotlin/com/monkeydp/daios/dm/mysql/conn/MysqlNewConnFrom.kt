@@ -2,7 +2,7 @@ package com.monkeydp.daios.dm.mysql.conn
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.monkeydp.daios.dm.base.conn.AbstractNewConnForm
-import com.monkeydp.daios.dm.base.instruction.NewConn
+import com.monkeydp.daios.dm.base.instruction.main.NewConn
 import com.monkeydp.daios.dms.sdk.annot.SdkForm
 import org.jetbrains.annotations.TestOnly
 
