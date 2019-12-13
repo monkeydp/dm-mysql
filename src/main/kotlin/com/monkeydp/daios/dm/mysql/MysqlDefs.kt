@@ -1,6 +1,5 @@
 package com.monkeydp.daios.dm.mysql
 
-import com.monkeydp.daios.dm.base.jdbc.datasource.AbstractJdbcDsDefs
 import com.monkeydp.daios.dm.base.jdbc.datasource.jdbcDsDef
 import com.monkeydp.daios.dms.sdk.annot.SdkDsDef
 import com.monkeydp.daios.dms.sdk.datasource.DsDriver
