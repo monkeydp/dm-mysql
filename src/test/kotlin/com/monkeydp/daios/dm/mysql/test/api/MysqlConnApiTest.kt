@@ -2,7 +2,6 @@ package com.monkeydp.daios.dm.mysql.test.api
 
 import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
-import com.monkeydp.daios.dm.mysql.test.MysqlAbstractTest
 import com.monkeydp.daios.dms.sdk.api.ConnApi
 import org.junit.Assert
 import org.junit.Test

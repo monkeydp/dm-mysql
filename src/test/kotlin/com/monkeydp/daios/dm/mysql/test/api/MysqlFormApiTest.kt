@@ -2,7 +2,6 @@ package com.monkeydp.daios.dm.mysql.test.api
 
 import com.monkeydp.daios.dm.base.instruction.main.NewConn
 import com.monkeydp.daios.dm.mysql.config.kodein
-import com.monkeydp.daios.dm.mysql.test.MysqlAbstractTest
 import com.monkeydp.daios.dms.sdk.api.FormApi
 import com.monkeydp.daios.dms.sdk.metadata.form.FormLoadingCtx
 import org.junit.Assert
