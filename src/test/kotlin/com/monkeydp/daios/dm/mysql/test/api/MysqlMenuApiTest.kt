@@ -4,7 +4,7 @@ import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.mocker.MysqlMenuMocker.manageGroupPath
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.connNodePath
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.dbNodePath
-import com.monkeydp.daios.dm.mysql.test.AbstractTest
+import com.monkeydp.daios.dm.mysql.test.MysqlAbstractTest
 import com.monkeydp.daios.dms.sdk.api.MenuApi
 import com.monkeydp.daios.dms.sdk.metadata.menu.MenuLoadingCtx
 import org.junit.Assert
@@ -15,7 +15,7 @@ import org.kodein.di.generic.instance
  * @author iPotato
  * @date 2019/10/18
  */
-internal class MysqlMenuApiTest : AbstractTest() {
+internal class MysqlMenuApiTest : MysqlAbstractApiTest() {
     
     private val api: MenuApi by kodein.instance()
     

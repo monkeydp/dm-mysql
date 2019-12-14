@@ -2,7 +2,6 @@ package com.monkeydp.daios.dm.mysql.test.api
 
 import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker
-import com.monkeydp.daios.dm.mysql.test.AbstractTest
 import com.monkeydp.daios.dms.sdk.api.NodeApi
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.*
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
@@ -14,7 +13,7 @@ import org.kodein.di.generic.instance
  * @author iPotato
  * @date 2019/10/18
  */
-internal class MysqlNodeApiTest : AbstractTest() {
+internal class MysqlNodeApiTest : MysqlAbstractApiTest() {
     
     private val api: NodeApi by kodein.instance()
     

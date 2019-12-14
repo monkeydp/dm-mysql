@@ -6,7 +6,7 @@ import com.monkeydp.daios.dm.base.instruction.main.ShowInfo
 import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.mocker.MysqlElementMocker.table
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.tablesNodePath
-import com.monkeydp.daios.dm.mysql.test.AbstractTest
+import com.monkeydp.daios.dm.mysql.test.MysqlAbstractTest
 import com.monkeydp.daios.dms.sdk.api.InstrApi
 import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.TABLE
@@ -18,7 +18,7 @@ import org.kodein.di.generic.instance
  * @author iPotato
  * @date 2019/11/5
  */
-internal class MysqlInstrApiTest : AbstractTest() {
+internal class MysqlInstrApiTest : MysqlAbstractApiTest() {
     
     private val api: InstrApi by kodein.instance()
     
