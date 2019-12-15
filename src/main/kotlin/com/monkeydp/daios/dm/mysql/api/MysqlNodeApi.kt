@@ -17,7 +17,7 @@ import com.monkeydp.daios.dms.sdk.annot.SdkApi
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
-import com.monkeydp.daios.dms.sdk.share.request.RequestAttributes
+import com.monkeydp.daios.dms.sdk.share.conn.ConnContext
 import org.kodein.di.generic.provider
 import java.sql.Connection
 
@@ -28,7 +28,7 @@ import java.sql.Connection
 @SdkApi
 object MysqlNodeApi : AbstractNodeApi() {
     
-    val requestAttributes: () -> RequestAttributes by kodein.provider()
+    private val connContext: () -> ConnContext by kodein.provider()
     
     override fun loadConnNode(cp: ConnProfile) = MysqlNdStruct.findConnNd().create(cp)
     
@@ -40,7 +40,7 @@ object MysqlNodeApi : AbstractNodeApi() {
     }
     
     private fun loadNodes(ctx: NodeLoadingCtx, def: NodeDef): List<Node> {
-        val connection = requestAttributes().conn.rawConn as Connection
+        val connection = connContext().conn.rawConn as Connection
         return when (def) {
             is DbNd -> JdbcDbsLoader.loadDbs(connection, def, SHOW_DBS)
             is TableNd -> {
