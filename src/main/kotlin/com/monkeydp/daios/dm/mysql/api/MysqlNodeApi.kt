@@ -10,13 +10,15 @@ import com.monkeydp.daios.dm.base.metadata.node.def.contract.TablesNd
 import com.monkeydp.daios.dm.base.metadata.node.def.contract.ViewsNd
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_DBS
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_TABLES
+import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNdStruct
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dms.sdk.annot.SdkApi
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
-import com.monkeydp.daios.dms.sdk.share.request.MyRequestContext
+import com.monkeydp.daios.dms.sdk.share.request.RequestAttributes
+import org.kodein.di.generic.provider
 import java.sql.Connection
 
 /**
@@ -25,6 +27,8 @@ import java.sql.Connection
  */
 @SdkApi
 object MysqlNodeApi : AbstractNodeApi() {
+    
+    val requestAttributes: () -> RequestAttributes by kodein.provider()
     
     override fun loadConnNode(cp: ConnProfile) = MysqlNdStruct.findConnNd().create(cp)
     
@@ -36,7 +40,7 @@ object MysqlNodeApi : AbstractNodeApi() {
     }
     
     private fun loadNodes(ctx: NodeLoadingCtx, def: NodeDef): List<Node> {
-        val connection = MyRequestContext.requestAttributes.conn.rawConn as Connection
+        val connection = requestAttributes().conn.rawConn as Connection
         return when (def) {
             is DbNd -> JdbcDbsLoader.loadDbs(connection, def, SHOW_DBS)
             is TableNd -> {
