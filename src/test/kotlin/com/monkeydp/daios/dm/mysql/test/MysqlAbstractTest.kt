@@ -1,7 +1,6 @@
 package com.monkeydp.daios.dm.mysql.test
 
 import com.monkeydp.daios.dm.mysql.MysqlApp
-import com.monkeydp.daios.dms.sdk.dm.DmConfig
 import com.monkeydp.tools.config.enableDebugMode
 
 /**
@@ -12,7 +11,7 @@ internal abstract class MysqlAbstractTest {
     companion object {
         init {
             enableDebugMode()
-            MysqlApp(DmConfig.mock())
+            MysqlApp
         }
     }
 }
