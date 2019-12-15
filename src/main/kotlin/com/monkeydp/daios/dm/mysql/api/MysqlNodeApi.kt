@@ -16,7 +16,7 @@ import com.monkeydp.daios.dms.sdk.annot.SdkApi
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
-import com.monkeydp.daios.dms.sdk.share.request.RequestContext
+import com.monkeydp.daios.dms.sdk.share.request.MyRequestContext
 import java.sql.Connection
 
 /**
@@ -36,7 +36,7 @@ object MysqlNodeApi : AbstractNodeApi() {
     }
     
     private fun loadNodes(ctx: NodeLoadingCtx, def: NodeDef): List<Node> {
-        val connection = RequestContext.conn.rawConn as Connection
+        val connection = MyRequestContext.requestAttributes.conn.rawConn as Connection
         return when (def) {
             is DbNd -> JdbcDbsLoader.loadDbs(connection, def, SHOW_DBS)
             is TableNd -> {

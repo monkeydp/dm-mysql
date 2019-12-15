@@ -5,7 +5,7 @@ import com.monkeydp.daios.dm.mysql.metadata.element.MysqlTable
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dms.sdk.annot.SdkInstrParser
 import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
-import com.monkeydp.daios.dms.sdk.share.request.RequestContext
+import com.monkeydp.daios.dms.sdk.share.request.MyRequestContext
 import com.monkeydp.tools.ext.kotlin.convertTo
 import java.sql.Connection
 
@@ -21,7 +21,7 @@ object MysqlDeleteTableParser : AbstractInstrParser() {
         val userInput = ctx.userInput
         userInput[MysqlTable::dbName.name] = path.dbName
         val table = userInput.convertTo<MysqlTable>()
-        val conn = RequestContext.conn.rawConn as Connection
+        val conn = MyRequestContext.requestAttributes.conn.rawConn as Connection
         conn.createStatement().use {
             it.executeUpdate(table.deleteTableSql)
         }
