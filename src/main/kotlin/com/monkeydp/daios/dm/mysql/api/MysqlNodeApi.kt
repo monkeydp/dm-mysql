@@ -16,7 +16,7 @@ import com.monkeydp.daios.dms.sdk.annot.SdkApi
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
-import com.monkeydp.daios.dms.sdk.request.RequestContext
+import com.monkeydp.daios.dms.sdk.share.request.RequestContext
 import java.sql.Connection
 
 /**

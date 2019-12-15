@@ -6,7 +6,7 @@ import com.monkeydp.daios.dm.mysql.test.MysqlAbstractTest
 import com.monkeydp.daios.dms.sdk.api.ConnApi
 import com.monkeydp.daios.dms.sdk.conn.Conn
 import com.monkeydp.daios.dms.sdk.exception.handler.IgnoreException
-import com.monkeydp.daios.dms.sdk.request.RequestContext
+import com.monkeydp.daios.dms.sdk.share.request.RequestContext
 import com.monkeydp.tools.exception.inner.PropertyUninitializedException
 import com.monkeydp.tools.ext.kotlin.notNullSingleton
 import org.junit.After
