@@ -1,24 +1,24 @@
 package com.monkeydp.daios.dm.mysql.metadata.menu
 
 import com.monkeydp.daios.dm.base.instruction.main.*
-import com.monkeydp.daios.dm.base.metadata.menu.def.menu
-import com.monkeydp.daios.dm.base.metadata.menu.def.menuItem
+import com.monkeydp.daios.dm.base.metadata.menu.def.menuDef
+import com.monkeydp.daios.dm.base.metadata.menu.item.def.menuItemDef
 
 /**
  * @author iPotato
  * @date 2019/11/29
  */
-val connMenuDef = menu {
+val connMenuDef = menuDef {
     +OpenConn
     +CloseConn
-    +menuItem {
+    +menuItemDef {
         instr = ManageGroup
-        menuDef = menu {
+        menuDef = menuDef {
             +NewGroup
         }
     }
 }
 
-val dbMenuDef = menu {
+val dbMenuDef = menuDef {
     +OpenDb
 }

@@ -39,23 +39,23 @@ object MysqlNodeApi : AbstractNodeApi() {
         return subNodes
     }
     
-    private fun loadNodes(ctx: NodeLoadingCtx, def: NodeDef): List<Node> {
-        val connection = connContext().conn.rawConn as Connection
-        return when (def) {
-            is DbNd -> JdbcDbsLoader.loadDbs(connection, def, SHOW_DBS)
-            is TableNd -> {
-                val path = ctx.path.toSub<MysqlNodePath>()
-                useDb(connection, path.dbName)
-                JdbcTablesLoader.loadTables(connection, def, SHOW_TABLES)
+    private fun loadNodes(ctx: NodeLoadingCtx, def: NodeDef): List<Node> =
+            (connContext().conn.rawConn as Connection).run {
+                when (def) {
+                    is DbNd -> JdbcDbsLoader.loadDbs(this, def, SHOW_DBS)
+                    is TableNd -> {
+                        val path = ctx.path.toSub<MysqlNodePath>()
+                        useDb(this, path.dbName)
+                        JdbcTablesLoader.loadTables(this, def, SHOW_TABLES)
+                    }
+                    is TablesNd -> listOf(MysqlNdStruct.findTablesNd().create())
+                    is ViewsNd -> listOf(MysqlNdStruct.findViewsNd().create())
+                    else -> emptyList()
+                }
             }
-            is TablesNd -> listOf(MysqlNdStruct.findTablesNd().create())
-            is ViewsNd -> listOf(MysqlNdStruct.findViewsNd().create())
-            else -> emptyList()
-        }
-    }
     
-    private fun useDb(connection: Connection, dbName: String) {
-        val useDbSql = "USE $dbName;"
-        connection.prepareStatement(useDbSql).execute()
-    }
+    private fun useDb(connection: Connection, dbName: String): Unit =
+            run {
+                connection.prepareStatement("USE $dbName;").execute()
+            }
 }
