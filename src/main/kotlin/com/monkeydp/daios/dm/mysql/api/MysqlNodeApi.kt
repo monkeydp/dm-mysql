@@ -13,7 +13,7 @@ import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_TABLES
 import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNdStruct
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
-import com.monkeydp.daios.dms.sdk.annot.SdkApi
+import com.monkeydp.daios.dms.sdk.api.annot.SdkNodeApi
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
@@ -25,7 +25,7 @@ import java.sql.Connection
  * @author iPotato
  * @date 2019/10/25
  */
-@SdkApi
+@SdkNodeApi
 object MysqlNodeApi : AbstractNodeApi() {
     
     private val connContext: () -> ConnContext by kodein.provider()
