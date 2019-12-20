@@ -2,7 +2,6 @@ package com.monkeydp.daios.dm.mysql.metadata.node
 
 import com.monkeydp.daios.dm.base.metadata.node.def.AbstractNdStruct
 import com.monkeydp.daios.dm.base.metadata.node.def.contract.*
-import com.monkeydp.daios.dm.base.metadata.node.def.std.StdTablesNd
 import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon.MYSQL_CONN_ICON
 import com.monkeydp.daios.dm.mysql.metadata.menu.connMenuDef
 import com.monkeydp.daios.dm.mysql.metadata.menu.dbMenuDef
@@ -14,18 +13,18 @@ import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.GROUP
  * @date 2019/11/29
  */
 object MysqlNdStruct : AbstractNdStruct(
-        conn {
+        connNd {
             icon = MYSQL_CONN_ICON
             menuDef = connMenuDef
-            +db {
+            +dbNd {
                 menuDef = dbMenuDef
-                +tables { +table {} }
-                +views { +view {} }
+                +tablesNd { +tableNd {} }
+                +viewsNd { +viewNd {} }
             }
         }
 ) {
     fun findDbNd() = findNd { it.target == DB }
-    fun findTablesNd() = findNd { it.target == GROUP && it.name == StdTablesNd().name }
-    fun findViewsNd() = findNd { it.target == GROUP && it.name == StdTablesNd().name }
+    fun findTablesNd() = findNd { it.target == GROUP && it.name == tablesNd().name }
+    fun findViewsNd() = findNd { it.target == GROUP && it.name == viewNd().name }
 }
 
