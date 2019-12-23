@@ -1,8 +1,8 @@
 package com.monkeydp.daios.dm.mysql.metadata.menu
 
 import com.monkeydp.daios.dm.base.instruction.main.*
-import com.monkeydp.daios.dm.base.metadata.menu.def.MenuDef
-import com.monkeydp.daios.dm.base.metadata.menu.item.def.MenuItemDef
+import com.monkeydp.daios.dm.base.metadata.menu.MenuDef
+import com.monkeydp.daios.dm.base.metadata.menu.MenuItemDef
 
 /**
  * @author iPotato
