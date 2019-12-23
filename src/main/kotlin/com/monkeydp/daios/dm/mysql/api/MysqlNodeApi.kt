@@ -4,10 +4,10 @@ import com.monkeydp.daios.dm.base.api.AbstractNodeApi
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcDbsLoader
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcTablesLoader
 import com.monkeydp.daios.dm.base.metadata.node.def.NodeDef
-import com.monkeydp.daios.dm.base.metadata.node.def.contract.DbNd
-import com.monkeydp.daios.dm.base.metadata.node.def.contract.TableNd
-import com.monkeydp.daios.dm.base.metadata.node.def.contract.TablesNd
-import com.monkeydp.daios.dm.base.metadata.node.def.contract.ViewsNd
+import com.monkeydp.daios.dm.base.metadata.node.def.sub.DbNd
+import com.monkeydp.daios.dm.base.metadata.node.def.sub.TableNd
+import com.monkeydp.daios.dm.base.metadata.node.def.sub.TablesNd
+import com.monkeydp.daios.dm.base.metadata.node.def.sub.ViewsNd
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_DBS
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_TABLES
 import com.monkeydp.daios.dm.mysql.config.kodein
