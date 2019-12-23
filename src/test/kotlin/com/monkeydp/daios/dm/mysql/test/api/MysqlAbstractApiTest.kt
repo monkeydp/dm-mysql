@@ -7,7 +7,7 @@ import com.monkeydp.daios.dms.sdk.api.ConnApi
 import com.monkeydp.daios.dms.sdk.exception.handler.IgnoreException
 import com.monkeydp.daios.dms.sdk.share.conn.ConnContext
 import com.monkeydp.daios.dms.sdk.share.request.RequestContext
-import com.monkeydp.tools.exception.inner.PropertyUninitializedException
+import com.monkeydp.tools.ext.kotlin.PropertyUninitializedException
 import org.junit.After
 import org.junit.Before
 import org.kodein.di.Kodein
