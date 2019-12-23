@@ -3,8 +3,8 @@ package com.monkeydp.daios.dm.mysql.metadata.node
 import com.monkeydp.daios.dm.base.metadata.node.def.AbstractNdStruct
 import com.monkeydp.daios.dm.base.metadata.node.def.sub.*
 import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon.MYSQL_CONN_ICON
-import com.monkeydp.daios.dm.mysql.metadata.menu.connMenuDef
-import com.monkeydp.daios.dm.mysql.metadata.menu.dbMenuDef
+import com.monkeydp.daios.dm.mysql.metadata.menu.MysqlMenuDefs.connMd
+import com.monkeydp.daios.dm.mysql.metadata.menu.MysqlMenuDefs.dbMd
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.DB
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.GROUP
 
@@ -15,9 +15,9 @@ import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.GROUP
 object MysqlNdStruct : AbstractNdStruct(
         ConnNd {
             icon = MYSQL_CONN_ICON
-            menuDef = connMenuDef
+            menuDef = connMd
             +DbNd {
-                menuDef = dbMenuDef
+                menuDef = dbMd
                 +TablesNd { +TableNd {} }
                 +ViewsNd { +ViewsNd {} }
             }

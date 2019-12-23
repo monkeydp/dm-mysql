@@ -8,7 +8,6 @@ import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
 import com.monkeydp.daios.dms.sdk.instruction.SdkInstrParser
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.TABLE
 import com.monkeydp.daios.dms.sdk.instruction.target.info.TargetInfo
-import com.monkeydp.daios.dms.sdk.instruction.target.info.targetInfo
 import com.monkeydp.tools.ext.main.ierror
 import org.kodein.di.generic.instance
 
@@ -33,5 +32,5 @@ object MysqlShowInfoParser : AbstractInstrParser() {
     /**
      * TODO
      */
-    private fun loadTableInfo(ctx: InstrParsingCtx) = targetInfo { data = "[MySQL table info, $ctx]" }
+    private fun loadTableInfo(ctx: InstrParsingCtx) = TargetInfo("[MySQL table info, $ctx]")
 }
