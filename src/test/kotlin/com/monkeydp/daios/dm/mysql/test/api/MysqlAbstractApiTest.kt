@@ -6,7 +6,6 @@ import com.monkeydp.daios.dm.mysql.test.MysqlAbstractTest
 import com.monkeydp.daios.dms.sdk.api.ConnApi
 import com.monkeydp.daios.dms.sdk.exception.handler.IgnoreException
 import com.monkeydp.daios.dms.sdk.share.conn.ConnContext
-import com.monkeydp.daios.dms.sdk.share.conn.connContext
 import com.monkeydp.daios.dms.sdk.share.request.RequestContext
 import com.monkeydp.tools.exception.inner.PropertyUninitializedException
 import org.junit.After
@@ -29,7 +28,7 @@ internal abstract class MysqlAbstractApiTest : MysqlAbstractTest() {
     @IgnoreException(Kodein.NotFoundException::class)
     fun before() {
         ctx.setRequestAttributes(
-                connContext {
+                ConnContext {
                     cp = MysqlCpMocker.cp
                     conn = connApi.getConn(cp)
                 }
