@@ -1,6 +1,5 @@
 package com.monkeydp.daios.dm.mysql.test
 
-import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNdStruct
 import org.junit.Test
 
 /**
@@ -10,6 +9,6 @@ import org.junit.Test
 class MysqlMainTest {
     @Test
     fun test() {
-        MysqlNdStruct
+    
     }
 }
