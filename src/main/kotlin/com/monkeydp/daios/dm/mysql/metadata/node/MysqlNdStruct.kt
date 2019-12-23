@@ -13,18 +13,18 @@ import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.GROUP
  * @date 2019/11/29
  */
 object MysqlNdStruct : AbstractNdStruct(
-        connNd {
+        ConnNd {
             icon = MYSQL_CONN_ICON
             menuDef = connMenuDef
-            +dbNd {
+            +DbNd {
                 menuDef = dbMenuDef
-                +tablesNd { +tableNd {} }
-                +viewsNd { +viewNd {} }
+                +TablesNd { +TableNd {} }
+                +ViewsNd { +ViewsNd {} }
             }
         }
 ) {
     fun findDbNd() = findNd { it.target == DB }
-    fun findTablesNd() = findNd { it.target == GROUP && it.name == tablesNd().name }
-    fun findViewsNd() = findNd { it.target == GROUP && it.name == viewsNd().name }
+    fun findTablesNd() = findNd { it.target == GROUP && it.name == TablesNd().name }
+    fun findViewsNd() = findNd { it.target == GROUP && it.name == ViewsNd().name }
 }
 
