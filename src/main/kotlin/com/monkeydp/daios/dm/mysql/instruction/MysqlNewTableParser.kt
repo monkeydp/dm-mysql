@@ -8,7 +8,7 @@ import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
 import com.monkeydp.daios.dms.sdk.instruction.SdkInstrParser
 import com.monkeydp.daios.dms.sdk.share.conn.ConnContext
 import com.monkeydp.tools.ext.kotlin.convertTo
-import org.kodein.di.generic.provider
+import org.kodein.di.generic.instance
 import java.sql.Connection
 
 /**
@@ -18,14 +18,14 @@ import java.sql.Connection
 @SdkInstrParser
 object MysqlNewTableParser : AbstractInstrParser() {
     
-    private val connContext: () -> ConnContext by kodein.provider()
+    private val connContext: ConnContext by kodein.instance()
     
     override fun parse(ctx: InstrParsingCtx) {
         val path = ctx.nodePath.toSub<MysqlNodePath>()
         val userInput = ctx.userInput
         ctx.userInput[MysqlTable::dbName.name] = path.dbName
         val table = userInput.convertTo<MysqlTable>()
-        val conn = connContext().conn.rawConn as Connection
+        val conn = connContext.conn.rawConn as Connection
         conn.createStatement().use {
             it.executeUpdate(table.newTableSql)
         }
