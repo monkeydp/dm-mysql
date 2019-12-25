@@ -3,9 +3,12 @@ package com.monkeydp.daios.dm.mysql.test.api
 import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.mocker.MysqlCpMocker
 import com.monkeydp.daios.dms.sdk.api.ConnApi
-import org.junit.Assert
-import org.junit.Test
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 import org.kodein.di.generic.instance
+import kotlin.test.junit5.JUnit5Asserter
 
 /**
  * @author iPotato
@@ -18,11 +21,11 @@ internal class MysqlConnApiTest : MysqlAbstractApiTest() {
     @Test
     fun connTest() {
         val conn = api.getConn(MysqlCpMocker.cp)
-        Assert.assertTrue(conn.isValid())
-        Assert.assertFalse(conn.isClosed())
+        assertTrue(conn.isValid())
+        assertFalse(conn.isClosed())
         
         conn.close()
-        Assert.assertFalse(conn.isValid())
-        Assert.assertTrue(conn.isClosed())
+        assertFalse(conn.isValid())
+        assertTrue(conn.isClosed())
     }
 }

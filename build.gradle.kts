@@ -39,7 +39,7 @@ dependencies {
     aspect("com.monkeydp.daios.dms:dms-sdk") { setTransitive(false) }
     testAspect("com.monkeydp.daios.dms:dms-sdk") { setTransitive(false) }
     // test
-    testImplementation("junit:junit:4.12")
+    testImplementation(kotlin("test-junit5"))
 }
 
 distributions {

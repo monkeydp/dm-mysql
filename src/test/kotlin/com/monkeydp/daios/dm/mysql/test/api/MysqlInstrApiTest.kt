@@ -10,7 +10,7 @@ import com.monkeydp.daios.dms.sdk.api.InstrApi
 import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.TABLE
 import com.monkeydp.daios.dms.sdk.useful.UserInput
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.kodein.di.generic.instance
 
 /**

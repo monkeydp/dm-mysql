@@ -6,8 +6,9 @@ import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.connNodePath
 import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.dbNodePath
 import com.monkeydp.daios.dms.sdk.api.MenuApi
 import com.monkeydp.daios.dms.sdk.metadata.menu.MenuLoadingCtx
-import org.junit.Assert
-import org.junit.Test
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 import org.kodein.di.generic.instance
 
 /**
@@ -22,20 +23,20 @@ internal class MysqlMenuApiTest : MysqlAbstractApiTest() {
     fun loadConnMenuTest() {
         val ctx = MenuLoadingCtx(nodePath = connNodePath)
         val menu = api.loadMenu(ctx)
-        Assert.assertTrue(menu.items.isNotEmpty())
+        assertTrue(menu.items.isNotEmpty())
     }
     
     @Test
     fun loadDbMenuTest() {
         val ctx = MenuLoadingCtx(nodePath = dbNodePath)
         val menu = api.loadMenu(ctx)
-        Assert.assertTrue(menu.items.isNotEmpty())
+        assertTrue(menu.items.isNotEmpty())
     }
     
     @Test
     fun loadSubMenuTest() {
         val ctx = MenuLoadingCtx(nodePath = connNodePath, menuPath = manageGroupPath)
         val menu = api.loadMenu(ctx)
-        Assert.assertTrue(menu.items.isNotEmpty())
+        assertTrue(menu.items.isNotEmpty())
     }
 }

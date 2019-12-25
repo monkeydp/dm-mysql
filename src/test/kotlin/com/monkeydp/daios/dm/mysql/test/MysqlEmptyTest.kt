@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.test
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 /**
  * @author iPotato
