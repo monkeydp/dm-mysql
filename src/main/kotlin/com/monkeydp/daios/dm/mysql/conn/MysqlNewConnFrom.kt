@@ -2,7 +2,6 @@ package com.monkeydp.daios.dm.mysql.conn
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.monkeydp.daios.dm.base.conn.AbstractNewConnForm
-import com.monkeydp.daios.dm.base.instruction.main.NewConn
 import com.monkeydp.daios.dms.sdk.received.form.annot.SdkNewConnForm
 import org.jetbrains.annotations.TestOnly
 
@@ -10,7 +9,7 @@ import org.jetbrains.annotations.TestOnly
  * @author iPotato
  * @date 2019/10/20
  */
-@SdkNewConnForm(instrKClass = NewConn::class)
+@SdkNewConnForm
 class MysqlNewConnFrom(
         connName: String = "MySQL Conn",
         host: String = "127.0.0.1",

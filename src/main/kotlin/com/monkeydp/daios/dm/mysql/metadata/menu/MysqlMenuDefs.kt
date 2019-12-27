@@ -3,6 +3,10 @@ package com.monkeydp.daios.dm.mysql.metadata.menu
 import com.monkeydp.daios.dm.base.instruction.main.*
 import com.monkeydp.daios.dm.base.metadata.menu.MenuDef
 import com.monkeydp.daios.dm.base.metadata.menu.MenuItemDef
+import com.monkeydp.daios.dms.sdk.instruction.main.CloseConn
+import com.monkeydp.daios.dms.sdk.instruction.main.ManageGroup
+import com.monkeydp.daios.dms.sdk.instruction.main.NewGroup
+import com.monkeydp.daios.dms.sdk.instruction.main.OpenConn
 
 /**
  * @author iPotato
