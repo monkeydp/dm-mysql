@@ -1,7 +1,7 @@
 package com.monkeydp.daios.dm.mysql.mocker
 
-import com.monkeydp.daios.dm.mysql.MysqlDefs.mysql57def
-import com.monkeydp.daios.dm.mysql.MysqlDefs.mysql80def
+import com.monkeydp.daios.dm.mysql.MysqlDefRepo.mysql57def
+import com.monkeydp.daios.dm.mysql.MysqlDefRepo.mysql80def
 import com.monkeydp.daios.dm.mysql.conn.MysqlNewConnFrom
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
 import com.monkeydp.daios.dms.sdk.conn.SdkTestCp
