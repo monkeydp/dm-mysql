@@ -5,7 +5,6 @@ import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker
 import com.monkeydp.daios.dms.sdk.api.NodeApi
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.*
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
