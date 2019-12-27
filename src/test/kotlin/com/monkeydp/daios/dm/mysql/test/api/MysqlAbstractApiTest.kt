@@ -37,6 +37,6 @@ internal abstract class MysqlAbstractApiTest : MysqlAbstractTest() {
     @AfterAll
     @IgnoreException(PropertyUninitializedException::class)
     fun afterAll() {
-//        connContext.conn.close()
+        connContext.conn.close()
     }
 }

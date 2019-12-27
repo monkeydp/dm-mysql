@@ -40,6 +40,7 @@ dependencies {
     testAspect("com.monkeydp.daios.dms:dms-sdk") { setTransitive(false) }
     // test
     testImplementation(kotlin("test-junit5"))
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.3.2")
 }
 
 distributions {
