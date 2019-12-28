@@ -1,7 +1,7 @@
 package com.monkeydp.daios.dm.mysql.metadata.node
 
-import com.monkeydp.daios.dm.base.metadata.node.def.AbstractNdStruct
-import com.monkeydp.daios.dm.base.metadata.node.def.SdkNdStruct
+import com.monkeydp.daios.dms.sdk.metadata.node.AbstractNdStruct
+import com.monkeydp.daios.dms.sdk.metadata.node.SdkNdStruct
 import com.monkeydp.daios.dm.base.metadata.node.def.sub.*
 import com.monkeydp.daios.dm.mysql.metadata.icon.MysqlIcon.MYSQL_CONN_ICON
 import com.monkeydp.daios.dm.mysql.metadata.menu.MysqlMenuDefs.connMd

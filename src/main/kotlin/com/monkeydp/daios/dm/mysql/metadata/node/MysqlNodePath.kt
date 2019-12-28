@@ -1,7 +1,7 @@
 package com.monkeydp.daios.dm.mysql.metadata.node
 
-import com.monkeydp.daios.dm.base.metadata.node.def.NodeDef
-import com.monkeydp.daios.dm.base.metadata.node.def.NodeDefStruct
+import com.monkeydp.daios.dms.sdk.metadata.node.NodeDef
+import com.monkeydp.daios.dms.sdk.metadata.node.NodeDefStruct
 import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dms.sdk.metadata.node.NodePath
 import org.kodein.di.generic.instance
@@ -13,8 +13,6 @@ import org.kodein.di.generic.instance
  */
 class MysqlNodePath : NodePath() {
     
-    private val ndStruct: NodeDefStruct by kodein.instance()
-    
     private val dbNode get() = this[1]
     val dbName get() = dbNode.name
     
@@ -23,6 +21,4 @@ class MysqlNodePath : NodePath() {
     
     private val viewNode get() = this[3]
     val viewName get() = viewNode.name
-    
-    fun getLastNodeDef(): NodeDef = ndStruct.find(last().defId)
 }

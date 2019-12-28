@@ -3,9 +3,7 @@ package com.monkeydp.daios.dm.mysql.api
 import com.monkeydp.daios.dm.base.api.AbstractNodeApi
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcDbsLoader
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcTablesLoader
-import com.monkeydp.daios.dm.base.metadata.node.def.NodeDef
 import com.monkeydp.daios.dm.base.metadata.node.def.UnhandledNodeDefException
-import com.monkeydp.daios.dm.base.metadata.node.def.find
 import com.monkeydp.daios.dm.base.metadata.node.def.sub.DbNd
 import com.monkeydp.daios.dm.base.metadata.node.def.sub.TableNd
 import com.monkeydp.daios.dm.base.metadata.node.def.sub.TablesNd
@@ -16,7 +14,9 @@ import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dms.sdk.api.annot.SdkNodeApi
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
+import com.monkeydp.daios.dms.sdk.metadata.node.NodeDef
+import com.monkeydp.daios.dms.sdk.metadata.node.NodePath
+import com.monkeydp.daios.dms.sdk.metadata.node.find
 import com.monkeydp.daios.dms.sdk.share.conn.ConnContext
 import org.kodein.di.generic.instance
 import java.sql.Connection
@@ -30,10 +30,8 @@ object MysqlNodeApi : AbstractNodeApi() {
     
     private val connContext: ConnContext by kodein.instance()
     
-    override fun loadSubNodes(ctx: NodeLoadingCtx): List<Node> =
-            ctx.path.toSub<MysqlNodePath>().run {
-                getLastNodeDef().children.map { loadNodes(this, it) }.flatten()
-            }
+    override fun loadNodes(path: NodePath, def: NodeDef): List<Node> =
+            loadNodes(path.toSub(), def)
     
     private fun loadNodes(path: MysqlNodePath, def: NodeDef): List<Node> =
             (connContext.conn.rawConn as Connection).let {

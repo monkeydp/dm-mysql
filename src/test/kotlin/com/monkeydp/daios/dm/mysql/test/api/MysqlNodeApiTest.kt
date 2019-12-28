@@ -1,10 +1,11 @@
 package com.monkeydp.daios.dm.mysql.test.api
 
 import com.monkeydp.daios.dm.mysql.config.kodein
-import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker
+import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.connNodePath
+import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.dbNodePath
+import com.monkeydp.daios.dm.mysql.mocker.MysqlNodeMocker.tablesNodePath
 import com.monkeydp.daios.dms.sdk.api.NodeApi
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.*
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -20,24 +21,21 @@ internal class MysqlNodeApiTest : MysqlAbstractApiTest() {
     
     @Test
     fun loadDbsTest() {
-        val ctx = NodeLoadingCtx(MysqlNodeMocker.connNodePath)
-        val nodes = api.loadSubNodes(ctx)
+        val nodes = api.loadSubNodes(connNodePath)
         assertTrue(nodes.isNotEmpty())
         nodes.forEach { assertEquals(DB, it.target) }
     }
     
     @Test
     fun loadTablesTest() {
-        val ctx = NodeLoadingCtx(MysqlNodeMocker.tablesNodePath)
-        val nodes = api.loadSubNodes(ctx)
+        val nodes = api.loadSubNodes(tablesNodePath)
         assertTrue(nodes.isNotEmpty())
         nodes.forEach { assertEquals(TABLE, it.target) }
     }
     
     @Test
     fun loadGroupsTest() {
-        val ctx = NodeLoadingCtx(MysqlNodeMocker.dbNodePath)
-        val nodes = api.loadSubNodes(ctx)
+        val nodes = api.loadSubNodes(dbNodePath)
         assertTrue(nodes.isNotEmpty())
         nodes.forEach { assertEquals(GROUP, it.target) }
     }

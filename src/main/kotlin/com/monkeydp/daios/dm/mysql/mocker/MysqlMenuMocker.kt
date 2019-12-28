@@ -2,7 +2,7 @@ package com.monkeydp.daios.dm.mysql.mocker
 
 import com.monkeydp.daios.dm.mysql.metadata.menu.MysqlMenuDefs.connMd
 import com.monkeydp.daios.dms.sdk.instruction.main.ManageGroup
-import com.monkeydp.daios.dms.sdk.metadata.menu.item.MenuPath
+import com.monkeydp.daios.dms.sdk.metadata.menu.MenuPath
 
 /**
  * @author iPotato

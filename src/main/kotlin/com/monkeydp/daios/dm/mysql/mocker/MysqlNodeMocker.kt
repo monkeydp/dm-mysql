@@ -1,7 +1,7 @@
 package com.monkeydp.daios.dm.mysql.mocker
 
-import com.monkeydp.daios.dm.base.metadata.node.def.NodeDefStruct
-import com.monkeydp.daios.dm.base.metadata.node.def.find
+import com.monkeydp.daios.dms.sdk.metadata.node.NodeDefStruct
+import com.monkeydp.daios.dms.sdk.metadata.node.find
 import com.monkeydp.daios.dm.base.metadata.node.def.sub.ConnNd
 import com.monkeydp.daios.dm.base.metadata.node.def.sub.DbNd
 import com.monkeydp.daios.dm.base.metadata.node.def.sub.TablesNd
