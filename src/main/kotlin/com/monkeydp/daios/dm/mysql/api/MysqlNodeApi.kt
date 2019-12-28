@@ -13,6 +13,7 @@ import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dms.sdk.api.annot.SdkNodeApi
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
+import com.monkeydp.daios.dms.sdk.metadata.node.ConnNode
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
 import com.monkeydp.daios.dms.sdk.share.conn.ConnContext
@@ -29,7 +30,10 @@ object MysqlNodeApi : AbstractNodeApi() {
     private val ndStruct: NodeDefStruct by kodein.instance()
     private val connContext: ConnContext by kodein.instance()
     
-    override fun loadConnNode(cp: ConnProfile) = ndStruct.find<ConnNd>().create(cp)
+    override fun loadConnNodes(cps: Iterable<ConnProfile>): List<ConnNode> =
+            ndStruct.find<ConnNd>().run {
+                cps.map { create(it) }
+            }
     
     override fun loadSubNodes(ctx: NodeLoadingCtx): List<Node> {
         val def = ctx.path.toSub<MysqlNodePath>().getLastNodeDef()
