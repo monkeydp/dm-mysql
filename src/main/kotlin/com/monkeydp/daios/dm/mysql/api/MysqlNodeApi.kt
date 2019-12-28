@@ -5,9 +5,8 @@ import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcDbLoader
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcTableLoader
 import com.monkeydp.daios.dm.base.metadata.node.def.UnhandledNodeDefException
 import com.monkeydp.daios.dm.base.metadata.node.def.sub.DbNd
+import com.monkeydp.daios.dm.base.metadata.node.def.sub.GroupNd
 import com.monkeydp.daios.dm.base.metadata.node.def.sub.TableNd
-import com.monkeydp.daios.dm.base.metadata.node.def.sub.TablesNd
-import com.monkeydp.daios.dm.base.metadata.node.def.sub.ViewsNd
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_DBS
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_TABLES
 import com.monkeydp.daios.dm.mysql.config.kodein
@@ -16,7 +15,6 @@ import com.monkeydp.daios.dms.sdk.api.annot.SdkNodeApi
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeDef
 import com.monkeydp.daios.dms.sdk.metadata.node.NodePath
-import com.monkeydp.daios.dms.sdk.metadata.node.find
 import com.monkeydp.daios.dms.sdk.share.conn.ConnContext
 import org.kodein.di.generic.instance
 import java.sql.Connection
@@ -41,8 +39,7 @@ object MysqlNodeApi : AbstractNodeApi() {
                         useDb(it, path.dbName)
                         JdbcTableLoader.loadTableNodes(it, def, SHOW_TABLES)
                     }
-                    is TablesNd -> listOf(ndStruct.find<TablesNd>().create())
-                    is ViewsNd -> listOf(ndStruct.find<ViewsNd>().create())
+                    is GroupNd -> listOf(ndStruct.find(def.id).create())
                     else -> throw UnhandledNodeDefException(def)
                 }
             }
