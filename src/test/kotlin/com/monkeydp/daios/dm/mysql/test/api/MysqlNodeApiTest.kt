@@ -20,21 +20,21 @@ internal class MysqlNodeApiTest : MysqlAbstractApiTest() {
     private val api: NodeApi by kodein.instance()
     
     @Test
-    fun loadDbsTest() {
+    fun loadDbNodesTest() {
         val nodes = api.loadSubNodes(connNodePath)
         assertTrue(nodes.isNotEmpty())
         nodes.forEach { assertEquals(DB, it.target) }
     }
     
     @Test
-    fun loadTablesTest() {
+    fun loadTableNodesTest() {
         val nodes = api.loadSubNodes(tablesNodePath)
         assertTrue(nodes.isNotEmpty())
         nodes.forEach { assertEquals(TABLE, it.target) }
     }
     
     @Test
-    fun loadGroupsTest() {
+    fun loadGroupNodesTest() {
         val nodes = api.loadSubNodes(dbNodePath)
         assertTrue(nodes.isNotEmpty())
         nodes.forEach { assertEquals(GROUP, it.target) }
