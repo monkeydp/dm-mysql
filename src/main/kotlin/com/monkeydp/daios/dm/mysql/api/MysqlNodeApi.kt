@@ -4,16 +4,17 @@ import com.monkeydp.daios.dm.base.api.AbstractNodeApi
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcDbsLoader
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcTablesLoader
 import com.monkeydp.daios.dm.base.metadata.node.def.NodeDef
-import com.monkeydp.daios.dm.base.metadata.node.def.NodeDefStruct
+import com.monkeydp.daios.dm.base.metadata.node.def.UnhandledNodeDefException
 import com.monkeydp.daios.dm.base.metadata.node.def.find
-import com.monkeydp.daios.dm.base.metadata.node.def.sub.*
+import com.monkeydp.daios.dm.base.metadata.node.def.sub.DbNd
+import com.monkeydp.daios.dm.base.metadata.node.def.sub.TableNd
+import com.monkeydp.daios.dm.base.metadata.node.def.sub.TablesNd
+import com.monkeydp.daios.dm.base.metadata.node.def.sub.ViewsNd
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_DBS
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_TABLES
 import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dms.sdk.api.annot.SdkNodeApi
-import com.monkeydp.daios.dms.sdk.conn.ConnProfile
-import com.monkeydp.daios.dms.sdk.metadata.node.ConnNode
 import com.monkeydp.daios.dms.sdk.metadata.node.Node
 import com.monkeydp.daios.dms.sdk.metadata.node.NodeLoadingCtx
 import com.monkeydp.daios.dms.sdk.share.conn.ConnContext
@@ -27,38 +28,28 @@ import java.sql.Connection
 @SdkNodeApi
 object MysqlNodeApi : AbstractNodeApi() {
     
-    private val ndStruct: NodeDefStruct by kodein.instance()
     private val connContext: ConnContext by kodein.instance()
     
-    override fun loadConnNodes(cps: Iterable<ConnProfile>): List<ConnNode> =
-            ndStruct.find<ConnNd>().run {
-                cps.map { create(it) }
+    override fun loadSubNodes(ctx: NodeLoadingCtx): List<Node> =
+            ctx.path.toSub<MysqlNodePath>().run {
+                getLastNodeDef().children.map { loadNodes(this, it) }.flatten()
             }
     
-    override fun loadSubNodes(ctx: NodeLoadingCtx): List<Node> {
-        val def = ctx.path.toSub<MysqlNodePath>().getLastNodeDef()
-        val subNodes = mutableListOf<Node>()
-        def.children.forEach { subNodes.addAll(loadNodes(ctx, it)) }
-        return subNodes
-    }
-    
-    private fun loadNodes(ctx: NodeLoadingCtx, def: NodeDef): List<Node> =
-            (connContext.conn.rawConn as Connection).run {
+    private fun loadNodes(path: MysqlNodePath, def: NodeDef): List<Node> =
+            (connContext.conn.rawConn as Connection).let {
                 when (def) {
-                    is DbNd -> JdbcDbsLoader.loadDbs(this, def, SHOW_DBS)
+                    is DbNd -> JdbcDbsLoader.loadDbs(it, def, SHOW_DBS)
                     is TableNd -> {
-                        val path = ctx.path.toSub<MysqlNodePath>()
-                        useDb(this, path.dbName)
-                        JdbcTablesLoader.loadTables(this, def, SHOW_TABLES)
+                        useDb(it, path.dbName)
+                        JdbcTablesLoader.loadTables(it, def, SHOW_TABLES)
                     }
                     is TablesNd -> listOf(ndStruct.find<TablesNd>().create())
                     is ViewsNd -> listOf(ndStruct.find<ViewsNd>().create())
-                    else -> emptyList()
+                    else -> throw UnhandledNodeDefException(def)
                 }
             }
     
-    private fun useDb(connection: Connection, dbName: String): Unit =
-            run {
-                connection.prepareStatement("USE $dbName;").execute()
-            }
+    private fun useDb(connection: Connection, dbName: String) {
+        connection.prepareStatement("USE $dbName;").execute()
+    }
 }

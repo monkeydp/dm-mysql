@@ -15,20 +15,14 @@ class MysqlNodePath : NodePath() {
     
     private val ndStruct: NodeDefStruct by kodein.instance()
     
-    private val dbNode
-        get() = this[1]
-    val dbName
-        get() = dbNode.name
+    private val dbNode get() = this[1]
+    val dbName get() = dbNode.name
     
-    private val tableNode
-        get() = this[3]
-    val tableName
-        get() = tableNode.name
+    private val tableNode get() = this[3]
+    val tableName get() = tableNode.name
     
-    private val viewNode
-        get() = this[3]
-    val viewName
-        get() = viewNode.name
+    private val viewNode get() = this[3]
+    val viewName get() = viewNode.name
     
     fun getLastNodeDef(): NodeDef = ndStruct.find(last().defId)
 }
