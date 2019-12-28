@@ -4,14 +4,12 @@ import com.monkeydp.daios.dm.base.api.AbstractNodeApi
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcDbsLoader
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcTablesLoader
 import com.monkeydp.daios.dm.base.metadata.node.def.NodeDef
-import com.monkeydp.daios.dm.base.metadata.node.def.sub.DbNd
-import com.monkeydp.daios.dm.base.metadata.node.def.sub.TableNd
-import com.monkeydp.daios.dm.base.metadata.node.def.sub.TablesNd
-import com.monkeydp.daios.dm.base.metadata.node.def.sub.ViewsNd
+import com.monkeydp.daios.dm.base.metadata.node.def.NodeDefStruct
+import com.monkeydp.daios.dm.base.metadata.node.def.find
+import com.monkeydp.daios.dm.base.metadata.node.def.sub.*
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_DBS
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_TABLES
 import com.monkeydp.daios.dm.mysql.config.kodein
-import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNdStruct
 import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
 import com.monkeydp.daios.dms.sdk.api.annot.SdkNodeApi
 import com.monkeydp.daios.dms.sdk.conn.ConnProfile
@@ -28,9 +26,10 @@ import java.sql.Connection
 @SdkNodeApi
 object MysqlNodeApi : AbstractNodeApi() {
     
+    private val ndStruct: NodeDefStruct by kodein.instance()
     private val connContext: ConnContext by kodein.instance()
     
-    override fun loadConnNode(cp: ConnProfile) = MysqlNdStruct.findConnNd().create(cp)
+    override fun loadConnNode(cp: ConnProfile) = ndStruct.find<ConnNd>().create(cp)
     
     override fun loadSubNodes(ctx: NodeLoadingCtx): List<Node> {
         val def = ctx.path.toSub<MysqlNodePath>().getLastNodeDef()
@@ -48,8 +47,8 @@ object MysqlNodeApi : AbstractNodeApi() {
                         useDb(this, path.dbName)
                         JdbcTablesLoader.loadTables(this, def, SHOW_TABLES)
                     }
-                    is TablesNd -> listOf(MysqlNdStruct.findTablesNd().create())
-                    is ViewsNd -> listOf(MysqlNdStruct.findViewsNd().create())
+                    is TablesNd -> listOf(ndStruct.find<TablesNd>().create())
+                    is ViewsNd -> listOf(ndStruct.find<ViewsNd>().create())
                     else -> emptyList()
                 }
             }
