@@ -7,6 +7,7 @@ import com.monkeydp.daios.dms.sdk.metadata.form.Form
 import com.monkeydp.daios.dms.sdk.metadata.form.FormBuilder
 import com.monkeydp.daios.dms.sdk.metadata.form.FormLoadingCtx
 import com.monkeydp.daios.dms.sdk.received.form.ReceivedForm
+import com.sun.org.apache.bcel.internal.generic.Instruction
 import org.kodein.di.generic.instance
 import kotlin.reflect.KClass
 
@@ -16,8 +17,5 @@ import kotlin.reflect.KClass
  */
 @SdkFormApi
 object MysqlFormApi : AbstractFormApi() {
-    override fun loadFrom(ctx: FormLoadingCtx): Form {
-        val receivedFormKClass: KClass<ReceivedForm> by kodein.instance(ctx.instr)
-        return FormBuilder.buildForm(receivedFormKClass)
-    }
+
 }
