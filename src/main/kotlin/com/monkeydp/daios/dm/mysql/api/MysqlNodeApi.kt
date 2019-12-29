@@ -3,9 +3,9 @@ package com.monkeydp.daios.dm.mysql.api
 import com.monkeydp.daios.dm.base.api.AbstractNodeApi
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcDbLoader
 import com.monkeydp.daios.dm.base.jdbc.api.node.JdbcTableLoader
-import com.monkeydp.daios.dm.base.metadata.node.def.UnhandledNodeDefException
 import com.monkeydp.daios.dm.base.metadata.node.def.DbNd
 import com.monkeydp.daios.dm.base.metadata.node.def.TableNd
+import com.monkeydp.daios.dm.base.metadata.node.def.UnhandledNodeDefException
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_DBS
 import com.monkeydp.daios.dm.mysql.MysqlSql.SHOW_TABLES
 import com.monkeydp.daios.dm.mysql.config.kodein
