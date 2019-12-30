@@ -1,7 +1,7 @@
 package com.monkeydp.daios.dm.mysql.config
 
 import com.monkeydp.daios.dm.base.config.DmKodeinCompRepo
-import com.monkeydp.daios.dms.sdk.share.kodein.DmKodein
+import com.monkeydp.daios.dms.sdk.dm.DmKodein
 
 /**
  * @author iPotato
