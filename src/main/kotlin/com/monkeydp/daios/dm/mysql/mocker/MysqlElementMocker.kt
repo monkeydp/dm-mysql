@@ -1,7 +1,7 @@
 package com.monkeydp.daios.dm.mysql.mocker
 
-import com.monkeydp.daios.dm.mysql.metadata.element.MysqlColumn
-import com.monkeydp.daios.dm.mysql.metadata.element.MysqlTable
+import com.monkeydp.daios.dm.mysql.ui.element.MysqlColumn
+import com.monkeydp.daios.dm.mysql.ui.element.MysqlTable
 
 /**
  * @author iPotato

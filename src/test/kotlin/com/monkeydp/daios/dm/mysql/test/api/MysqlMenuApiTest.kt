@@ -1,14 +1,14 @@
 package com.monkeydp.daios.dm.mysql.test.api
 
-import com.monkeydp.daios.dm.base.metadata.node.def.ConnNd
-import com.monkeydp.daios.dm.base.metadata.node.def.DbNd
+import com.monkeydp.daios.dm.base.ui.node.def.ConnNd
+import com.monkeydp.daios.dm.base.ui.node.def.DbNd
 import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dms.sdk.api.MenuApi
 import com.monkeydp.daios.dms.sdk.instruction.main.ManageGroup
-import com.monkeydp.daios.dms.sdk.metadata.menu.MenuDef
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeDef
-import com.monkeydp.daios.dms.sdk.metadata.node.NodeDefStruct
-import com.monkeydp.daios.dms.sdk.metadata.node.find
+import com.monkeydp.daios.dms.sdk.ui.menu.MenuDef
+import com.monkeydp.daios.dms.sdk.ui.node.NodeDef
+import com.monkeydp.daios.dms.sdk.ui.node.NodeDefStruct
+import com.monkeydp.daios.dms.sdk.ui.node.find
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.kodein.di.generic.instance

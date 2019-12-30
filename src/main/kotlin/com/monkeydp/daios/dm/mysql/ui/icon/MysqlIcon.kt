@@ -1,8 +1,8 @@
-package com.monkeydp.daios.dm.mysql.metadata.icon
+package com.monkeydp.daios.dm.mysql.ui.icon
 
-import com.monkeydp.daios.dms.sdk.metadata.icon.GlobalIcon
-import com.monkeydp.daios.dms.sdk.metadata.icon.Icon
-import com.monkeydp.daios.dms.sdk.metadata.icon.SdkIcon
+import com.monkeydp.daios.dms.sdk.ui.icon.GlobalIcon
+import com.monkeydp.daios.dms.sdk.ui.icon.Icon
+import com.monkeydp.daios.dms.sdk.ui.icon.SdkIcon
 import com.monkeydp.tools.enumx.EnumxOption
 
 /**

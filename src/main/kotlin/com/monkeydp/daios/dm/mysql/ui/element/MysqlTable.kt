@@ -1,4 +1,4 @@
-package com.monkeydp.daios.dm.mysql.metadata.element
+package com.monkeydp.daios.dm.mysql.ui.element
 
 import com.monkeydp.tools.enumeration.Symbol.COMMA
 

@@ -2,8 +2,8 @@ package com.monkeydp.daios.dm.mysql.instruction
 
 import com.monkeydp.daios.dm.base.instruction.parser.AbstractInstrParser
 import com.monkeydp.daios.dm.mysql.config.kodein
-import com.monkeydp.daios.dm.mysql.metadata.element.MysqlTable
-import com.monkeydp.daios.dm.mysql.metadata.node.MysqlNodePath
+import com.monkeydp.daios.dm.mysql.ui.element.MysqlTable
+import com.monkeydp.daios.dm.mysql.ui.node.MysqlNodePath
 import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
 import com.monkeydp.daios.dms.sdk.instruction.SdkInstrParser
 import com.monkeydp.daios.dms.sdk.share.conn.ConnContext
