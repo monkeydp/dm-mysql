@@ -4,11 +4,11 @@ import com.monkeydp.daios.dm.base.instruction.parser.AbstractInstrParser
 import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.ui.element.MysqlTable
 import com.monkeydp.daios.dm.mysql.ui.node.MysqlNodePath
+import com.monkeydp.daios.dms.sdk.context.ConnContext
 import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
 import com.monkeydp.daios.dms.sdk.instruction.SdkInstrParser
-import com.monkeydp.daios.dms.sdk.share.conn.ConnContext
+import com.monkeydp.tools.ext.kodein.findImpl
 import com.monkeydp.tools.ext.kotlin.convertTo
-import org.kodein.di.generic.instance
 import java.sql.Connection
 
 /**
@@ -18,7 +18,7 @@ import java.sql.Connection
 @SdkInstrParser
 object MysqlDeleteTableParser : AbstractInstrParser() {
     
-    private val connContext: ConnContext by kodein.instance()
+    private val connContext: ConnContext get() = kodein.findImpl()
     
     override fun parse(ctx: InstrParsingCtx) {
         val path = ctx.nodePath.toSub<MysqlNodePath>()

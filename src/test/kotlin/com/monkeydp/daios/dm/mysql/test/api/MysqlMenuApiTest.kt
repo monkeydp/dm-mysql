@@ -18,26 +18,26 @@ import org.kodein.di.generic.instance
  * @date 2019/10/18
  */
 internal class MysqlMenuApiTest : MysqlAbstractApiTest() {
-    
+
     private val api: MenuApi by kodein.instance()
     private val ndStruct: NodeDefStruct by kodein.instance()
-    
+
     private inline fun <reified ND : NodeDef> findMenuDefId(): Int = findMenuDef<ND>().id
-    
+
     private inline fun <reified ND : NodeDef> findMenuDef(): MenuDef = ndStruct.find<ND>().menuDef!!
-    
+
     @Test
     fun loadConnMenuTest() {
         val menu = api.loadMenu(findMenuDefId<ConnNd>())
         assertTrue(menu.items.isNotEmpty())
     }
-    
+
     @Test
     fun loadDbMenuTest() {
         val menu = api.loadMenu(findMenuDefId<DbNd>())
         assertTrue(menu.items.isNotEmpty())
     }
-    
+
     @Test
     fun loadSubMenuTest() {
         val menuDefId = findMenuDef<ConnNd>().items.first { it.instr == ManageGroup }.menuDef!!.id
