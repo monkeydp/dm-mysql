@@ -15,7 +15,7 @@ import com.monkeydp.daios.dms.sdk.context.ConnContext
 import com.monkeydp.daios.dms.sdk.ui.node.Node
 import com.monkeydp.daios.dms.sdk.ui.node.NodeDef
 import com.monkeydp.daios.dms.sdk.ui.node.NodePath
-import com.monkeydp.tools.ext.kodein.findImpl
+import com.monkeydp.tools.ext.kodein.providerX
 import java.sql.Connection
 
 /**
@@ -25,7 +25,7 @@ import java.sql.Connection
 @SdkNodeApi
 object MysqlNodeApi : AbstractNodeApi() {
     
-    private val connContext: ConnContext get() = kodein.findImpl()
+    private val connContext: ConnContext get() = kodein.providerX()
     
     override fun loadNonGroupNodes(path: NodePath, def: NodeDef): List<Node> =
             loadNonGroupNodes(path.toSub(), def)

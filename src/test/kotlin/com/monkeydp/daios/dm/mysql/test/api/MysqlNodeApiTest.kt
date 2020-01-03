@@ -9,7 +9,7 @@ import com.monkeydp.daios.dms.sdk.context.ConnContext
 import com.monkeydp.daios.dms.sdk.context.ContextRepoHolder
 import com.monkeydp.daios.dms.sdk.context.NodeContext
 import com.monkeydp.daios.dms.sdk.instruction.target.GlobalTarget.*
-import com.monkeydp.tools.ext.kodein.findImpl
+import com.monkeydp.tools.ext.kodein.providerX
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -22,7 +22,7 @@ import org.kodein.di.generic.instance
 internal class MysqlNodeApiTest : MysqlAbstractApiTest() {
     
     private val api: NodeApi by kodein.instance()
-    private val connContext: ConnContext get() = kodein.findImpl()
+    private val connContext: ConnContext get() = kodein.providerX()
     
     @Test
     fun loadDbNodesTest() {
