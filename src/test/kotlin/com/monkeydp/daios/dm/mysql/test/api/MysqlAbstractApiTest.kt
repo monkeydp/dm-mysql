@@ -11,8 +11,6 @@ import com.monkeydp.tools.ext.kodein.providerX
 import com.monkeydp.tools.ext.kotlin.PropertyUninitializedException
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.parallel.Execution
-import org.junit.jupiter.api.parallel.ExecutionMode
 import org.kodein.di.Kodein
 import org.kodein.di.generic.instance
 
@@ -20,7 +18,6 @@ import org.kodein.di.generic.instance
  * @author iPotato
  * @date 2019/12/14
  */
-@Execution(ExecutionMode.CONCURRENT)
 internal abstract class MysqlAbstractApiTest : MysqlAbstractTest() {
     
     private val connApi: ConnApi by kodein.instance()
