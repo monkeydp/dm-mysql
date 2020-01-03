@@ -26,31 +26,34 @@ internal class MysqlNodeApiTest : MysqlAbstractApiTest() {
     
     @Test
     fun loadDbNodesTest() {
-        ContextRepoHolder.updateContextRepo {
-            nodeContext = NodeContext(connNodePath)
+        ContextRepoHolder.contextRepo
+                .copy(nodeContext = NodeContext(connNodePath))
+                .apply(ContextRepoHolder::setContextRepo)
+        api.loadSubNodes().apply {
+            assertTrue(isNotEmpty())
+            forEach { assertEquals(DB, it.target) }
         }
-        val nodes = api.loadSubNodes()
-        assertTrue(nodes.isNotEmpty())
-        nodes.forEach { assertEquals(DB, it.target) }
     }
     
     @Test
     fun loadTableNodesTest() {
-        ContextRepoHolder.updateContextRepo {
-            nodeContext = NodeContext(tablesNodePath)
+        ContextRepoHolder.contextRepo
+                .copy(nodeContext = NodeContext(tablesNodePath))
+                .apply(ContextRepoHolder::setContextRepo)
+        api.loadSubNodes().apply {
+            assertTrue(isNotEmpty())
+            forEach { assertEquals(TABLE, it.target) }
         }
-        val nodes = api.loadSubNodes()
-        assertTrue(nodes.isNotEmpty())
-        nodes.forEach { assertEquals(TABLE, it.target) }
     }
     
     @Test
     fun loadGroupNodesTest() {
-        ContextRepoHolder.updateContextRepo {
-            nodeContext = NodeContext(dbNodePath)
+        ContextRepoHolder.contextRepo
+                .copy(nodeContext = NodeContext(dbNodePath))
+                .apply(ContextRepoHolder::setContextRepo)
+        api.loadSubNodes().apply {
+            assertTrue(isNotEmpty())
+            forEach { assertEquals(GROUP, it.target) }
         }
-        val nodes = api.loadSubNodes()
-        assertTrue(nodes.isNotEmpty())
-        nodes.forEach { assertEquals(GROUP, it.target) }
     }
 }
