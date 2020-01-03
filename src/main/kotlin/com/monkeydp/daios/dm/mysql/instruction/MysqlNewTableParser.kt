@@ -5,7 +5,8 @@ import com.monkeydp.daios.dm.mysql.config.kodein
 import com.monkeydp.daios.dm.mysql.ui.element.MysqlTable
 import com.monkeydp.daios.dm.mysql.ui.node.MysqlNodePath
 import com.monkeydp.daios.dms.sdk.context.ConnContext
-import com.monkeydp.daios.dms.sdk.instruction.InstrParsingCtx
+import com.monkeydp.daios.dms.sdk.context.NodeContext
+import com.monkeydp.daios.dms.sdk.instruction.InstrParsingParams
 import com.monkeydp.daios.dms.sdk.instruction.SdkInstrParser
 import com.monkeydp.tools.ext.kodein.providerX
 import com.monkeydp.tools.ext.kotlin.convertTo
@@ -19,11 +20,12 @@ import java.sql.Connection
 object MysqlNewTableParser : AbstractInstrParser() {
     
     private val connContext: ConnContext get() = kodein.providerX()
+    private val nodeContext: NodeContext get() = kodein.providerX()
     
-    override fun parse(ctx: InstrParsingCtx) {
-        val path = ctx.nodePath.toSub<MysqlNodePath>()
-        val userInput = ctx.userInput
-        ctx.userInput[MysqlTable::dbName.name] = path.dbName
+    override fun parse(params: InstrParsingParams) {
+        val path = nodeContext.path.toSub<MysqlNodePath>()
+        val userInput = params.userInput
+        userInput[MysqlTable::dbName.name] = path.dbName
         val table = userInput.convertTo<MysqlTable>()
         val conn = connContext.conn.rawConn as Connection
         conn.createStatement().use {
