@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.ui.element
 
-import com.monkeydp.tools.enumeration.Symbol.SPACE
+import com.monkeydp.tools.constant.Symbol.SPACE
 
 /**
  * @author iPotato

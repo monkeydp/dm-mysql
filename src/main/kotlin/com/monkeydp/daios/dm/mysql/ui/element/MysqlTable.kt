@@ -1,6 +1,6 @@
 package com.monkeydp.daios.dm.mysql.ui.element
 
-import com.monkeydp.tools.enumeration.Symbol.COMMA
+import com.monkeydp.tools.constant.Symbol.COMMA
 
 /**
  * @author iPotato
