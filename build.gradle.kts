@@ -15,7 +15,7 @@ apply(plugin = "com.monkeydp.daios.dm.plugin")
 plugins {
     distribution
     // kotlin
-    val kotlinVersion = "1.3.50"
+    val kotlinVersion = "1.3.72"
     kotlin("jvm") version kotlinVersion
     // aspectj
     id("io.freefair.aspectj.post-compile-weaving") version "4.1.5"
